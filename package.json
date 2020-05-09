@@ -11,7 +11,8 @@
     "start2": "next start",
     "export": "next export",
     "deploy": "next build && next export && cd out && now .",
-    "server": "next build && next export && serve out"
+    "server": "next build && next export && serve out",
+    "svg": "npx @svgr/cli -d public/assets/svg components/svg"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",

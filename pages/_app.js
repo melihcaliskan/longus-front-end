@@ -23,5 +23,4 @@ class CustomApp extends App {
     )
   }
 }
-
 export default appWithTranslation(CustomApp)

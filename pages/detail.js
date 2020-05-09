@@ -10,7 +10,7 @@ import Button from '../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Header from "./header"
-import {Icon} from "@blueprintjs/core";
+import { Icon } from "@blueprintjs/core";
 import Issue from "./issue"
 import Row from 'react-bootstrap/Row';
 import { light_colors } from '../helpers/colors'
@@ -52,7 +52,9 @@ const Detail = ({ t }) => {
                     <Col md="auto">
                         <Add>
                             <Find>{t('find')}</Find>
-                            <Button intent="primary" text={t('add')} href="/" />
+                            <Button type="primary" href="/">
+                                {t('add')}
+                            </Button>
                         </Add>
                     </Col>
                     <Col xs lg="2" />
@@ -62,13 +64,10 @@ const Detail = ({ t }) => {
                         {`3 ${t('issues')}`}
                     </ListText>
                     <Issue />
-                    <Issue resolved/>
+                    <Issue resolved />
                     <Issue />
                 </List>
             </Container>
-
-
-
         </DetailContainer>
     )
 }

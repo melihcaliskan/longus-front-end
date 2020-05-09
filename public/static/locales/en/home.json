@@ -5,6 +5,7 @@
     "find-now": "Find Now",
     "tab": {
         "issues": "Popular Issues",
-        "devices": "Popular Devices"
+        "devices": "Popular Devices",
+        "see-all": "See All"
     }
 }

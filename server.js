@@ -17,6 +17,19 @@ const handle = app.getRequestHandler();
 
   server.get('*', (req, res) => handle(req, res))
 
+  server.get('/tabs', (req, res) => {
+    return app.render(req, res, '/about');
+  });
+  server.get('/detail', (req, res) => {
+    return app.render(req, res, '/detail');
+  });
+  server.get('/header', (req, res) => {
+    return app.render(req, res, '/header');
+  });
+  server.get('/issue', (req, res) => {
+    return app.render(req, res, '/issue');
+  });
+  
   await server.listen(port)
   console.log(`> Ready on http://localhost:${port}`) // eslint-disable-line no-console
 })()
