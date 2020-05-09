@@ -10,7 +10,8 @@
     "build2": "next build",
     "start2": "next start",
     "export": "next export",
-    "deploy": "next build && next export && cd out && now ."
+    "deploy": "next build && next export && cd out && now .",
+    "server": "next build && next export && serve out"
   },
   "dependencies": {
     "@blueprintjs/core": "^3.26.1",
