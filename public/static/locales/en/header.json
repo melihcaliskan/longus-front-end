@@ -1,0 +1,11 @@
+{
+    "issue": "chronic issue",
+    "issues": "chronic issues",
+    "no_comment": "No comment",
+    "comment": "comment",
+    "comments": "comments",
+    "fit": "Suitable for daily use",
+    "mobile": {
+        "fit": "Suitable"
+    }
+}

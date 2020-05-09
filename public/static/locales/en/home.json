@@ -1,0 +1,10 @@
+{
+    "brand": "longus.io",
+    "welcome": "Welcome",
+    "description": "Find the chronic issues of<br />your next device.",
+    "find-now": "Find Now",
+    "tab": {
+        "issues": "Popular Issues",
+        "devices": "Popular Devices"
+    }
+}

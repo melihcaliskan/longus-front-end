@@ -3,13 +3,29 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "node server.js",
     "build": "next build",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js",
+    "dev2": "next dev",
+    "build2": "next build",
+    "start2": "next start",
+    "export": "next export",
+    "deploy": "next build && next export && cd out && now ."
   },
   "dependencies": {
+    "@blueprintjs/core": "^3.26.1",
+    "bootstrap": "^4.4.1",
+    "express": "^4.17.1",
+    "lodash": "^4.17.15",
     "next": "9.3.6",
+    "next-i18next": "^4.4.1",
+    "normalize.css": "^8.0.1",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-bootstrap": "^1.0.1",
+    "react-device-detect": "^1.12.1",
+    "react-dom": "16.13.1",
+    "react-marquee-slider": "^1.0.16",
+    "react-reveal": "^1.2.2",
+    "styled-components": "^5.1.0"
   }
 }

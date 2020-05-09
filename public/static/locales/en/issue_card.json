@@ -1,0 +1,17 @@
+{
+  "explanation": "Issue explanation:",
+  "effect": "Effect on usability",
+  "low": "Low",
+  "high": "High",
+  "company": {
+    "response": "Company response:",
+    "solution": "Company solution:"
+  },
+  "buttons": {
+    "samehere": "Same here!",
+    "discuss": "Discuss this issue",
+    "resolved": "Mark as resolved"
+
+  },
+  "resolved": "This issue has been resolved permanently."
+}

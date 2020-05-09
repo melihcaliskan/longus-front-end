@@ -1,0 +1,10 @@
+{
+    "brand": "longus.io",
+    "welcome": "Hoşgeldin",
+    "description": "Aklındaki cihazın<br />kronik sorunlarını bul",
+    "find-now": "Hemen Bul",
+    "tab": {
+        "issues": "Popüler Sorunlar",
+        "devices": "Popüler Cihazlar"
+    }
+}
