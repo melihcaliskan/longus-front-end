@@ -12,6 +12,7 @@ import Login from './login'
 import Modal from 'react-bootstrap/Modal'
 import Row from 'react-bootstrap/Row'
 import Tabs from './tabs'
+import fetch from 'isomorphic-unfetch'
 import { isMobile } from "react-device-detect";
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components';
@@ -130,7 +131,7 @@ const FindButton = styled.div`
 ///////// RENKLERI DOSYAYA ATA !!!!!!!!!!!!!!
 /////////////////////////////////////////////
 
-const MotionContainer = ({ item,theme }) => {
+const MotionContainer = ({ item, theme }) => {
   return (
     <Motion
       key={`child-1e`}
@@ -166,8 +167,7 @@ function MydModalWithGrid(props) {
   );
 }
 
-const Home = ({ t, isLight, theme, toggleTheme, tReady }) => {
-  console.log(theme)
+const Home = ({ stars, t, isLight, theme, toggleTheme, tReady }) => {
   const size = useWindowSize();
   //TODO: Rename to isMobile2
   const isMobile2 = size.width < 960
@@ -188,6 +188,9 @@ const Home = ({ t, isLight, theme, toggleTheme, tReady }) => {
             onClick={toggleTheme}>
             {isLight ? "Gündüz" : "Gece"}
           </button>
+          <br /><br /><br />
+          <p>{stars}</p>
+          <br /><br />
           <HomeDropdown>
             <strong>{t('welcome')}, </strong>
             <ProfilePicture width="30px" height="30px" src="https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg" />
@@ -270,8 +273,14 @@ const Home = ({ t, isLight, theme, toggleTheme, tReady }) => {
     </div>
   )
 }
-Home.getInitialProps = async () => ({
-  namespacesRequired: ['home'],
-})
+Home.getInitialProps = async ctx => {
+  //namespacesRequired: ['home']
+  const { req } = ctx;
+  console.log(req)
+
+  const res = await fetch('https://api.github.com/repos/zeit/next.js')
+  const json = await res.json()
+  return { stars: `Rendered on server with lang: ${req.language} / star count: ${json.stargazers_count}` }
+}
 
 export default withTranslation('home')(Home)

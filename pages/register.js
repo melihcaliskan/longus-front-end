@@ -105,9 +105,9 @@ const Login = ({ t }) => {
                             <Form.Label>{t('username')}</Form.Label>
                             <Form.Control type="text" placeholder={t('username')} onChange={e => setName(e.target.value)} />
                         </Form.Group>
-                        <Form.Group className="form-item" controlId="namesurname">
-                            <Form.Label>{t('namesurname')}</Form.Label>
-                            <Form.Control type="text" placeholder={t('namesurname')} onChange={e => setUserName(e.target.value)} />
+                        <Form.Group className="form-item" controlId="name">
+                            <Form.Label>{t('name')}</Form.Label>
+                            <Form.Control type="text" placeholder={t('name')} onChange={e => setUserName(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="form-item" controlId="email">
                             <Form.Label>{t('email')}</Form.Label>

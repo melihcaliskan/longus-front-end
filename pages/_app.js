@@ -5,17 +5,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../helpers/styles.css'
 
 import React, { useState } from 'react'
+import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
 
 import { GlobalStyles } from '../helpers/global';
 import Head from 'next/head'
 import { ThemeProvider } from 'styled-components';
-import { appWithTranslation } from '../i18n'
 import { useDarkMode } from '../contexts/useDarkMode';
 
-const CustomApp = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
-
   if (!componentMounted) {
     return <div />
   }
@@ -27,8 +26,20 @@ const CustomApp = ({ Component, pageProps }) => {
         <meta charSet="utf-8" name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
       <GlobalStyles />
-      <Component {...pageProps} isLight={theme === 'light'} theme={theme === 'light' ? lightTheme : darkTheme} toggleTheme={toggleTheme} />
+      <Component
+        {...pageProps}
+        language={i18n.language}
+        isLight={theme === 'light'}
+        theme={theme === 'light' ? lightTheme : darkTheme}
+        toggleTheme={toggleTheme} />
     </ThemeProvider>
   )
 }
-export default appWithTranslation(CustomApp)
+App.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {}
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx)
+  }
+  return { pageProps }
+}
+export default appWithTranslation(App)
