@@ -28,7 +28,7 @@ const Right = styled.div`
     width:100%;
 `
 const Content = styled.div`
-    padding:20vh 10vw;
+    padding:6vh 10vw;
     @media only screen and (max-width: 960px) {
         padding:2em;
     }
@@ -37,8 +37,11 @@ const Content = styled.div`
         margin-bottom:2em;
     }
 
-    .forgot{
+    .login{
         color:${light_colors.BUTTON_BLUE};
+        margin-left:0.4em;
+    }
+    .already-member{
         margin-top:2em;
     }
 `
@@ -73,7 +76,11 @@ const Header = styled.div`
 `
 const Login = ({ t }) => {
     const [name, setName] = useState("");
+    const [username, setUserName] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [repeatPassword, setRepatPassword] = useState("");
+
     console.log(name, password);
     const handleSubmit = (evt) => {
         evt.preventDefault();
@@ -81,13 +88,13 @@ const Login = ({ t }) => {
     }
     return (
         <LoginContainer>
-            <Left type="login"/>
+            <Left type="register" />
             <Right>
                 <Content>
                     <Header>
-                        <h1>{t('login')}</h1>
-                        <ActiveLink href="/register">
-                            <h2>{t('signin')}</h2>
+                        <h1>{t('signin')}</h1>
+                        <ActiveLink href="/login">
+                            <h2>{t('login')}</h2>
                             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" clipRule="evenodd" d="M21.9822 16.25H3.75V13.75H21.9822L14.1161 5.88389L15.8839 4.11612L26.7678 15L15.8839 25.8839L14.1161 24.1161L21.9822 16.25Z" fill="#7C7C7C" />
                             </svg>
@@ -95,20 +102,34 @@ const Login = ({ t }) => {
                     </Header>
                     <Form>
                         <Form.Group className="form-item" controlId="username">
-                            <Form.Label>{t('usernameoremail')}</Form.Label>
-                            <Form.Control type="email" placeholder={t('usernameoremail')} onChange={e => setName(e.target.value)} />
+                            <Form.Label>{t('username')}</Form.Label>
+                            <Form.Control type="text" placeholder={t('username')} onChange={e => setName(e.target.value)} />
                         </Form.Group>
-
-                        <Form.Group className="form-item" controlId="password">
+                        <Form.Group className="form-item" controlId="username">
+                            <Form.Label>{t('username')}</Form.Label>
+                            <Form.Control type="text" placeholder={t('username')} onChange={e => setUserName(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group className="form-item" controlId="email">
+                            <Form.Label>{t('email')}</Form.Label>
+                            <Form.Control type="email" placeholder={t('email')} onChange={e => setEmail(e.target.value)} />
+                        </Form.Group>
+                        <Form.Group className="form-item" controlId="username">
                             <Form.Label>{t('password')}</Form.Label>
                             <Form.Control type="password" placeholder={t('password')} onChange={e => setPassword(e.target.value)} />
                         </Form.Group>
+                        <Form.Group className="form-item" controlId="password">
+                            <Form.Label>{t('repeatpassword')}</Form.Label>
+                            <Form.Control type="password" placeholder={t('repeatpassword')} onChange={e => setRepeatPassword(e.target.value)} />
+                        </Form.Group>
                         <Button variant="primary" type="submit">
-                            {t('login')}
+                            {t('signin')}
                         </Button>
-                        <ActiveLink href="/forgot">
-                            <p className="forgot">{t('forgot')}</p>
-                        </ActiveLink>
+                        <div className="already-member">
+                            <ActiveLink href="/login">
+                                <span>{t('alreadymember')}</span>
+                                <span className="login">{t('memberlogin')}</span>
+                            </ActiveLink>
+                        </div>
                     </Form>
                 </Content>
             </Right>

@@ -1,6 +1,6 @@
 export const light_colors = {
     BUTTON_BG: "#F4F4F4",
-    PRIMARY_BUTTON_BG:"#0070FF",
+    PRIMARY_BUTTON_BG: "#0070FF",
 
     RESOLVED_GREEN: "#17C671",
     SAME_HERE_RED: "#C61717",
@@ -42,11 +42,13 @@ export const light_colors = {
     FAB_BLUE: '#a',
 
     DISABLED_BUTTON: '#dfe4ea',
+
+    LOGIN_GRAY_TEXT: '#7C7C7C'
 }
 
 export const dark_colors = {
     BUTTON_BG: "red",
-    PRIMARY_BUTTON_BG:"red",
+    PRIMARY_BUTTON_BG: "red",
 
     RESOLVED_GREEN: "red",
     SAME_HERE_RED: "red",

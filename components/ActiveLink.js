@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router'
 
-function ActiveLink({ children, href }) {
+function ActiveLink({ children, href, style, white }) {
   const router = useRouter()
-  const style = { textDecoration: 'none' }
+  const customStyle = { textDecoration: 'none', color: white ? 'white' : 'initial' }
 
   const handleClick = e => {
     e.preventDefault()
@@ -14,7 +14,7 @@ function ActiveLink({ children, href }) {
   }
 
   return (
-    <a href={href} onClick={handleClick} style={style}>
+    <a href={href} onClick={handleClick} style={{ ...customStyle, ...style }}>
       {children}
     </a>
   )

@@ -7,6 +7,7 @@
         "about": "Hakkımızda",
         "contact": "İletişim"
     },
+    "name": "İsim",
     "username": "Kullanıcı adı",
     "password": "Şifre",
     "repeatpassword": "Şifre (Tekrar)",

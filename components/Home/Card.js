@@ -31,14 +31,22 @@ const Content = styled.h3`
 
 const Image = styled.img`
     width:50%;
+    max-height:60%;
     object-fit:contain;
     border-radius:5px;
     margin-bottom:1em;
 `
+const customStyle = {
+    height:'100%',
+    display: 'flex',
+    flexDirection:'column',
+    alignItems:'center',
+    justifyContent: 'flex-start'
+}
 const Card = ({ children, style, svg, img, href }) => {
     return (
         <CustomCard style={style}>
-            <ActiveLink href={`/${href}`}>
+            <ActiveLink style={customStyle} href={`/${href}`}>
                 {svg}
                 {img ? <Image src={img} /> : null}
                 <Content>{children}</Content>

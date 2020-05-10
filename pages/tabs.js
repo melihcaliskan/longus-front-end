@@ -221,13 +221,6 @@ const Tablar = ({ t }) => {
   )
 }
 
-/*
-        <CustomTabs as={Tabs} id="TabsExample" animate={true} selectedTabId={tabId} onChange={e => setTabId(e)}>
-          <Tab id="issues" title={t('tab.issues')} panel={<List data={issue_data} />} />
-          <Tab id="devices" title={t('tab.devices')} panel={<List data={device_data} />} />
-        </CustomTabs>
-*/
-
 Tablar.getInitialProps = async () => ({
   namespacesRequired: ['home'],
 })

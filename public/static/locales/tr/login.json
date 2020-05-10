@@ -1,18 +1,22 @@
 {
     "brand": "longus.io",
-    "description": "Daha fazla imkana erişmek için hesabınıza giriş yapın...",
+    "logindescription": "Daha fazla imkana erişmek için hesabınıza giriş yapın...",
+    "registerdescription": "Daha fazla imkana erişmek için hesabınıza giriş yapın...",
     "footer": {
         "year": "2020",
         "allrightsreserved": "Tüm hakları saklıdır",
         "about": "Hakkımızda",
         "contact": "İletişim"
     },
+    "name": "İsim",
+    "usernameoremail": "Kullanıcı adı veya e-posta",
     "username": "Kullanıcı adı",
     "password": "Şifre",
     "repeatpassword": "Şifre (Tekrar)",
     "email": "E-posta",
     "forgot": "Şifreni mi unuttun?",
     "login": "Giriş Yap",
-    "signin": "Kaydol"
-
+    "signin": "Kaydol",
+    "alreadymember": "Zaten üye misin?",
+    "memberlogin": "Hesabına giriş yap"
 }

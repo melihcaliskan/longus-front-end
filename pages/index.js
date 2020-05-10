@@ -36,11 +36,12 @@ const HomeDropdown = styled.div`
   padding:0.2em 1em;
   align-items:center;
   justify-content:space-between;
-  width:150px;
   height:50px;
   cursor:pointer;
   box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
-  transform: ${!isMobile ? "none" : "scale(0.8)"};;
+  @media only screen and (max-width: 960px) {
+    transform:scale(0.8);
+  }
 `
 
 const ProfilePicture = styled.img`
@@ -59,6 +60,11 @@ const HeroText = styled.h2`
   font-size:${!isMobile ? "45px" : "30px"};
   font-weight:800;
   line-height:1.3em;
+  width:40vw;
+
+  @media only screen and (max-width: 960px) {
+      width:80vw;
+  }
 `
 const FindButton = styled.div`
   display:inline-flex;
@@ -72,16 +78,18 @@ const FindButton = styled.div`
   background-color:#F4F4F4;
   height:52px;
   
-  margin-top:2em;
+  margin-top:4em;
   padding:0 1em;
   ${"svg"}{
     margin-right:1em;
   }
   box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
 
-  transform: ${!isMobile ? "none" : "scale(0.7)"};;
-
+  @media only screen and (max-width: 960px) {
+        margin-top:2em;
+  }
 `
+//  transform: ${!isMobile ? "none" : "scale(0.7)"};;
 
 /////////////////////////////////////////////
 ///////// RENKLERI DOSYAYA ATA !!!!!!!!!!!!!!
@@ -189,7 +197,9 @@ const Home = ({ t }) => {
         : null}
       <Header opacity={loading ? 0 : 1}>
         <Up>
-          <Brand>{t('brand')}</Brand>
+          <ActiveLink white href="/">
+            <Brand>{t('brand')}</Brand>
+          </ActiveLink>
           <HomeDropdown>
             <strong>{t('welcome')}, </strong>
             <ProfilePicture width="30px" height="30px" src="https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg" />
@@ -237,10 +247,10 @@ const Home = ({ t }) => {
           </FindButton>
         </Bottom>
       </Header >
-      
+
       <br /><br /><br /><br />
       <Tabs />
-      
+
       <div style={{ margin: '2em', padding: '5em' }}>
         <button
           type='button'
@@ -252,7 +262,7 @@ const Home = ({ t }) => {
           onClick={() => i18n.changeLanguage('en')}>
           en
             </button>
-            <button
+        <button
           type='button'
           onClick={() => i18n.changeLanguage('de')}>
           de
