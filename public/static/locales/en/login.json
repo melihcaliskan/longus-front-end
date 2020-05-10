@@ -1,0 +1,17 @@
+{
+    "brand": "longus.io",
+    "description": "Login to your account to access more...",
+    "footer": {
+        "year": "2020",
+        "allrightsreserved": "All rights reserved",
+        "about": "About Us",
+        "contact": "Contact"
+    },
+    "username": "Username",
+    "password": "Password",
+    "repeatpassword": "Password (Again)",
+    "email": "E-mail",
+    "forgot": "Forgot your password?",
+    "login": "Login",
+    "signin": "Sign Up"
+}

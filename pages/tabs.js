@@ -175,7 +175,6 @@ const device_data = [
 ]
 
 const List = ({ data }) => {
-  console.log(data)
   return (
     <CardContainer>
       {data.map(item => (

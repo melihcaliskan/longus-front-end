@@ -129,7 +129,6 @@ const AnimatedHeader = ({ t }) => {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      console.log(currentScrollY, isMobile)
       setCollapse(currentScrollY < 50 && !isMobile)
     };
 

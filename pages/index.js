@@ -147,10 +147,6 @@ const svgList = !isMobile ? [
 
 const Home = ({ t }) => {
   const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    console.log(i18n)
-    console.log(isMobile, loading)
-  });
   return (
     <div>
       {loading ?

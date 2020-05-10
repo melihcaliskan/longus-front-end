@@ -190,7 +190,6 @@ const Share = () => (
 const Issue = ({ t, resolved }) => {
   const [loading, setLoading] = useState(true);
   const [animate, setAnimate] = useState(false);
-  console.log(t)
   const changeLanguage = lng => {
     setAnimate(false)
     i18n.changeLanguage(lng).then(a => setAnimate(true))
