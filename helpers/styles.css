@@ -5,27 +5,39 @@ body {
   font-family: 'Nunito', sans-serif;
 }
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   border-radius: 10px;
   background-color: #F4F4F4;
 }
 
-::-webkit-scrollbar-track{
+::-webkit-scrollbar-track {
   border-radius: 10px;
   background-color: #F4F4F4;
 }
 
-::-webkit-scrollbar-thumb{
+::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #DCDCDC;
 }
 
-::-webkit-scrollbar-thumb:hover{
+::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   background-color: #CDCDCD;
 }
 
-p,a{
-  margin:0;
-  padding:0;
+.home-tabs .nav-tabs .nav-link {
+  color:#646464;
+}
+
+.home-tabs .nav-link.active {
+  color:#2C2C2C;
+  background: #FFE199;
+  border-radius: 7px;
+  box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
+}
+
+
+p,a {
+  margin: 0;
+  padding: 0;
 }

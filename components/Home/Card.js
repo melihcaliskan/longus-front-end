@@ -29,11 +29,20 @@ const Content = styled.h3`
     line-height:1.4em;
 `
 
-const Card = ({ children, style, svg }) => {
+const Image = styled.img`
+    width:50%;
+    object-fit:contain;
+    border-radius:5px;
+    margin-bottom:1em;
+`
+const Card = ({ children, style, svg, img, href }) => {
     return (
         <CustomCard style={style}>
-            {svg}
-            <Content>{children}</Content>
+            <ActiveLink href={`/${href}`}>
+                {svg}
+                {img ? <Image src={img} /> : null}
+                <Content>{children}</Content>
+            </ActiveLink>
         </CustomCard>
     )
 }

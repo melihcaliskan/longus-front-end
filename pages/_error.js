@@ -3,11 +3,12 @@ import React from 'react'
 import { withTranslation } from '../i18n'
 
 const Error = ({ statusCode, t }) => (
-  <p>
-    {statusCode
+  <div style={{ "position": "fixed", "top": "50%", "left": "50%", "transform": "translate(-50%, -50%)" }}>
+    <h1>{statusCode
       ? t('error-with-status', { statusCode })
-      : t('error-without-status')}
-  </p>
+      : "Aradığın sayfa bulunamadı."}
+    </h1>
+  </div>
 )
 
 export default withTranslation('common')(Error)

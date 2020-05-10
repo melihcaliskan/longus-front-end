@@ -66,7 +66,7 @@ const Header = styled.div`
   background: linear-gradient(75deg, rgba(255,240,255,1) 50%, rgba(225,225,225,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
-
+  margin-bottom:60px;
 `
 
 const data = {

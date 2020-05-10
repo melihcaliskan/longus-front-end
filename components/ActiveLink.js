@@ -2,7 +2,7 @@ import { useRouter } from 'next/router'
 
 function ActiveLink({ children, href }) {
   const router = useRouter()
-  const style = {}
+  const style = { textDecoration: 'none' }
 
   const handleClick = e => {
     e.preventDefault()

@@ -3,6 +3,7 @@ import Marquee, { Motion, randomIntFromInterval } from "react-marquee-slider";
 import React, { useEffect, useState } from 'react';
 
 import ActiveLink from "../components/ActiveLink"
+import Tabs from './tabs'
 import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
 
@@ -240,7 +241,10 @@ const Home = ({ t }) => {
           </FindButton>
         </Bottom>
       </Header >
-
+      
+      <br /><br /><br /><br />
+      <Tabs />
+      
       <div style={{ margin: '2em', padding: '5em' }}>
         <button
           type='button'
