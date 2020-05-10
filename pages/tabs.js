@@ -61,6 +61,14 @@ const CardContainer = styled.div`
   @media only screen and (max-width: 640px) {
   }
 `
+
+const CustomButton = styled.div`
+  height:500px;
+  width:200px;
+  margin-top:3em;
+  background:${({ theme }) => theme.darken_body};
+`
+
 /*
 const tabItemStyles = {
   display:'flex',
@@ -196,7 +204,7 @@ const tabStyle = {
   marginBottom: '1em'
 }
 
-const Tablar = ({ t }) => {
+const Tablar = ({ t, theme }) => {
   const [key, setKey] = useState('issues');
   return (
     <Container >
@@ -213,7 +221,7 @@ const Tablar = ({ t }) => {
             <List data={device_data} />
           </Tab>
         </Tabs>
-        <Button shadow href="/" style={{ marginTop: '3em', width: "200px" }}>
+        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '200px' }} shadow href="/">
           {t('tab.see-all')}
         </Button>
       </Row>

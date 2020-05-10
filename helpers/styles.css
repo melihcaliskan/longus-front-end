@@ -1,43 +1,70 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap'); font-family: 'Poppins', sans-serif !important;*/
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
 
+p,
+a {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Nunito', sans-serif;
 }
 
-::-webkit-scrollbar {
-  border-radius: 10px;
-  background-color: #F4F4F4;
+@media (prefers-color-scheme: light) {
+  ::-webkit-scrollbar {
+    border-radius: 10px;
+    background-color: #F4F4F4;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #F4F4F4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #DCDCDC;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    border-radius: 10px;
+    background-color: #CDCDCD;
+  }
+
+  .home-tabs .nav-link.active {
+    color: #2C2C2C;
+    background: #FFE199;
+    border-radius: 7px;
+    box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
+  }
 }
 
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  background-color: #F4F4F4;
-}
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar {
+    border-radius: 10px;
+    background-color: #252425;
+  }
 
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  background-color: #DCDCDC;
-}
+  ::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background-color: #252425;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  border-radius: 10px;
-  background-color: #CDCDCD;
-}
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #606060;
+  }
 
-.home-tabs .nav-tabs .nav-link {
-  color:#646464;
-}
-
-.home-tabs .nav-link.active {
-  color:#2C2C2C;
-  background: #FFE199;
-  border-radius: 7px;
-  box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
-}
-
-
-p,a {
-  margin: 0;
-  padding: 0;
+  ::-webkit-scrollbar-thumb:hover {
+    border-radius: 10px;
+    background-color: #606060;
+  }
+  
+  .home-tabs .nav-link.active {
+    color: #2C2C2C;
+    background: #FFE199;
+    border-radius: 7px;
+    box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
+  }
 }

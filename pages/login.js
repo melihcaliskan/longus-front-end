@@ -71,7 +71,7 @@ const Header = styled.div`
         margin-bottom:1em;
     }
 `
-const Login = ({ t }) => {
+const Login = ({ t, withLeft }) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     console.log(name, password);
@@ -81,7 +81,10 @@ const Login = ({ t }) => {
     }
     return (
         <LoginContainer>
-            <Left type="login"/>
+            {withLeft ?
+                <Left type="login" />
+                : null
+            }
             <Right>
                 <Content>
                     <Header>
