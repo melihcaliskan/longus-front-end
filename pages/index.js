@@ -267,6 +267,12 @@ const Home = ({ t }) => {
           onClick={() => i18n.changeLanguage('de')}>
           de
             </button>
+        <ActiveLink href="/login">
+          Login
+        </ActiveLink>
+        <ActiveLink href="/register">
+          Register
+        </ActiveLink>
         <ActiveLink href="/header">
           Header Card
         </ActiveLink>
