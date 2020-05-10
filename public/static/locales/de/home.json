@@ -1,11 +1,11 @@
 {
     "brand": "longus.io",
-    "welcome": "Hoşgeldin",
-    "description": "Aklındaki cihazın<br />kronik sorunlarını bul",
-    "find-now": "Hemen Bul",
+    "welcome": "Willkommen",
+    "description": "Finden Sie die chronischen Probleme Ihres nächsten Geräts.",
+    "find-now": "Jetzt Finden",
     "tab": {
-        "issues": "Popüler Sorunlar",
-        "devices": "Popüler Cihazlar",
-        "see-all": "Tümünü Gör"
+        "issues": "Beliebte Themen",
+        "devices": "Beliebte Geräte",
+        "see-all": "Alles Sehen"
     }
 }
