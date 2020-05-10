@@ -252,6 +252,11 @@ const Home = ({ t }) => {
           onClick={() => i18n.changeLanguage('en')}>
           en
             </button>
+            <button
+          type='button'
+          onClick={() => i18n.changeLanguage('de')}>
+          de
+            </button>
         <ActiveLink href="/header">
           Header Card
         </ActiveLink>

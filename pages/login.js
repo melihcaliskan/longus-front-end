@@ -107,6 +107,11 @@ const Login = ({ t }) => {
                     onClick={() => i18n.changeLanguage('en')}>
                     en
             </button>
+                <button
+                    type='button'
+                    onClick={() => i18n.changeLanguage('de')}>
+                    de
+            </button>
                 Content
             </Right>
         </LoginContainer>
