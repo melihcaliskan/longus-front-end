@@ -8,7 +8,7 @@
         "contact": "İletişim"
     },
     "name": "İsim",
-    "namesurname": "Vorname Nachname"
+    "namesurname": "Vorname Nachname",
     "username": "Kullanıcı adı",
     "password": "Şifre",
     "repeatpassword": "Şifre (Tekrar)",
