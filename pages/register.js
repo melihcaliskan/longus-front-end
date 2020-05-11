@@ -74,12 +74,12 @@ const Header = styled.div`
         margin-bottom:1em;
     }
 `
-const Login = ({ t }) => {
+const Register = ({ t }) => {
     const [name, setName] = useState("");
     const [username, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [repeatPassword, setRepatPassword] = useState("");
+    const [repeatPassword, setRepeatPassword] = useState("");
 
     console.log(name, password);
     const handleSubmit = (evt) => {
@@ -137,8 +137,8 @@ const Login = ({ t }) => {
     )
 }
 
-Login.getInitialProps = async () => ({
+Register.getInitialProps = async () => ({
     namespacesRequired: ['login'],
 })
 
-export default withTranslation('login')(Login)
+export default withTranslation('login')(Register)

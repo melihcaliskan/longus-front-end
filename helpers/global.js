@@ -13,7 +13,7 @@ export const GlobalStyles = createGlobalStyle`
     transition: all 0.25s linear;
   }
 
-  a {
+  a,p,span {
     color: ${({ theme }) => theme.text};
   }
 
@@ -55,6 +55,17 @@ export const GlobalStyles = createGlobalStyle`
     background: #FFE199;
     border-radius: 7px;
     box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
+  }
+
+  .form-control{
+    color:${({ theme }) => theme.text} !important;
+    background-color: ${({ theme }) => theme.darken_body} !important;
+    border:0;
+  }
+
+  .modal-content{
+    background-color:${({ theme }) => theme.darken_body};
+    border-radius:7px;
   }
   
 `;

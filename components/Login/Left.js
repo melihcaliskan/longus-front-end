@@ -4,6 +4,8 @@ import { light_colors } from '../../helpers/colors'
 import styled from 'styled-components'
 import { withTranslation } from '../../i18n'
 
+//background-image:url("assets/login-bg-pattern.png"),linear-gradient(to bottom, rgba(50,115,184, 1),rgba(115,209,240, 100));
+
 const Left = styled.div`
     display:flex;
     flex-direction:column;
@@ -12,7 +14,9 @@ const Left = styled.div`
     height:100vh;
     padding:30vh 1em 1em 1em;
     background: rgb(64,156,255);
-    background-image:url("assets/login-bg-pattern.png"),linear-gradient(to bottom, rgba(50,115,184, 1),rgba(115,209,240, 100));
+    background-image:${({ theme }) => `url("assets/login-bg-pattern.png"),linear-gradient(to bottom, ${theme.login_gradient_first},${theme.login_gradient_second});`};
+
+    
     @media only screen and (max-width: 740px) {
         width:100vw;
         height:22vh;
@@ -41,10 +45,13 @@ const Footer = styled.div`
     .info{
         font-size:20px;
         font-weight:600;
+        span {
+            color:${({ theme }) => theme.dark_text} !important;
+        }
     }
 
     .links a{
-        color:${light_colors.TEXT_COLOR} !important;
+        color:${({ theme }) => theme.dark_400_text} !important;
     }
 
     @media only screen and (max-width: 740px) {
@@ -75,7 +82,7 @@ const Description = styled.h3`
         margin-top:1em;
     }
 `
-const LeftContainer = ({t,type}) => {
+const LeftContainer = ({ t, type }) => {
     return (
         <Left>
             <Top>

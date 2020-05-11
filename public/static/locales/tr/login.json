@@ -10,7 +10,6 @@
     },
     "name": "İsim",
     "usernameoremail": "Kullanıcı adı veya e-posta",
-    "namesurname": "Ad Soyad",
     "username": "Kullanıcı adı",
     "password": "Şifre",
     "repeatpassword": "Şifre (Tekrar)",

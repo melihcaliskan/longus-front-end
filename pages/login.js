@@ -26,9 +26,12 @@ const LoginContainer = styled.div`
 
 const Right = styled.div`
     width:100%;
+    background:${({ theme }) => theme.body};
+    
 `
 const Content = styled.div`
-    padding:20vh 10vw;
+    padding:${props => props.noSidebar ? '2em' : '20vh 10vw'};
+    
     @media only screen and (max-width: 960px) {
         padding:2em;
     }
@@ -71,7 +74,7 @@ const Header = styled.div`
         margin-bottom:1em;
     }
 `
-const Login = ({ t, withLeft }) => {
+const Login = ({ t, noSidebar, background }) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     console.log(name, password);
@@ -79,14 +82,17 @@ const Login = ({ t, withLeft }) => {
         evt.preventDefault();
         alert(`Submitting Name ${name}`)
     }
+
+    //${({ theme }) => theme.dark_text};
+
     return (
         <LoginContainer>
-            {withLeft ?
+            {!noSidebar ?
                 <Left type="login" />
                 : null
             }
-            <Right>
-                <Content>
+            <Right background={background}>
+                <Content noSidebar>
                     <Header>
                         <h1>{t('login')}</h1>
                         <ActiveLink href="/register">
@@ -118,7 +124,6 @@ const Login = ({ t, withLeft }) => {
         </LoginContainer>
     )
 }
-
 Login.getInitialProps = async () => ({
     namespacesRequired: ['login'],
 })
