@@ -1,6 +1,8 @@
 {
     "brand": "longus.io",
     "welcome": "Hoşgeldin",
+    "login": "Giriş Yap",
+    "signup": "Kayıt Ol",
     "description": "Aklındaki cihazın kronik sorunlarını bul",
     "find-now": "Hemen Bul",
     "tab": {

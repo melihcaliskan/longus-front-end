@@ -1,6 +1,8 @@
 {
     "brand": "longus.io",
     "welcome": "Welcome",
+    "login": "Login",
+    "signup": "Sign Up",
     "description": "Find the chronic issues of your next device.",
     "find-now": "Find Now",
     "tab": {

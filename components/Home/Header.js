@@ -8,11 +8,12 @@ import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
 import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
+import { theme } from '../../helpers/theme'
 import useWindowSize from "../../helpers/windowSize"
 
 const Header = styled.div`
     opacity: ${props => props.opacity};
-    height:80vh;
+    height:750px;
 
     background-image:url("assets/bg.svg");
     background-position: bottom;
@@ -21,26 +22,26 @@ const Header = styled.div`
     margin-bottom:10em;
 
     @media only screen and (max-width: 1260px) {
-        height:70vh;
+        height:700px;
         margin-bottom:8em;
     }
 
     @media only screen and (max-width: 960px) {
-        height:40vh;
-        margin-bottom:3em;
+        height:450px;
+        margin-bottom:4em;
     }
 `
 
 const Up = styled.div`
     transition:all 0.7s;
     display:flex;
-    padding:0.4em 3em 0 3em;
+    padding:3em 4em 0 4em;
     justify-content:space-between;
     flex-direction:row;
     align-items:center;
 
     @media only screen and (max-width: 960px) {
-        padding:0.2em 1em 0 1em;
+        padding:1.5em 0 1.5em 1em;
     }
 `
 
@@ -48,22 +49,27 @@ const Brand = styled.h2`
     color:${({ theme }) => theme.black_text};
     font-weight:700;
     font-size:30px;
+    margin:0;
+    @media only screen and (max-width: 960px) {
+        font-size:25px;
+    }
 `
-
 const HomeDropdown = styled.div`
-  background-color:${({ theme }) => theme.light_bg};
-  color:${({ theme }) => theme.dark_text};
-  display: inline-flex;
-  border-radius:60px;
-  padding:0.2em 1em;
-  align-items:center;
-  justify-content:space-between;
-  height:50px;
-  cursor:pointer;
-  box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
-  @media only screen and (max-width: 960px) {
-    transform:scale(0.8);
-  }
+    display: ${props => props.noMobile ? "none" : "inline-flex"};
+    background:${({ theme }) => theme.button_bg};
+    color:${({ theme }) => theme.text};
+    border-radius:60px;
+    padding:0.2em 2em;
+    margin-right:1em;
+    align-items:center;
+    justify-content:space-between;
+    height:50px;
+    cursor:pointer;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+    @media only screen and (max-width: 960px) {
+        transform:scale(0.8);
+        margin-right:0.2em;
+    }
 `
 
 const ProfilePicture = styled.img`
@@ -84,6 +90,7 @@ const MarqueeContainer = styled.div`
         height:400px;
     }
     @media only screen and (max-width: 960px) {
+        top:220px;
         height:200px;
     }
 `
@@ -91,7 +98,7 @@ const MarqueeContainer = styled.div`
 
 const Bottom = styled.div`
     transition:all 0.7s;
-    padding:8vh 15vw;
+    padding:10vh 15vw;
     position:relative;
     z-index:2;
     
@@ -108,54 +115,58 @@ const HeroText = styled.h2`
     font-size:50px;
     font-weight:800;
     line-height:1.3em;
-    width:40vw;
-
     text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.3);
 
+    width:500px;
+    
+    @media only screen and (max-width: 1260px) {
+    }
     @media only screen and (max-width: 960px) {
-        width:80vw;
-        margin-top:0;
-        font-size:34px;
+        padding-left:0.8em;
+        width:300px;
+        font-size:30px;
     }
 `
 const FindButton = styled.div`
-  display:inline-flex;
-  align-items:center;
-  cursor:pointer;
-  
-  border-radius:10px;
-  font-size:20px;
-  font-weight:400;
-  line-height:1.3em;
-  background:${({ theme }) => theme.body};
-  height:52px;
-  
-  margin-top:4em;
-  padding:0 1em;
+    display:inline-flex;
+    align-items:center;
+    cursor:pointer;
 
-  ${"p"}{
+    border-radius:10px;
     font-size:20px;
-    font-weight:600;
-    color:${({ theme }) => theme.text};
-  }
-  ${"svg"}{
-    ${"path"}{
-        fill:${({ theme }) => theme.text};
-    }
-    margin-right:1em;
-  }
-  box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+    font-weight:400;
+    line-height:1.3em;
+    background:${({ theme }) => theme.body};
+    height:52px;
 
-  @media only screen and (max-width: 960px) {
+    margin-top:4em;
+    padding:0 1em;
+
+    ${"p"}{
+        font-size:20px;
+        font-weight:600;
+        color:${({ theme }) => theme.text};
+    }
+
+    ${"svg"}{
+        ${"path"}{
+            fill:${({ theme }) => theme.text};
+        }
+        margin-right:1em;
+    }
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+
+    @media only screen and (max-width: 960px) {
+        transform:scale(0.8);
         margin-top:2em;
-  }
+    }
 `
 
 function LoginModal(props) {
     return (
         <Modal style={{ marginTop: '4em' }} {...props} aria-labelledby="contained-modal-title-vcenter">
             <Modal.Body>
-                <Login background={'orange'} noSidebar />
+                <Login noSidebar />
             </Modal.Body>
         </Modal>
     );
@@ -193,32 +204,36 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
     //TODO: Rename to isMobile2
     const isMobile2 = size.width < 960
     const [loading, setLoading] = useState(true);
+    const [login, setLogin] = useState(false);
     const [modalShow, setModalShow] = useState(false);
     return (
         <Header>
+            <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
             <Up>
                 <ActiveLink white href="/">
                     <Brand>{t('brand')}</Brand>
                 </ActiveLink>
-                <button variant="primary" onClick={() => setModalShow(true)}>
-                    Launch modal with grid
-                </button>
 
-                <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
-                <button
-                    type='button'
-                    onClick={toggleTheme}>
-                    {isLight ? "Gündüz" : "Gece"}
-                </button>
-                <br /><br /><br />
-                <br /><br />
-                <HomeDropdown>
-                    <strong>{t('welcome')}, </strong>
-                    <ProfilePicture width="30px" height="30px" src="https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg" />
-                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M6 8L0.803848 0.5L11.1962 0.5L6 8Z" fill="black" />
-                    </svg>
-                </HomeDropdown>
+                {login ?
+                    <HomeDropdown>
+                        <strong>{t('welcome')},</strong>
+                        <ProfilePicture width="30px" height="30px" src="https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg" />
+                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L0.803848 0.5L11.1962 0.5L6 8Z" fill="black" />
+                        </svg>
+                    </HomeDropdown>
+                    :
+                    <div>
+                        <HomeDropdown onClick={() => setModalShow(true)}>
+                            <strong>{t('login')}</strong>
+                        </HomeDropdown>
+                        <HomeDropdown noMobile style={{ background: theme.yellow, color: theme.dark_text }}>
+                            <ActiveLink href="/register">
+                                <strong>{t('signup')}</strong>
+                            </ActiveLink>
+                        </HomeDropdown>
+                    </div>
+                }
             </Up>
             <MarqueeContainer>
                 <Marquee velocity={15} minScale={0.7} resetAfterTries={600} scatterRandomly={!isMobile2} onFinish={() => setLoading(false)}>

@@ -33,6 +33,7 @@ export const GlobalStyles = createGlobalStyle`
   ::-webkit-scrollbar {
     border-radius: 10px;
     background-color: ${({ theme }) => theme.scrollbar_light};
+    height:15px;
   }
 
   ::-webkit-scrollbar-track {
@@ -67,5 +68,10 @@ export const GlobalStyles = createGlobalStyle`
     background-color:${({ theme }) => theme.darken_body};
     border-radius:7px;
   }
-  
+
+  @media only screen and (max-width: 960px) {
+    .home-tabs .nav-tabs{
+      transform:scale(0.9);
+    }
+  }
 `;

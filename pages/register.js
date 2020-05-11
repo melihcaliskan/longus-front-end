@@ -71,7 +71,18 @@ const Header = styled.div`
         margin-bottom:2em;
     }
     @media only screen and (max-width: 740px) {
-        margin-bottom:1em;
+        margin-bottom:2em;
+        h1{
+            font-size:30px;
+        }
+        a {
+            h2{
+                font-size:22px;
+            }
+            ${"svg"}{
+                transform:scale(0.8)
+            }
+        }
     }
 `
 const Register = ({ t }) => {

@@ -1,11 +1,13 @@
-const theme = {
+export const theme = {
   light_text: '#FAFAFA',
   dark_text: '#363537',
   dark_400_text: '#4F4D51',
-  black_text:'rgba(0,0,0,0.8)',
+  black_text:'rgb(30,30,30)',
   c_text: '#c1c1c1',
   light_bg: '#F4F4F4',
   dark_bg: '#252425',
+
+  yellow:"#FFDA80",
 }
 export const lightTheme = {
   body: '#f0f0f0',
@@ -24,7 +26,7 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  body: '#363537',
+  body: '#181818',
   darken_body: '#252425',
   button_bg: '#252425',
   text: '#e6e6e6',
