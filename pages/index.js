@@ -67,14 +67,8 @@ const Home = ({ stars, t, isLight, theme, toggleTheme, tReady }) => {
     </div>
   )
 }
-Home.getInitialProps = async ctx => {
-  //namespacesRequired: ['home']
-  const { req } = ctx;
-  console.log(req)
-
-  const res = await fetch('https://api.github.com/repos/zeit/next.js')
-  const json = await res.json()
-  return { stars: `Rendered on server with lang: ${req.language} / star count: ${json.stargazers_count}` }
-}
+Home.getInitialProps = async () => ({
+  namespacesRequired: ['home'],
+})
 
 export default withTranslation('home')(Home)

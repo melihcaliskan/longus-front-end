@@ -79,10 +79,7 @@ const MarqueeContainer = styled.div`
     left:0;
     right:0;
     height:450px;
-    z-index:1;
     
-    background-color:orange;
-
     @media only screen and (max-width: 1260px) {
         height:400px;
     }
@@ -95,8 +92,8 @@ const MarqueeContainer = styled.div`
 const Bottom = styled.div`
     transition:all 0.7s;
     padding:8vh 15vw;
-    z-index:99999999 !important;
-    background:red;
+    position:relative;
+    z-index:2;
     
     @media only screen and (max-width: 1260px) {
         padding:7vh 10vw;
