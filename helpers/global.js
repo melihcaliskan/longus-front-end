@@ -64,9 +64,13 @@ export const GlobalStyles = createGlobalStyle`
     border:0;
   }
 
-  .modal-content{
-    background-color:${({ theme }) => theme.darken_body};
+  .modal-body, .modal-content{
+    background-color:${({ theme }) => theme.body};
     border-radius:7px;
+  }
+
+  .modal-content{
+    box-shadow: 0px 5px 19px -1px rgba(255,255,255,0.1);
   }
 
   @media only screen and (max-width: 960px) {

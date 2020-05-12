@@ -13,7 +13,10 @@ export const lightTheme = {
   body: '#f0f0f0',
   darken_body: '#FEFEFE',
   button_bg: '#F4F4F4',
+  
   text: '#363537',
+  detail_text:'#6f6f6f',
+
   toggleBorder: '#FFF',
 
   login_gradient_first: 'rgba(50, 115, 184, 1)',
@@ -29,7 +32,10 @@ export const darkTheme = {
   body: '#181818',
   darken_body: '#252425',
   button_bg: '#252425',
+  
   text: '#e6e6e6',
+  detail_text:'#c1c1c1',
+
   toggleBorder: '#6B8096',
 
   //login_gradient_first: 'rgba(33, 77, 123, 1)',

@@ -7,35 +7,109 @@ import Fade from 'react-reveal/Fade';
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
-const UserImage = styled.img`
-  width:64px;
-  height:64px;
-  border-radius:50%;
-  object-fit:contain; 
-  margin-right:2em;
-`
-
 const IssueContainer = styled.div`
-display:flex;
-flex-direction:row;
-overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background:${({ theme }) => theme.body};
 `
 
 const Content = styled.div`
 `
 
 const Title = styled.h2`
+  color:${({ theme }) => theme.text};
   margin:0;
   font-weight:500;
   font-size:21px;
 `
 
 const Text = styled.p`
-  color:${light_colors.TEXT_COLOR};
+  color:${({ theme }) => theme.c_text};
   margin:0.4em 0 2em 0;
   font-size:18px;
   line-height:1.4em;
 `
+
+const Info = styled.div`
+  display:flex;
+  flex-direction:column;
+  .added-by{
+    font-size:20px;
+  }
+  .user-info {
+    display:flex;
+    margin-top:0.4em;
+    font-size:24px;
+    font-weight:700;
+    img{
+      width:32px;
+      height:32px;
+      border-radius:50%;
+      object-fit:contain; 
+      margin-right:0.5em;
+    }
+  }
+`
+
+const IconB = styled.div`
+  display:inline-flex;
+  justify-content:space-between;
+  align-items:center;
+  cursor:pointer;
+  
+  width:200px;
+  height:55px;
+  line-height:1.6em;
+  padding:1em;
+  margin-right:1em;
+  border-radius:6px;
+  
+  background:${({ theme }) => theme.button_bg};
+  color:${props => props.color};
+
+  ${"svg"}{
+    width:34px;
+    padding-left:0.6em;
+    margin-right:1em;
+    fill:${props => props.color};
+  }
+  @media only screen and (max-width: 960px) {
+    
+  }
+`
+
+const Buttons = styled.div`
+  display:flex;
+  justify-content:space-between;
+  
+  margin:2em 0;
+  padding-bottom:1.5em;
+  
+  overflow-x:scroll;  
+  @media only screen and (max-width: 960px) {
+  }
+`
+const Left = styled.div`
+  display:flex;
+`
+const ShareButton = styled.div`
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  background:${({ theme }) => theme.button_bg};
+  min-width:55px;
+  height:55px;
+  border-radius:5px;
+  ${"path"}{
+    fill:${({ theme }) => theme.text};
+  }
+  @media only screen and (max-width: 960px) {
+    margin-left:3em;
+  }
+  
+`
+
 const Resolved = styled.div`
   width:100%;
   display:flex;
@@ -49,53 +123,6 @@ const Resolved = styled.div`
     font-size:24px;
     font-weight:800;
   }
-`
-
-const IconB = styled.div`
-  display:flex;
-  flex-direction:row;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  height:55px;
-  line-height:1.6em;
-  background-color:${light_colors.BUTTON_BG};
-  margin-right:1em;
-  border-radius:8px;
-  padding-right: 1.2em;
-  font-size:16px;
-  color:${props => props.color};
-  ${"svg"}{
-    width:24px;
-    padding-left:0.6em;
-    margin-right:1em;
-    fill:${props => props.color};
-  }
-  @media only screen and (max-width: 1200px) {
-    width:250px;
-  }
-`
-
-const Buttons = styled.div`
-  display:flex;
-  justify-content:space-between;
-  margin:2em 0;
-
-  @media only screen and (max-width: 1200px) {
-  }
-`
-const Left = styled.div`
-  display:flex;
-`
-const ShareButton = styled.div`
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  background-color:${light_colors.BUTTON_BG};
-  width:50px;
-  height:50px;
-  border-radius:5px;
 `
 
 const data = [{
@@ -187,20 +214,13 @@ const Share = () => (
   </svg>
 )
 
-const Issue = ({ t, resolved }) => {
+const Issue = ({ t, resolved, theme }) => {
+  console.log(theme)
   const [loading, setLoading] = useState(true);
-  const [animate, setAnimate] = useState(false);
-  const changeLanguage = lng => {
-    setAnimate(false)
-    i18n.changeLanguage(lng).then(a => setAnimate(true))
-  };
-  useEffect(() => {
-    setAnimate(true)
-  });
+
   const item = data[0];
   return (
     <IssueContainer style={{ marginBottom: '5em' }} >
-      <UserImage width={64} src={item.user.img} />
       <Content>
         <Title>{t('explanation')}</Title>
         <Text>{item.explanation}</Text>
@@ -211,10 +231,18 @@ const Issue = ({ t, resolved }) => {
         <Title>{t('company.solution')}</Title>
         <Text>{item.company_solution}</Text>
 
+        <Info>
+          <p className="added-by">Added by:</p>
+          <div className="user-info">
+            <img width={64} src={item.user.img} />
+            <p>Melih Çalışkan</p>
+          </div>
+        </Info>
+        
         <Buttons>
           <Left>
             <IconButton text={t('buttons.samehere')} count={45} icon={Sad} color={light_colors.SAME_HERE_RED} />
-            <IconButton text={t('buttons.discuss')} count={16} icon={Question} />
+            <IconButton text={t('buttons.discuss')} count={16} icon={Question} color={theme.text} />
             {!resolved ?
               <IconButton text={t('buttons.resolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
               : null}

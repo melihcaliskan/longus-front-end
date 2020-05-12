@@ -42,11 +42,12 @@ const ListText = styled.h3`
     margin-bottom:2em;
 `
 
-const Detail = ({ t }) => {
+const Detail = ({ t, theme }) => {
     return (
         <DetailContainer>
             <Header />
-            <Container style={{ marginTop: !isMobile ? '22em' : '3em' }}>
+            <br /><br />
+            <Container>
                 <Row className="justify-content-md-center">
                     <Col xs lg="2" />
                     <Col md="auto">
@@ -63,9 +64,9 @@ const Detail = ({ t }) => {
                     <ListText>
                         {`3 ${t('issues')}`}
                     </ListText>
-                    <Issue />
-                    <Issue resolved />
-                    <Issue />
+                    <Issue theme={theme} />
+                    <Issue theme={theme} resolved />
+                    <Issue theme={theme} />
                 </List>
             </Container>
         </DetailContainer>

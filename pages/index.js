@@ -7,15 +7,9 @@ import Loader from '../helpers/Loader'
 import Tabs from './tabs'
 import fetch from 'isomorphic-unfetch'
 
-const Home = ({ stars, t, isLight, theme, toggleTheme, tReady }) => {
-  const [loading, setLoading] = useState(true);
-  const [modalShow, setModalShow] = useState(false);
+const Home = ({t, isLight, theme, toggleTheme, tReady }) => {
   return (
     <div>
-      {loading && !tReady ?
-        <Loader />
-        : null}
-
       {/* TODO: React.Context ile erişilebilir? */}
       <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
       <Tabs theme={theme} />

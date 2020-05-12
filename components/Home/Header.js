@@ -4,8 +4,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { mobileSvgList, svgList } from "../../helpers/svgList"
 
 import ActiveLink from "../ActiveLink"
+import Loader from '../../helpers/Loader'
 import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
+import Toggle from '../../components/Toggle'
 import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
 import { theme } from '../../helpers/theme'
@@ -81,11 +83,10 @@ const ProfilePicture = styled.img`
 
 const MarqueeContainer = styled.div`
     position:absolute;
-    top:10vw;
+    top:270px;
     left:0;
     right:0;
     height:450px;
-    
     @media only screen and (max-width: 1260px) {
         height:400px;
     }
@@ -162,6 +163,19 @@ const FindButton = styled.div`
     }
 `
 
+const LoginContainer = styled.div`
+    display:flex;
+    button{
+        margin-right:1em;
+    }
+    @media only screen and (max-width: 960px) {
+        button{
+        margin-right:0;
+    }
+    }
+`
+
+
 function LoginModal(props) {
     return (
         <Modal style={{ marginTop: '4em' }} {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -172,6 +186,26 @@ function LoginModal(props) {
     );
 }
 
+const MarqueeItem = styled.div`
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    border-radius:50%;
+    background:${({ theme }) => theme.light_bg};
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+    @media only screen and (max-width: 960px) {
+        width:45px;
+        height:45px;
+        ${"svg"}{
+            width:25px;
+            height:25px;
+        }
+    }
+`
+
 const MotionContainer = ({ item, theme }) => {
     return (
         <Motion
@@ -180,20 +214,9 @@ const MotionContainer = ({ item, theme }) => {
             direction={"clockwise"}
             velocity={10}
             radius={60}>
-            <div
-                style={{
-                    width: "60px",
-                    height: "60px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    borderRadius: "50%",
-                    backgroundColor: '#F4F4F4',
-                    textAlign: "center",
-                    boxShadow: "0px 4px 3px 0px rgba(0,0,0,0.15)"
-                }}>
+            <MarqueeItem>
                 {item}
-            </div>
+            </MarqueeItem>
         </Motion>
     )
 }
@@ -208,6 +231,10 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
     const [modalShow, setModalShow] = useState(false);
     return (
         <Header>
+            {/* State index'te tutulup erişilebilir. */}
+            {loading && !tReady ?
+                <Loader />
+                : null}
             <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
             <Up>
                 <ActiveLink white href="/">
@@ -223,7 +250,8 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                         </svg>
                     </HomeDropdown>
                     :
-                    <div>
+                    <LoginContainer>
+                        <Toggle isLight={isLight} toggleTheme={toggleTheme} />
                         <HomeDropdown onClick={() => setModalShow(true)}>
                             <strong>{t('login')}</strong>
                         </HomeDropdown>
@@ -232,7 +260,7 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                                 <strong>{t('signup')}</strong>
                             </ActiveLink>
                         </HomeDropdown>
-                    </div>
+                    </LoginContainer>
                 }
             </Up>
             <MarqueeContainer>

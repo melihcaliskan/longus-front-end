@@ -86,7 +86,9 @@ const LeftContainer = ({ t, type }) => {
     return (
         <Left>
             <Top>
-                <Brand>{t('brand')}</Brand>
+                <ActiveLink href="/">
+                    <Brand>{t('brand')}</Brand>
+                </ActiveLink>
                 <Description>
                     {type == "login" ? t('logindescription') : t('registerdescription')}
                 </Description>
