@@ -1,6 +1,7 @@
 {
   "explanation": "Sorun açıklaması:",
   "effect": "Kullanılabilirliğe etkisi",
+  "repeat_frequency": "Tekrar Sıklığı",
   "low": "Az",
   "high": "Çok",
   "company": {

@@ -1,6 +1,7 @@
 {
   "explanation": "Issue explanation:",
   "effect": "Effect on usability",
+  "repeat_frequency": "Repeat Frequency",
   "low": "Low",
   "high": "High",
   "company": {

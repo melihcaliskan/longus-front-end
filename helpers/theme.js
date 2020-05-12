@@ -2,20 +2,27 @@ export const theme = {
   light_text: '#FAFAFA',
   dark_text: '#363537',
   dark_400_text: '#4F4D51',
-  black_text:'rgb(30,30,30)',
+  black_text: 'rgb(30,30,30)',
   c_text: '#c1c1c1',
   light_bg: '#F4F4F4',
   dark_bg: '#252425',
 
-  yellow:"#FFDA80",
+  yellow: "#FFDA80",
+
+  effect_low: '#94E3D5',
+  effect_medium: '#FFE199',
+  effect_high: '#F982A8',
+
 }
 export const lightTheme = {
-  body: '#f0f0f0',
-  darken_body: '#FEFEFE',
-  button_bg: '#F4F4F4',
-  
+  body: '#F8F8F8',
+  darken_body: 'rgb(238, 238, 238)',
+  button_bg: '#f2f2f2',
+  dark_button:'#EAE9E9',
+
   text: '#363537',
-  detail_text:'#6f6f6f',
+  title:'#393939',
+  detail_text: '#454545',
 
   toggleBorder: '#FFF',
 
@@ -29,12 +36,15 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  body: '#181818',
-  darken_body: '#252425',
-  button_bg: '#252425',
+  body: '#242424',
+  darken_body: '#303030',
   
-  text: '#e6e6e6',
-  detail_text:'#c1c1c1',
+  button_bg: '#303030',
+  dark_button: '#303030',
+
+  text: '#DDDDDD',
+  title:'#E9E9E9',
+  detail_text: '#c3c3c3',
 
   toggleBorder: '#6B8096',
 
