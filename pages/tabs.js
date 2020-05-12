@@ -19,31 +19,6 @@ import { isMobile } from 'react-device-detect';
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components';
 
-const Containerwd = styled.div`
-  display:flex;
-  flex:1;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:3em 0 0 0;
-`
-//background-color:#F4F4F4;
-
-const TabItem = styled.div`
-  flex-basis: 100%;
-`
-const TabTitle = styled.div`
-`
-
-const CustomTabs = styled.div`
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  border-radius:8px;
-  margin-bottom:1.5em;
-`
-
 const CardContainer = styled.div`
   display:flex;
   overflow-x:scroll;
@@ -83,49 +58,73 @@ const tabItemStyles = {
 const issue_data = [
   {
     id: 1,
-    name: "Isınma Sorunu",
+    name: "Heating Issue",
     url: "isinma-sorunu",
     icon: <Lightning />,
   },
   {
     id: 2,
-    name: "GPS Sorunu",
+    name: "GPS Issue",
     url: "gps-sorunu",
     icon: <LocationNo />,
   },
   {
     id: 3,
-    name: "Kamera Sorunu",
+    name: "Camera Issue",
     url: "kamera-sorunu",
     icon: <Camera />,
   },
   {
     id: 4,
-    name: "Ekran Sorunu",
+    name: "Screen Issue",
     url: "ekran-sorunu",
     icon: <Phone />,
   },
   {
-    id: 5,
-    name: "Isınma Sorunu",
+    id: 1,
+    name: "Heating Issue",
     url: "isinma-sorunu",
     icon: <Lightning />,
   },
   {
-    id: 6,
-    name: "GPS Sorunu",
+    id: 2,
+    name: "GPS Issue",
     url: "gps-sorunu",
     icon: <LocationNo />,
   },
   {
-    id: 7,
-    name: "Kamera Sorunu",
+    id: 3,
+    name: "Camera Issue",
     url: "kamera-sorunu",
     icon: <Camera />,
   },
   {
-    id: 8,
-    name: "Ekran Sorunu",
+    id: 4,
+    name: "Screen Issue",
+    url: "ekran-sorunu",
+    icon: <Phone />,
+  },
+  {
+    id: 1,
+    name: "Heating Issue",
+    url: "isinma-sorunu",
+    icon: <Lightning />,
+  },
+  {
+    id: 2,
+    name: "GPS Issue",
+    url: "gps-sorunu",
+    icon: <LocationNo />,
+  },
+  {
+    id: 3,
+    name: "Camera Issue",
+    url: "kamera-sorunu",
+    icon: <Camera />,
+  },
+  {
+    id: 4,
+    name: "Screen Issue",
     url: "ekran-sorunu",
     icon: <Phone />,
   },
@@ -221,7 +220,7 @@ const Tablar = ({ t, theme }) => {
             <List data={device_data} />
           </Tab>
         </Tabs>
-        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '200px' }} shadow href="/">
+        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/">
           {t('tab.see-all')}
         </Button>
       </Row>

@@ -1,4 +1,4 @@
-const Loader = () => {
+export const Loader = () => {
     return (
         <div style={{ width: "100vw", height: "100vh", transition: ".7s all", transitionTimingFunction: "ease-out", background: 'white', }}>
             <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>

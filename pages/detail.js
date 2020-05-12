@@ -31,11 +31,17 @@ const Add = styled.div`
 `
 const List = styled.div`
     margin-top:5em;
+    @media only screen and (max-width: 960px) {
+        padding:1em;
+    }
 `
 const ListText = styled.h3`
-    font-weight:700;
-    font-size:25px;
-    margin-bottom:2em;
+    font-weight:800;
+    font-size:34px;
+    margin-bottom:1em;
+    @media only screen and (max-width: 960px) {
+        font-size:28px;
+    }
 `
 
 const Detail = ({ t, theme }) => {

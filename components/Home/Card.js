@@ -23,6 +23,10 @@ const CustomCard = styled.div`
             fill:${({ theme }) => theme.text};
         }
     }
+    @media only screen and (max-width: 940px) {
+        transform:scale(0.85);
+        margin:0em;
+    }
 `
 const Content = styled.h3`
     color:${({ theme }) => theme.text};

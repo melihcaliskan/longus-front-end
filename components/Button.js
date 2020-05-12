@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 function Button({ children, href, type, shadow, style }) {
   const router = useRouter()
   const customStyle = {
-    padding: '0.7em 2em',
+    padding: '0.6em 2em',
     borderRadius: '8px',
     background: type && type == "primary" ? light_colors.PRIMARY_BUTTON_BG : light_colors.BUTTON_BG,
     color: type && type == "primary" ? "white" : light_colors.TEXT_COLOR,

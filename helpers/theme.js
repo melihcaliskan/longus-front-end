@@ -36,14 +36,14 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-  body: '#242424',
+  body: 'rgb(25,25,25)',
   darken_body: '#303030',
   
   button_bg: '#303030',
   dark_button: '#303030',
 
-  text: '#DDDDDD',
-  title:'#E9E9E9',
+  text: 'rgb(220,220,220)',
+  title:'rgb(240,240,240)',
   detail_text: '#c3c3c3',
 
   toggleBorder: '#6B8096',

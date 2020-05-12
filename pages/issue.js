@@ -37,7 +37,9 @@ const Info = styled.div`
   display:flex;
   flex-direction:column;
   .added-by{
+    color:${({ theme }) => theme.detail_text};
     font-size:20px;
+    font-weight:700;
   }
   .user-info {
     display:flex;
@@ -167,7 +169,7 @@ const Issue = ({ t, resolved, theme }) => {
     return <Loader />
   }
   return (
-    <IssueContainer style={{ marginBottom: '5em' }} >
+    <IssueContainer>
       <Content>
         <Title>{t('explanation')}</Title>
         <Text>{item.explanation}</Text>
@@ -181,7 +183,7 @@ const Issue = ({ t, resolved, theme }) => {
         <Text>{item.company_solution}</Text>
 
         <Info>
-          <p className="added-by">Added by:</p>
+          <p className="added-by">{t('addedby')}</p>
           <div className="user-info">
             <img width={64} src={item.user.img} />
             <p>Melih Çalışkan</p>

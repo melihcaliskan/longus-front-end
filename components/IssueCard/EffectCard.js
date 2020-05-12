@@ -26,7 +26,7 @@ const TabItem = styled.div`
     height:64px;
     border-radius:50%;
     cursor:pointer;
-    background:${props => props.active ? props.theme.light_bg : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
+    background:${props => props.active ? props.theme.c_text : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
     box-shadow: ${props => props.active ? '0px 4px 3px 0px rgba(0, 0, 0, 0.15)' : 'initial'};
     justify-content: center;
     align-items: center;
@@ -40,7 +40,7 @@ const TabItem = styled.div`
         top:25px;
         width:16px;
         height:16px;
-        background:${props => props.active ? props.theme.light_bg : 'transparent'};
+        background:${props => props.active ? props.theme.c_text : 'transparent'};
         border-left:none;
         border-bottom:none;
         transform:rotate(45deg);
@@ -66,6 +66,7 @@ const TabItem = styled.div`
 const Title = styled.h2`
     font-size:21px;
     margin-bottom:2em;
+    font-weight:700;
     `
 
 const TabContent = styled.div`
