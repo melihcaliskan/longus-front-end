@@ -1,25 +1,21 @@
-import { Link, i18n, withTranslation } from '../i18n'
+import { Link, i18n, withTranslation } from '../../i18n'
 import React, { useEffect, useState } from 'react';
 
-import Button from '../components/Button'
-import Camera from "../components/svg/Camera"
-import Card from "../components/Home/Card"
+import Button from '../Button'
+import Camera from "../svg/Camera"
+import Card from "../Home/Card"
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import Header from './header'
-import Lightning from "../components/svg/Lightning"
-import LocationNo from "../components/svg/LocationNo"
-import Phone from "../components/svg/Phone"
+import Lightning from "../svg/Lightning"
+import { Tabs as Loader } from '../Loaders/Tabs'
+import LocationNo from "../svg/LocationNo"
+import Phone from "../svg/Phone"
 import Row from 'react-bootstrap/Row'
 import Tab from 'react-bootstrap/Tab'
-import TabContent from 'react-bootstrap/TabContent'
-import TabPane from 'react-bootstrap/TabPane'
 import Tabs from 'react-bootstrap/Tabs'
-import { isMobile } from 'react-device-detect';
-import { light_colors } from '../helpers/colors'
 import styled from 'styled-components';
 
-const CardContainer = styled.div`
+export const CardContainer = styled.div`
   display:flex;
   overflow-x:scroll;
   -webkit-overflow-scrolling: touch;
@@ -36,24 +32,6 @@ const CardContainer = styled.div`
   @media only screen and (max-width: 640px) {
   }
 `
-
-const CustomButton = styled.div`
-  height:500px;
-  width:200px;
-  margin-top:3em;
-  background:${({ theme }) => theme.darken_body};
-`
-
-/*
-const tabItemStyles = {
-  display:'flex',
-  alignSelf:'center',
-  width:'60%',
-  overflowX: 'scroll',
-  overflowScrolling: "touch",
-  WebkitOverflowScrolling: "touch",
-}
-*/
 
 const issue_data = [
   {
@@ -132,52 +110,52 @@ const issue_data = [
 
 const device_data = [
   {
-    id: 1,
+    id: 22,
     name: "Samsung Note 10",
     url: "isinma-sorunu",
     img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 2,
+    id: 2222,
     name: "iPhone 11",
     url: "gps-sorunu",
-    img: "https://i.picsum.photos/id/215/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 3,
+    id: 2223,
     name: "Macbook Pro 2018",
     url: "kamera-sorunu",
-    img: "https://i.picsum.photos/id/217/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 4,
+    id: 222224,
     name: "Logitech MX Master",
     url: "ekran-sorunu",
-    img: "https://i.picsum.photos/id/227/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 5,
+    id: 225,
     name: "Samsung Note 10",
     url: "isinma-sorunu",
-    img: "https://i.picsum.photos/id/238/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 6,
+    id: 226,
     name: "iPhone 11",
     url: "gps-sorunu",
-    img: "https://i.picsum.photos/id/237/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 7,
+    id: 722,
     name: "Macbook Pro 2018",
     url: "kamera-sorunu",
-    img: "https://i.picsum.photos/id/232/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
   {
-    id: 8,
+    id: 228,
     name: "Logitech MX Master",
     url: "ekran-sorunu",
-    img: "https://i.picsum.photos/id/231/400/600.jpg",
+    img: "https://i.picsum.photos/id/223/400/600.jpg",
   },
 ]
 
@@ -203,8 +181,10 @@ const tabStyle = {
   marginBottom: '1em'
 }
 
-const Tablar = ({ t, theme }) => {
+const CustomTab = ({ t, theme }) => {
+  const [loading, setLoading] = useState(true);
   const [key, setKey] = useState('issues');
+
   return (
     <Container >
       <Row style={{ justifyContent: 'center' }} className="home-tabs justify-content-md-center">
@@ -214,22 +194,28 @@ const Tablar = ({ t, theme }) => {
           activeKey={key}
           onSelect={(k) => setKey(k)}>
           <Tab eventKey="issues" title={t('tab.issues')}>
-            <List data={issue_data} />
+            {loading ? <Loader type={"issue"} /> : <List data={issue_data} />}
           </Tab>
           <Tab eventKey="devices" title={t('tab.devices')}>
-            <List data={device_data} />
+            {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
           </Tab>
         </Tabs>
         <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/">
           {t('tab.see-all')}
         </Button>
       </Row>
+
+      <button onClick={() => setLoading(!loading)} style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow>
+        toggle state
+      </button>
+
+
     </Container>
   )
 }
 
-Tablar.getInitialProps = async () => ({
+CustomTab.getInitialProps = async () => ({
   namespacesRequired: ['home'],
 })
 
-export default withTranslation('home')(Tablar)
+export default withTranslation('home')(CustomTab)

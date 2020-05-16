@@ -1,16 +1,19 @@
+import { Router } from '../i18n'
 import { useRouter } from 'next/router'
 
 function ActiveLink({ children, href, style, white }) {
-  const router = useRouter()
+  //const router = useRouter()
   const customStyle = { textDecoration: 'none', color: white ? 'white' : 'initial' }
 
   const handleClick = e => {
-    e.preventDefault()
-    router.push(href)
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (href) {
+      e.preventDefault()
+      Router.push(href)
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }
 
   return (

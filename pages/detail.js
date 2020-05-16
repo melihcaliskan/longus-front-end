@@ -9,12 +9,14 @@ import Header from "./header"
 import { Icon } from "@blueprintjs/core";
 import Issue from "./issue"
 import Row from 'react-bootstrap/Row';
-import { light_colors } from '../helpers/colors'
+import Toast from 'react-bootstrap/Toast'
 import styled from 'styled-components';
+import useWindowSize from "../helpers/windowSize"
 
 const DetailContainer = styled.div`
     display:flex;
     flex-direction:column;
+    position:relative;
 `
 const Find = styled.h2`
     font-size:30px;
@@ -44,10 +46,59 @@ const ListText = styled.h3`
     }
 `
 
+const ToastContainer = styled.div`
+    z-index:1;
+    width:500px;
+    position: fixed;
+    top:${props => props.height - 140}px;
+    right:50px;
+
+    @media only screen and (max-width: 960px) {
+        width:260px;
+        top:${props => props.height - 100}px;
+        right:10px;
+    }
+`
+
+
+const CustomToast = ({ isShow }) => {
+    const [show, setShow] = useState(true);
+    const size = useWindowSize();
+    useEffect(() => {
+        setShow(isShow)
+    })
+
+    return (
+        <ToastContainer as={Toast} show={show} autohide height={size.height} delay={1500} onClose={() => setShow(false)}>
+            <Toast.Header>
+                <img
+                    onClick={() => setShow(false)}
+                    src="assets/favicon.ico"
+                    className="rounded mr-2"
+                    width={15}
+                />
+                <strong className="mr-auto">Başarılı!</strong>
+                <small>Şimdi</small>
+            </Toast.Header>
+            <Toast.Body style={{ marginLeft: '0.8em', color: '#464646' }}>Başarıyla oy verildi.</Toast.Body>
+        </ToastContainer>
+    )
+}
+
 const Detail = ({ t, theme }) => {
+    const [showToast, setShowToast] = useState(false)
+
+    const handleToast = () => {
+        setShowToast(true)
+        
+        setTimeout(() => {
+            setShowToast(false)
+        }, 3000);
+    }
     return (
         <Fade duration={600}>
             <DetailContainer>
+                <CustomToast isShow={showToast} />
                 <Header />
                 <br /><br />
                 <Container>
@@ -62,6 +113,11 @@ const Detail = ({ t, theme }) => {
                                     </Button>
                                 </Add>
                             </Fade>
+
+                            <button style={{ margin: '2em' }} onClick={handleToast}>
+                                toggle toast
+                            </button>
+
                         </Col>
                         <Col xs lg="2" />
                     </Row>

@@ -30,6 +30,13 @@ export const GlobalStyles = createGlobalStyle`
   .home-tabs .nav-tabs .nav-link.active{
     color: ${({ theme }) => theme.dark_text};
   }
+  
+  .home-tabs .nav-link.active {
+    color: #2C2C2C;
+    background: #FFE199;
+    border-radius: 7px;
+    box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
+  }
 
   ::-webkit-scrollbar {
     border-radius: 10px;
@@ -52,13 +59,6 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.scrollbar_hover};
   }
   
-  .home-tabs .nav-link.active {
-    color: #2C2C2C;
-    background: #FFE199;
-    border-radius: 7px;
-    box-shadow: inset 0px 3px 2px 0px rgba(0, 0, 0, 0.02);
-  }
-
   .form-control{
     color:${({ theme }) => theme.text} !important;
     background-color: ${({ theme }) => theme.darken_body} !important;

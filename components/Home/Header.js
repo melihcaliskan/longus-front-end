@@ -224,7 +224,6 @@ const MotionContainer = ({ item, theme }) => {
 }
 
 const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
-    console.log(isLight, toggleTheme)
     const size = useWindowSize();
     //TODO: Rename to isMobile2
     const isMobile2 = size.width < 960

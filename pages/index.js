@@ -4,7 +4,7 @@ import { i18n, withTranslation } from '../i18n'
 import ActiveLink from "../components/ActiveLink"
 import Header from '../components/Home/Header'
 import Loader from '../helpers/Loader'
-import Tabs from './tabs'
+import Tabs from '../components/Home/Tabs'
 import fetch from 'isomorphic-unfetch'
 import styled from 'styled-components';
 
@@ -19,7 +19,10 @@ const BottomButton = styled.div`
   box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.1);
 `
 
-const Home = ({ t, isLight, theme, toggleTheme, tReady }) => {
+const Home = ({ t, tReady,isLight, theme, toggleTheme }) => {
+  if (!tReady) {
+    return (<Loader />)
+  }
   return (
     <div>
       {/* TODO: React.Context ile erişilebilir? */}

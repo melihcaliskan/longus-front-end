@@ -33,6 +33,7 @@ const Content = styled.h3`
     font-size:18px;
     font-weight:500;
     line-height:1.4em;
+    width:100%;
 `
 
 const Image = styled.img`
@@ -52,7 +53,7 @@ const customStyle = {
 const Card = ({ children, style, svg, img, href }) => {
     return (
         <CustomCard style={style}>
-            <ActiveLink style={customStyle} href={`/${href}`}>
+            <ActiveLink style={customStyle} href={href ? `/${href}` : null}>
                 {svg}
                 {img ? <Image src={img} /> : null}
                 <Content>{children}</Content>

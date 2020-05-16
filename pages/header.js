@@ -18,11 +18,14 @@ const Header = styled.div`
   padding:1em 3em;
   @media only screen and (max-width: 960px) {
       padding:1.7em 1em 1em 1em;
+      flex-direction:column;
+      align-items:center;
   }
 `
 
 const InfoContainer = styled.div`
   transition:all .2s;
+  width:100%;
   display:flex;
   flex:1;
   flex-direction:column;
@@ -43,8 +46,9 @@ const InfoContainer = styled.div`
       padding:80px 30px;
   }
   @media only screen and (max-width: 960px) {
+    
     align-items:center;
-    flex-direction:row;
+    flex-direction:column;
     justify-content:space-between;
     
     padding:0px;
@@ -57,9 +61,22 @@ const InfoContainer = styled.div`
       display:initial;
     }
   }
-
 `
 
+const MobileImage = styled.img`
+  transition: all .2s;
+  display:none;
+  max-width:220px;
+
+  margin:-2em 0;
+  
+  object-fit:contain;
+  mix-blend-mode: multiply;
+  
+  @media only screen and (max-width: 960px) {
+    display:initial;
+  }
+`
 const ProductImage = styled.img`
   transition: all .2s;
   max-width:400px;
@@ -72,6 +89,7 @@ const ProductImage = styled.img`
     display:none;
   }
 `
+
 const ProductName = styled.h2`
   transition: font-size .2s;
   font-size:45px;
@@ -81,7 +99,7 @@ const ProductName = styled.h2`
     font-size:40px;
   }
   @media only screen and (max-width: 960px) {
-    font-size:35px;
+    font-size:30px;
   }
 `
 const Info = styled.div`
@@ -102,10 +120,20 @@ const Info = styled.div`
     }
     
     margin-right:1em;
+    
     @media only screen and (max-width: 960px) {
-      margin-top:-1.8em;
+      p {
+        font-size:16px;
+      }
     }
   }
+
+  @media only screen and (max-width: 960px) {
+      width:100%;
+      margin-bottom:1em;
+      justify-content:space-evenly;
+    }
+
 `
 
 const data = {
@@ -131,6 +159,7 @@ const AnimatedHeader = ({ t }) => {
             <ArrowLeft />
             <ProductName>{data.name}</ProductName>
           </div>
+          <MobileImage height={250} src={data.img} />
           <Info>
             <div>
               <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">

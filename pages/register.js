@@ -92,7 +92,6 @@ const Register = ({ t }) => {
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
 
-    console.log(name, password);
     const handleSubmit = (evt) => {
         evt.preventDefault();
         alert(`Submitting Name ${name}`)
