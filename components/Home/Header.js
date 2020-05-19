@@ -5,6 +5,7 @@ import { mobileSvgList, svgList } from "../../helpers/svgList"
 
 import ActiveLink from "../ActiveLink"
 import Fade from 'react-reveal/Fade';
+import FindTab from "./FindTab"
 import Loader from '../../helpers/Loader'
 import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
@@ -24,6 +25,8 @@ const Header = styled.div`
     background-size: cover;
     margin-bottom:10em;
 
+    position:relative;
+    
     @media only screen and (max-width: 1260px) {
         height:700px;
         margin-bottom:8em;
@@ -32,6 +35,14 @@ const Header = styled.div`
     @media only screen and (max-width: 960px) {
         height:450px;
         margin-bottom:4em;
+    }
+
+    .test{
+        width:460px;
+        height:500px;
+        position:absolute;
+        right:100px;
+        top:150px;
     }
 `
 
@@ -208,6 +219,48 @@ const MarqueeItem = styled.div`
     }
 `
 
+const StatContainer = styled.div`
+    display:flex;
+    flex-direction:column;
+    background:${({ theme }) => theme.darken_body};
+    position:absolute;
+    top:280px;
+    right:80px;
+    width:400px;
+    border-radius:7px;
+    box-shadow: 0px 4px 7px 0px rgba(0,0,0,0.29);
+    @media only screen and (max-width: 1260px) {
+        display:none;
+    }
+
+    h2{
+        padding:0.5em;
+    }
+
+    hr{
+        width:100%;
+        border-top: 1px solid red;
+    }
+`
+const StatHeader = styled.div`
+    display:flex;
+    justify-content:space-between;
+    padding:1em;
+
+`
+const StatItem = styled.div`
+    transition:all .4s ease-out;
+    display:flex;
+    justify-content:space-between;
+
+    padding:1em;
+    
+    &:hover{
+        background:${({ theme }) => theme.scrollbar_hover};
+    }
+`
+
+
 const MotionContainer = ({ item, theme }) => {
     return (
         <Motion
@@ -286,7 +339,10 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                     </ActiveLink>
                 </Bottom>
             </Fade>
-        </Header >
+            <div className="test">
+                <FindTab theme={theme} />
+            </div>
+        </Header>
     )
 }
 

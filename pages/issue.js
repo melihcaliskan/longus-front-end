@@ -124,6 +124,9 @@ const Resolved = styled.div`
   background-color:${light_colors.VERY_LIGHT_GREEN};
   height:160px;
   border-radius:8px;
+
+  margin-bottom:3em;
+  
   ${"h2"}{
     color:${props => light_colors.TEXT_COLOR};
     line-height:1.8em;

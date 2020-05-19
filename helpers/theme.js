@@ -13,15 +13,20 @@ export const theme = {
   effect_medium: '#FFE199',
   effect_high: '#F982A8',
 
+  light_brand: '#9D9D9D',
+
+  VERY_LIGHT_GREEN: '#E6FFF3',
+
 }
 export const lightTheme = {
   body: '#F8F8F8',
   darken_body: 'rgb(238, 238, 238)',
   button_bg: '#f2f2f2',
-  dark_button:'#EAE9E9',
+  dark_button: '#EAE9E9',
+  blank:'white',
 
   text: '#363537',
-  title:'#393939',
+  title: '#393939',
   detail_text: '#454545',
 
   toggleBorder: '#FFF',
@@ -38,12 +43,14 @@ export const lightTheme = {
 export const darkTheme = {
   body: 'rgb(25,25,25)',
   darken_body: '#303030',
-  
+
   button_bg: '#303030',
   dark_button: '#303030',
 
+  blank:'rgb(25,25,25)',
+
   text: 'rgb(220,220,220)',
-  title:'rgb(240,240,240)',
+  title: 'rgb(240,240,240)',
   detail_text: '#c3c3c3',
 
   toggleBorder: '#6B8096',

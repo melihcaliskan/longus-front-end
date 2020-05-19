@@ -21,7 +21,7 @@ const ToggleContainer = styled.button`
   svg {
     max-width: 2rem;
     height: auto;
-    transition: all 0.35s linear;
+    transition: all 0.4s ease-out;
 
     &:first-child {
       margin-left:0.5em;
