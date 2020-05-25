@@ -280,6 +280,7 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
     const size = useWindowSize();
     //TODO: Rename to isMobile2
     const isMobile2 = size.width < 960
+    const isTablet = size.width < 1260
     const [loading, setLoading] = useState(false);
     const [login, setLogin] = useState(false);
     const [modalShow, setModalShow] = useState(false);
@@ -339,9 +340,11 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                     </ActiveLink>
                 </Bottom>
             </Fade>
-            <div className="test">
-                <FindTab theme={theme} />
-            </div>
+            {!isTablet ?
+                <div className="test">
+                    <FindTab theme={theme} />
+                </div>
+                : null}
         </Header>
     )
 }

@@ -18,16 +18,22 @@ const Container = styled.div`
     background: ${({ theme }) => theme.button_bg};
     border-radius:7px;
     
+    margin:0 1em;
     padding:1em;
     
+    min-width:460px;
+
     h3{
         font-weight:700;
         font-size:35px;
         padding:0.2em;
     }
-    @media only screen and (max-width: 1440px) {
-    }
-    @media only screen and (max-width: 640px) {
+    @media only screen and (max-width: 960px) {
+        min-width:0;
+        
+        h3{
+            font-size:25px;
+        }
     }
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
 `
@@ -43,8 +49,11 @@ const ItemContainer = styled.div`
     margin-top:1.5em;
     border-radius:7px;
 
-    height:480px;
     overflow-y:scroll;
+    max-height:480px;
+    @media only screen and (max-width: 960px) {
+        overflow-y:auto;
+    }
     
 `
 
@@ -53,12 +62,18 @@ const Brand = styled.h4`
     text-transform:uppercase;
     font-weight:800;
     font-size:16px;
+    @media only screen and (max-width: 960px) {
+        font-size:14px;
+    }
 `
 const ProductName = styled.h2`
     color:${({ theme }) => theme.title};
     font-weight:800;
     font-size:36px;
     margin-top:0.2em;
+    @media only screen and (max-width: 960px) {
+        font-size:28px;
+    }
 `
 
 const UserContainer = styled.div`
@@ -74,8 +89,8 @@ const User = styled.div`
     width:16px;
     height:16px;
     border-radius:50%;
-    background: ${({ theme }) => theme.scrollbar_hover};
-    border:2px solid white;
+    background: ${({ theme }) => theme.scrollbar_dark};
+    border: ${({ theme }) => `2px solid ${theme.scrollbar_hover}`};
     margin-right:-0.4em;
 `
 const Body = styled.div`
@@ -93,20 +108,27 @@ const Action = styled.div`
     text-align:center;
     text-transform:uppercase;
     font-weight:800;
-    color: ${({ theme }) => theme.detail_text};
+    color: ${({ theme }) => theme.text};
+    @media only screen and (max-width: 960px) {
+        font-size:14px;
+        padding:0.2em 0.5em;
+    }
 `
 
 const Count = styled.h2`
     text-align:center;
     font-weight:800;
     margin:0.3em;
+    @media only screen and (max-width: 960px) {
+       font-size:26px;
+    }
 `
 
 const Item = styled.div`
     display:flex;
     justify-content:space-between;
     
-    margin-bottom:2em;
+    margin-bottom: ${props => props.last ? 0 : '2em'};
 `
 
 const SvgContainer = styled.div`
@@ -114,6 +136,9 @@ const SvgContainer = styled.div`
     margin-top:1.4em;
     justify-content:space-between;
     padding:0 0.4em;
+    svg path{
+        fill: ${({ theme }) => theme.detail_text};
+    }
 `
 
 const device_data = [
@@ -154,12 +179,12 @@ const device_data = [
     }
 ]
 
-const List = ({ data }) => {
+const List = ({ data, count }) => {
     return (
         <div>
-            {data.map(item => (
+            {data.slice(0, count).map((item, index) => (
                 <a key={item.id} href={item.url}>
-                    <Item>
+                    <Item last={data.slice(0, count).length == index + 1}>
                         <Body>
                             <Top>
                                 <Brand>{item.brand}</Brand>
@@ -176,17 +201,18 @@ const List = ({ data }) => {
                                 Katıl
                             </Action>
                             <Count>
-                                74
+                                {Math.floor(Math.random() * 100)}
                             </Count>
                         </Join>
                     </Item>
                 </a>
-            ))}
-        </div>
+            ))
+            }
+        </div >
     )
 }
 
-const CustomTab = ({ t, theme }) => {
+const CustomTab = ({ t, theme, count }) => {
     const [loading, setLoading] = useState(true);
     const [key, setKey] = useState('issues');
 
@@ -198,17 +224,15 @@ const CustomTab = ({ t, theme }) => {
                 <Watch />
                 <Camera />
                 <Video />
-                <Calculator />
-                <Case />
                 <Delivery />
                 <FlashCard />
                 <MemoryCard />
                 <Mic />
                 <Monitor />
             </SvgContainer>
-            
+
             <ItemContainer>
-                <List data={device_data} />
+                <List count={count} data={device_data} />
             </ItemContainer>
         </Container>
     )

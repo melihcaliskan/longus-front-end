@@ -58,6 +58,12 @@ export const GlobalStyles = createGlobalStyle`
     border-radius: 10px;
     background-color: ${({ theme }) => theme.scrollbar_hover};
   }
+
+  .emoji {
+    width: auto;
+    height: 1em;
+    vertical-align: -0.125em;
+  }
   
   .form-control{
     color:${({ theme }) => theme.text} !important;

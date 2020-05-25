@@ -204,12 +204,6 @@ const CustomTab = ({ t, theme }) => {
           {t('tab.see-all')}
         </Button>
       </Row>
-
-      <button onClick={() => setLoading(!loading)} style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow>
-        toggle state
-      </button>
-
-
     </Container>
   )
 }

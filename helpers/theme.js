@@ -14,16 +14,13 @@ export const theme = {
   effect_high: '#F982A8',
 
   light_brand: '#9D9D9D',
-
-  VERY_LIGHT_GREEN: '#E6FFF3',
-
 }
 export const lightTheme = {
   body: '#F8F8F8',
   darken_body: 'rgb(238, 238, 238)',
   button_bg: '#f2f2f2',
   dark_button: '#EAE9E9',
-  blank:'white',
+  blank: 'white',
 
   text: '#363537',
   title: '#393939',
@@ -37,6 +34,9 @@ export const lightTheme = {
   scrollbar_light: '#F4F4F4',
   scrollbar_dark: '#DCDCDC',
   scrollbar_hover: '#CDCDCD',
+
+  VERY_LIGHT_GREEN: '#E6FFF3',
+
   ...theme
 }
 
@@ -47,7 +47,7 @@ export const darkTheme = {
   button_bg: '#303030',
   dark_button: '#303030',
 
-  blank:'rgb(25,25,25)',
+  blank: 'rgb(25,25,25)',
 
   text: 'rgb(220,220,220)',
   title: 'rgb(240,240,240)',
@@ -65,5 +65,7 @@ export const darkTheme = {
   scrollbar_dark: '#606060',
   scrollbar_hover: '#4C4C4C',
 
+
+  VERY_LIGHT_GREEN: '#505e57',
   ...theme
 }

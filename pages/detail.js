@@ -113,11 +113,6 @@ const Detail = ({ t, theme }) => {
                                     </Button>
                                 </Add>
                             </Fade>
-
-                            <button style={{ margin: '2em' }} onClick={handleToast}>
-                                toggle toast
-                            </button>
-
                         </Col>
                         <Col xs lg="2" />
                     </Row>
