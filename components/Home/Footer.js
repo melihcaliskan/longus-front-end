@@ -115,7 +115,7 @@ const languageList = [
   {
     name: "日本語 (Japan)",
     value: "ja",
-  }, 
+  },
 ]
 
 const Footer = ({ t }) => {
@@ -125,46 +125,44 @@ const Footer = ({ t }) => {
     setLanguage(e.target.value)
   }
   return (
-    <Fade duration={400}>
-      <Container>
-        <Left>
-          <div>
-            <Title>{t('brand')}</Title>
-            <p> {t('allrightsreserved')} </p>
-            <p dangerouslySetInnerHTML={{ __html: t('madein') }} />
-            <p>{t('year')}</p>
-            <select onChange={(e) => handleChange(e)} value={language} style={{ marginTop: '0.4em' }}>
-              {languageList.map(item =>
-                <option value={item.value} selected={language == item.value}>
-                  {item.name}
-                </option>
-              )}
-            </select>
-          </div>
-          <div className="no-mobile">
-            <Title>{t('quicklinks.title')}</Title>
-            <p>{t('quicklinks.home')}</p>
-            <p>{t('quicklinks.about')}</p>
-            <p>{t('quicklinks.contact')}</p>
-          </div>
-        </Left>
-        <Right>
-          <Title>{t('followus')}</Title>
-          <div>
-            <Facebook />
-            <p>Facebook</p>
-          </div>
-          <div>
-            <Instagram />
-            <p>Instagram</p>
-          </div>
-          <div>
-            <Twitter />
-            <p>Twitter</p>
-          </div>
-        </Right>
-      </Container>
-    </Fade>
+    <Container>
+      <Left>
+        <div>
+          <Title>{t('brand')}</Title>
+          <p> {t('allrightsreserved')} </p>
+          <p dangerouslySetInnerHTML={{ __html: t('madein') }} />
+          <p>{t('year')}</p>
+          <select onChange={(e) => handleChange(e)} value={language} style={{ marginTop: '0.4em' }}>
+            {languageList.map(item =>
+              <option value={item.value} selected={language == item.value}>
+                {item.name}
+              </option>
+            )}
+          </select>
+        </div>
+        <div className="no-mobile">
+          <Title>{t('quicklinks.title')}</Title>
+          <p>{t('quicklinks.home')}</p>
+          <p>{t('quicklinks.about')}</p>
+          <p>{t('quicklinks.contact')}</p>
+        </div>
+      </Left>
+      <Right>
+        <Title>{t('followus')}</Title>
+        <div>
+          <Facebook />
+          <p>Facebook</p>
+        </div>
+        <div>
+          <Instagram />
+          <p>Instagram</p>
+        </div>
+        <div>
+          <Twitter />
+          <p>Twitter</p>
+        </div>
+      </Right>
+    </Container>
   )
 }
 
