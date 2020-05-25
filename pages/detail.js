@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Fade from 'react-reveal/Fade';
+import Footer from '../components/Home/Footer'
 import Header from "./header"
 import { Icon } from "@blueprintjs/core";
 import Issue from "./issue"
@@ -90,7 +91,7 @@ const Detail = ({ t, theme }) => {
 
     const handleToast = () => {
         setShowToast(true)
-        
+
         setTimeout(() => {
             setShowToast(false)
         }, 3000);
@@ -126,6 +127,7 @@ const Detail = ({ t, theme }) => {
                     </List>
                 </Container>
             </DetailContainer>
+            <Footer />
         </Fade>
     )
 }
