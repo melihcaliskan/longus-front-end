@@ -77,6 +77,9 @@ const IconB = styled.div`
     padding-left:0.6em;
     margin-right:1em;
     fill:${props => props.color};
+    ${"path"}{
+      fill:${props => props.color};
+    }
   }
   @media only screen and (max-width: 960px) {
     
