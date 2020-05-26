@@ -163,7 +163,7 @@ const List = ({ data }) => {
   return (
     <CardContainer>
       {data.map(item => (
-        <Card key={item.id} href={item.url} svg={item.icon} img={item.img}>
+        <Card key={item.id} href={"detail"} svg={item.icon} img={item.img}>
           {item.name}
         </Card>
       ))}
@@ -182,7 +182,7 @@ const tabStyle = {
 }
 
 const CustomTab = ({ t, theme }) => {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [key, setKey] = useState('issues');
 
   return (
@@ -200,7 +200,7 @@ const CustomTab = ({ t, theme }) => {
             {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
           </Tab>
         </Tabs>
-        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/">
+        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/detail">
           {t('tab.see-all')}
         </Button>
       </Row>

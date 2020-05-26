@@ -109,7 +109,7 @@ const Detail = ({ t, theme }) => {
                             <Fade bottom duration={200} distance={'1em'}>
                                 <Add>
                                     <Find>{t('find')}</Find>
-                                    <Button type="primary" href="/">
+                                    <Button type="primary" href="/add">
                                         {t('add')}
                                     </Button>
                                 </Add>
