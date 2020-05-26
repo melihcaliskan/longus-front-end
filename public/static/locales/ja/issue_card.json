@@ -1,1 +1,16 @@
-{"explanation":"発行xplanation：","effect":"使いやすさへの影響","repeat_frequency":"繰り返し周波数","low":"低いです","high":"高い","company":{"response":"会社の応答："},"buttons":{"samehere":"こっちも一緒！","discuss":"この問題を話し合います"},"addedby":"によって追加：","resolved":"この問題は永久に解決されました。"}
+{
+    "explanation": "問題の説明:",
+    "effect": "使いやすさへの影響",
+    "repeat_frequency": "繰り返し周波数",
+    "low": "低いです",
+    "high": "高い",
+    "company": {
+        "response": "会社の応答:"
+    },
+    "buttons": {
+        "samehere": "こっちも一緒",
+        "discuss": "この問題を話し合います"
+    },
+    "addedby": "によって追加：",
+    "resolved": "この問題は永久に解決されました。"
+}

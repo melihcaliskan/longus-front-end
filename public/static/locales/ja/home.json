@@ -1,1 +1,12 @@
-{"brand":"ぉんぐｓ。いお","welcome":"ようこそ","login":"ログインする","signup":"サインアップ","description":"あなたの次のデバイスの慢性的な問題を発見。","find-now":"今すぐ検索","tab":{"issues":"一般的課題"},"populartoday":"人気の今日"}
+{
+    "brand": "longus.io",
+    "welcome": "ようこそ",
+    "login": "ログインする",
+    "signup": "サインアップ",
+    "description": "あなたの次のデバイスの慢性的な問題を発見。",
+    "find-now": "今すぐ検索",
+    "tab": {
+        "issues": "一般的課題"
+    },
+    "populartoday": "人気の今日"
+}

@@ -1,7 +1,23 @@
 {
-  "explanation": "Issue xplanation:",
+  "add": "Add",
+  "addnew": "Add new issue",
+  "device": "Device",
+  "issue": "Issue",
+  "isResolved": "Is issue resolved?",
+  "issueContinue": "Not resolved",
+  "issueResolved": "Resolved",
+
+  "howResolved": "How was the problem resolved?",
+
+  "companyStatement": "Did the company make any statements?",
+  "statementYes": "Yes, they did",
+  "statementNo": "No, they did not",
+  "whatIsStatement": "What is the company's statement?",
+
+  "explanation": "Issue explanation:",
   "effect": "Effect on usability",
   "repeat_frequency": "Repeat frequency",
+
   "low": "Low",
   "high": "High",
   "company": {
