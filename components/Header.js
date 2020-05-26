@@ -14,7 +14,7 @@ import { useScroll } from '../helpers/useScroll'
 
 const HomeDropdown = styled.div`
     display: ${props => props.noMobile ? "none" : "inline-flex"};
-    background:${({ theme }) => theme.button_bg};
+    background:${({ theme }) => theme.blank};
     color:${({ theme }) => theme.text};
     border-radius:60px;
     padding:0.2em 2em;
@@ -39,13 +39,16 @@ const ProfilePicture = styled.img`
 //  padding:2em 4em 1em 4em;
 
 const Container = styled.div`
+  z-index:99;
+
   transition:.5s all;
   display:flex;
   justify-content:space-between;
   
   width:100%;
   background:${({ theme }) => theme.body};
-  border-bottom:${props => props.border ? "1px solid #E2E2E2" : "none"};
+  box-shadow:${props => props.border ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
+
   padding:${props => props.border ? "2em" : "3em"};
 
   position:fixed;
