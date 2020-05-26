@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import ActiveLink from "../components/ActiveLink"
 import ArrowLeft from "../components/svg/ArrowLeft"
 import Fade from 'react-reveal/Fade';
+import Router from 'next/router'
 import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
 import useWindowSize from "../helpers/windowSize"
@@ -155,7 +156,7 @@ const AnimatedHeader = ({ t }) => {
     <Fade duration={0}>
       <Header>
         <InfoContainer>
-          <div className="back-button">
+          <div className="back-button" onClick={() => Router.back()}>
             <ArrowLeft />
             <ProductName>{data.name}</ProductName>
           </div>
