@@ -1,7 +1,23 @@
 {
+  "add": "Ekle",
+  "addnew": "Yeni sorun ekle",
+  "device": "Cihaz",
+  "issue": "Sorun",
+  "isResolved": "Bu sorun çözüldü mü??",
+  "issueContinue": "Çözülmedi",
+  "issueResolved": "Çözüldü",
+
+  "howResolved": "Sorun nasıl çözüldü?",
+
+  "companyStatement": "Firma herhangi bir açıklamada bulundu mu?",
+  "statementYes": "Evet, bulundu",
+  "statementNo": "Hayır, bulunmadı",
+  "whatIsStatement": "Firmanın açıklaması nedir?",
+
   "explanation": "Sorun açıklaması:",
   "effect": "Kullanılabilirliğe etkisi",
   "repeat_frequency": "Tekrar Sıklığı",
+
   "low": "Az",
   "high": "Çok",
   "company": {
