@@ -11,4 +11,4 @@ const Error = ({ statusCode, t }) => (
   </div>
 )
 
-export default withTranslation('common')(Error)
+export default withTranslation('home')(Error)
