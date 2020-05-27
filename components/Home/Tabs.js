@@ -201,7 +201,7 @@ const CustomTab = ({ t, theme }) => {
           </Tab>
         </Tabs>
         <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/detail">
-          {t('tab.see-all')}
+          {t('tab.seeall')}
         </Button>
       </Row>
     </Container>

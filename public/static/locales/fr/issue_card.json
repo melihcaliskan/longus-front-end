@@ -1,1 +1,27 @@
-{"explanation":"Problème Xplanation:","effect":"Effet sur la facilité d'utilisation","repeat_frequency":"fréquence Répéter","low":"Faible","high":"Haute","company":{"response":"réponse de l'entreprise:","solution":"Company solution:"},"buttons":{},"addedby":"Ajouté par:","resolved":"Ce problème a été résolu de façon permanente."}
+{
+    "add": "Ajouter",
+    "addnew": "Ajouter nouveau numéro",
+    "device": "Dispositif",
+    "issue": "Problème",
+    "isResolved": "Est-ce problème résolu?",
+    "issueContinue": "non résolu",
+    "issueResolved": "Résolu",
+    "howResolved": "Comment le problème résolu?",
+    "companyStatement": "Est-ce que l'entreprise fait aucune déclaration?",
+    "statementYes": "Oui, ils ont",
+    "statementNo": "Non ils ne l'ont pas fait",
+    "whatIsStatement": "Quelle est la déclaration de la société?",
+    "explanation": "explication de l'émission:",
+    "effect": "Effet sur la facilité d'utilisation",
+    "repeat_frequency": "fréquence Répéter",
+    "low": "Faible",
+    "high": "Haute",
+    "company": {
+        "response": "réponse de l'entreprise:"
+    },
+    "buttons": {
+        "samehere": "Pareil ici!"
+    },
+    "addedby": "Ajouté par:",
+    "resolved": "Ce problème a été résolu de façon permanente."
+}
