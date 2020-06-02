@@ -38,7 +38,6 @@ const Home = ({ t, tReady, isLight, theme, toggleTheme, tabData, language }) => 
   return (
     <>
       {/* TODO: React.Context ile erişilebilir? */}
-      <h1>Testing Github actions on self hosted</h1>
       <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
       {isMobile ?
         <>
