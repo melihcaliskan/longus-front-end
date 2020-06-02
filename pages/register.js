@@ -1,18 +1,10 @@
-import { Link, i18n, withTranslation } from '../i18n'
 import React, { useEffect, useState } from 'react';
-import { Tab, Tabs } from "@blueprintjs/core";
-import {
-    isBrowser,
-    isMobile
-} from "react-device-detect";
+import { i18n, withTranslation } from '../i18n'
 
 import ActiveLink from '../components/ActiveLink'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { Icon } from "@blueprintjs/core"
-import Issue from "./issue"
 import Left from '../components/Login/Left'
-import Row from 'react-bootstrap/Row'
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components'
 

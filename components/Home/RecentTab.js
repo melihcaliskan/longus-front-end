@@ -33,81 +33,6 @@ export const CardContainer = styled.div`
   }
 `
 
-const issue_data = [
-  {
-    id: 1,
-    name: "Heating Issue",
-    url: "isinma-sorunu",
-    icon: <Lightning />,
-  },
-  {
-    id: 2,
-    name: "GPS Issue",
-    url: "gps-sorunu",
-    icon: <LocationNo />,
-  },
-  {
-    id: 3,
-    name: "Camera Issue",
-    url: "kamera-sorunu",
-    icon: <Camera />,
-  },
-  {
-    id: 4,
-    name: "Screen Issue",
-    url: "ekran-sorunu",
-    icon: <Phone />,
-  },
-  {
-    id: 1,
-    name: "Heating Issue",
-    url: "isinma-sorunu",
-    icon: <Lightning />,
-  },
-  {
-    id: 2,
-    name: "GPS Issue",
-    url: "gps-sorunu",
-    icon: <LocationNo />,
-  },
-  {
-    id: 3,
-    name: "Camera Issue",
-    url: "kamera-sorunu",
-    icon: <Camera />,
-  },
-  {
-    id: 4,
-    name: "Screen Issue",
-    url: "ekran-sorunu",
-    icon: <Phone />,
-  },
-  {
-    id: 1,
-    name: "Heating Issue",
-    url: "isinma-sorunu",
-    icon: <Lightning />,
-  },
-  {
-    id: 2,
-    name: "GPS Issue",
-    url: "gps-sorunu",
-    icon: <LocationNo />,
-  },
-  {
-    id: 3,
-    name: "Camera Issue",
-    url: "kamera-sorunu",
-    icon: <Camera />,
-  },
-  {
-    id: 4,
-    name: "Screen Issue",
-    url: "ekran-sorunu",
-    icon: <Phone />,
-  },
-]
-
 const device_data = [
   {
     id: 22,
@@ -159,12 +84,12 @@ const device_data = [
   },
 ]
 
-const List = ({ data }) => {
+const List = ({ data, language = i18n.language }) => {
   return (
     <CardContainer>
       {data.map(item => (
-        <Card key={item.id} href={"detail"} svg={item.icon} img={item.img}>
-          {item.name}
+        <Card key={item.id} href={`issue/${item.slug}`} svg={item.icon} img={item.img}>
+          {item.name[0][language]}
         </Card>
       ))}
     </CardContainer>
@@ -181,7 +106,7 @@ const tabStyle = {
   marginBottom: '1em'
 }
 
-const CustomTab = ({ t, theme }) => {
+const CustomTab = ({ t, theme, data }) => {
   const [loading, setLoading] = useState(false);
   const [key, setKey] = useState('issues');
 
@@ -194,13 +119,13 @@ const CustomTab = ({ t, theme }) => {
           activeKey={key}
           onSelect={(k) => setKey(k)}>
           <Tab eventKey="issues" title={t('tab.issues')}>
-            {loading ? <Loader type={"issue"} /> : <List data={issue_data} />}
+            {loading ? <Loader type={"issue"} /> : <List data={data} />}
           </Tab>
           <Tab eventKey="devices" title={t('tab.devices')}>
             {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
           </Tab>
         </Tabs>
-        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/detail">
+        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
           {t('tab.seeall')}
         </Button>
       </Row>

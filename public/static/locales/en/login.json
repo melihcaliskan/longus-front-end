@@ -17,6 +17,8 @@
     "forgot": "Forgot your password?",
     "login": "Login",
     "signin": "Sign Up",
-    "alreadymember":"Already a member?",
-    "memberlogin":"Login to your account"
+    "alreadymember": "Already a member?",
+    "memberlogin": "Login to your account",
+
+    "backtohome": "Go back to homepage"
 }

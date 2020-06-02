@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types'
 import React from 'react'
 import { withTranslation } from '../i18n'
 

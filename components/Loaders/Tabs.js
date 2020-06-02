@@ -1,5 +1,5 @@
 import Card from '../Home/Card'
-import { CardContainer } from '../Home/Tabs'
+import { CardContainer } from '../Home/RecentTab'
 import Lightning from "../svg/Lightning"
 import React from 'react';
 import styled from 'styled-components';

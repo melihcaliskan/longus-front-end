@@ -18,5 +18,7 @@
     "login": "Giriş Yap",
     "signin": "Kaydol",
     "alreadymember": "Zaten üye misin?",
-    "memberlogin": "Hesabına giriş yap"
+    "memberlogin": "Hesabına giriş yap",
+
+    "backtohome": "Anasayfaya geri dön"
 }

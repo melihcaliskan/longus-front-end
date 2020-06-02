@@ -1,12 +1,12 @@
-import { Link, i18n, withTranslation } from '../i18n'
+import { Link, i18n, withTranslation } from '../../i18n'
 import Marquee, { Motion, randomIntFromInterval } from "react-marquee-slider";
-import { Question, Sad, Share, Tick } from '../components/svg/IssueCardSvg'
+import { Question, Sad, Share, Tick } from '../svg/IssueCardSvg'
 import React, { useEffect, useRef, useState } from 'react';
-import { dark_colors, light_colors } from "../helpers/colors"
+import { dark_colors, light_colors } from "../../helpers/colors"
 
-import EffectCard from '../components/IssueCard/EffectCard'
+import EffectCard from './EffectCard'
 import Fade from 'react-reveal/Fade';
-import { EffectCard as Loader } from '../components/Loaders/EffectCard'
+import { EffectCard as Loader } from '../Loaders/EffectCard'
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 

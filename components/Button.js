@@ -13,6 +13,8 @@ function Button({ children, href, type, shadow, style }) {
     ...style
   }
 
+  // TODO: i18n ile değiştir.
+
   const handleClick = e => {
     e.preventDefault()
     router.push(href)

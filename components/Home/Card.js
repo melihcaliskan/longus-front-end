@@ -54,7 +54,7 @@ const Card = ({ children, style, svg, img, href }) => {
     return (
         <CustomCard style={style}>
             <ActiveLink style={customStyle} href={href ? `/${href}` : null}>
-                {svg}
+            <img src={`data:image/jpeg;base64, ${svg}`}/>
                 {img ? <Image src={img} /> : null}
                 <Content>{children}</Content>
             </ActiveLink>

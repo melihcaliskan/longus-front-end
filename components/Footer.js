@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { i18n, withTranslation } from '../../i18n'
+import { i18n, withTranslation } from '../i18n'
 
-import ActiveLink from '../ActiveLink'
-import Facebook from '../svg/Facebook'
+import ActiveLink from './ActiveLink'
+import Facebook from './svg/Facebook'
 import Fade from 'react-reveal/Fade';
-import Instagram from '../svg/Instagram'
-import Twemoji from '../Twemoji'
-import Twitter from '../svg/Twitter'
+import Instagram from './svg/Instagram'
+import Router from "next/router"
+import Twemoji from './Twemoji'
+import Twitter from './svg/Twitter'
+import links from '../helpers/footerLinks'
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -15,7 +17,7 @@ const Container = styled.div`
   
   margin-top:5em;
   
-  border-top:1px solid #E2E2E2;
+  border-top: ${({ theme }) => `1px solid ${theme.darken_body}`};
   padding:2em 4em;
 
   @media only screen and (max-width: 960px) {
@@ -24,6 +26,7 @@ const Container = styled.div`
 `
 
 const Title = styled.h2`
+  color:${({ theme }) => theme.text};
   font-weight:700;
   @media only screen and (max-width: 960px) {
     font-size:24px;
@@ -65,6 +68,9 @@ const Right = styled.div`
     
     svg{
       margin-right:0.6em;
+      path{
+        fill: ${({ theme }) => theme.detail_text};
+      }
     }
   }
   @media only screen and (max-width: 960px) {
@@ -109,6 +115,11 @@ const languageList = [
     value: "ru",
   },
   {
+    name: "Svenska",
+    value: "sv",
+  },
+
+  {
     name: "한국어 (Korean)",
     value: "ko",
   },
@@ -123,18 +134,21 @@ const Footer = ({ t }) => {
   const handleChange = (e) => {
     i18n.changeLanguage(e.target.value)
     setLanguage(e.target.value)
+    Router.reload()
   }
   return (
     <Container>
       <Left>
         <div>
-          <Title>{t('brand')}</Title>
+          <ActiveLink href={'/'}>
+            <Title>{t('brand')}</Title>
+          </ActiveLink>
           <p> {t('allrightsreserved')} </p>
           <p dangerouslySetInnerHTML={{ __html: t('madein') }} />
           <p>{t('year')}</p>
           <select onChange={(e) => handleChange(e)} value={language} style={{ marginTop: '0.4em' }}>
             {languageList.map(item =>
-              <option value={item.value} selected={language == item.value}>
+              <option key={item.value} value={item.value}>
                 {item.name}
               </option>
             )}
@@ -142,27 +156,40 @@ const Footer = ({ t }) => {
         </div>
         <div className="no-mobile">
           <Title>{t('quicklinks.title')}</Title>
-          <p>{t('quicklinks.home')}</p>
-          <p>{t('quicklinks.about')}</p>
-          <p>{t('quicklinks.contact')}</p>
-        </div>
-      </Left>
+          <ActiveLink href={links.home}>
+            <p>{t('quicklinks.home')}</p>
+          </ActiveLink>
+          <ActiveLink href={links.aboutus}>
+            <p>{t('quicklinks.about')}</p>
+          </ActiveLink>
+          <ActiveLink href={links.contact}>
+            <p>{t('quicklinks.contact')}</p>
+          </ActiveLink>
+        </div >
+      </Left >
       <Right>
         <Title>{t('followus')}</Title>
-        <div>
-          <Facebook />
-          <p>Facebook</p>
-        </div>
-        <div>
-          <Instagram />
-          <p>Instagram</p>
-        </div>
-        <div>
-          <Twitter />
-          <p>Twitter</p>
-        </div>
+        <ActiveLink href={links.facebook}>
+          <div>
+            <Facebook />
+            <p>Facebook</p>
+          </div>
+        </ActiveLink>
+        <ActiveLink href={links.instagram}>
+          <div>
+            <Instagram />
+            <p>Instagram</p>
+          </div>
+        </ActiveLink>
+        <ActiveLink href={links.twitter}>
+          <div>
+            <Twitter />
+            <p>Twitter</p>
+          </div>
+        </ActiveLink>
+
       </Right>
-    </Container>
+    </Container >
   )
 }
 

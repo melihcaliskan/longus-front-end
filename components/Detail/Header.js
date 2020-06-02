@@ -1,13 +1,10 @@
-import { Link, i18n, withTranslation } from '../i18n'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-import ActiveLink from "../components/ActiveLink"
-import ArrowLeft from "../components/svg/ArrowLeft"
 import Fade from 'react-reveal/Fade';
 import Router from 'next/router'
-import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
-import useWindowSize from "../helpers/windowSize"
+import useWindowSize from "../../helpers/windowSize";
+import { withTranslation } from '../../i18n';
 
 const Header = styled.div`
   transition: all .2s;
@@ -16,9 +13,13 @@ const Header = styled.div`
   background: linear-gradient(75deg, rgba(255,240,255,1) 50%, rgba(225,225,225,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
-  padding:1em 3em;
+  
+  margin-top:-9em;
+  padding:9em 3em 0 3em;
+  
   @media only screen and (max-width: 960px) {
-      padding:1.7em 1em 1em 1em;
+      margin-top:-7.2em;
+      padding:7em 1em 1em 1em;
       flex-direction:column;
       align-items:center;
   }
@@ -147,18 +148,17 @@ const data = {
   fit: 3,
 }
 
-const AnimatedHeader = ({ t }) => {
+const AnimatedHeader = ({ t, name }) => {
   const [loading, setLoading] = useState(true);
   const [collapse, setCollapse] = useState(true);
   const size = useWindowSize();
   const isMobile = size.width < 960
   return (
-    <Fade duration={0}>
+    <Fade duration={400}>
       <Header>
         <InfoContainer>
-          <div className="back-button" onClick={() => Router.back()}>
-            <ArrowLeft />
-            <ProductName>{data.name}</ProductName>
+          <div className="back-button">
+            <ProductName>{name}</ProductName>
           </div>
           <MobileImage height={250} src={data.img} />
           <Info>

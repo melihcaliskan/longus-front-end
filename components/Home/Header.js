@@ -10,7 +10,6 @@ import Loader from '../../helpers/Loader'
 import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
 import Toggle from '../../components/Toggle'
-import { isMobile } from "react-device-detect";
 import styled from 'styled-components';
 import { theme } from '../../helpers/theme'
 import useWindowSize from "../../helpers/windowSize"

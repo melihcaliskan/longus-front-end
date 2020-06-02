@@ -2,6 +2,7 @@ import { Calculator, Camera, Case, Delivery, FlashCard, MemoryCard, Mic, Monitor
 import { Link, i18n, withTranslation } from '../../i18n'
 import React, { useEffect, useState } from 'react';
 
+import ActiveLink from '../ActiveLink'
 import Button from '../Button'
 import Card from "../Home/Card"
 import Col from 'react-bootstrap/Col'
@@ -98,6 +99,7 @@ const Body = styled.div`
 
 
 const Join = styled.div`
+    color: ${({ theme }) => theme.text};
     background: ${({ theme }) => theme.button_bg};
     border-radius:5px;
 `
@@ -108,7 +110,6 @@ const Action = styled.div`
     text-align:center;
     text-transform:uppercase;
     font-weight:800;
-    color: ${({ theme }) => theme.text};
     @media only screen and (max-width: 960px) {
         font-size:14px;
         padding:0.2em 0.5em;
@@ -116,6 +117,7 @@ const Action = styled.div`
 `
 
 const Count = styled.h2`
+    color: ${({ theme }) => theme.title};
     text-align:center;
     font-weight:800;
     margin:0.3em;
@@ -138,6 +140,18 @@ const SvgContainer = styled.div`
     padding:0 0.4em;
     svg path{
         fill: ${({ theme }) => theme.detail_text};
+    }
+`
+const SvgItem = styled.div`
+    transition:all .3s;
+    cursor:pointer;
+    
+    padding:0.6em;
+    border-radius:50%;
+    background: ${props => props.active ? props.theme.scrollbar_dark : props.theme.scrollbar_light};
+
+    svg,path{
+        fill: ${props => props.active ? props.theme.title : props.theme.text} !important;
     }
 `
 
@@ -179,34 +193,46 @@ const device_data = [
     }
 ]
 
-const List = ({ data, count }) => {
+const SvgButton = ({ children, active, onClick }) => {
+    return (
+        <SvgItem onClick={onClick} active={active}>
+            {children}
+        </SvgItem>
+    )
+}
+
+
+const List = ({ t, data, count }) => {
     return (
         <div>
-            {data.slice(0, count).map((item, index) => (
-                <a key={item.id} href={item.url}>
-                    <Item last={data.slice(0, count).length == index + 1}>
-                        <Body>
-                            <Top>
-                                <Brand>{item.brand}</Brand>
-                                <UserContainer>
-                                    {Array(10).fill(1).map((el, i) =>
-                                        <User />
-                                    )}
-                                </UserContainer>
-                            </Top>
-                            <ProductName>{item.name}</ProductName>
-                        </Body>
-                        <Join>
-                            <Action>
-                                Katıl
-                            </Action>
-                            <Count>
-                                {Math.floor(Math.random() * 100)}
-                            </Count>
-                        </Join>
-                    </Item>
-                </a>
-            ))
+            {data.map((a) => ({ sort: Math.random(), value: a }))
+                .sort((a, b) => a.sort - b.sort)
+                .map((a) => a.value)
+                .slice(0, count).map((item, index) => (
+                    <ActiveLink key={item.id} href={"/detail"} query={{ brand: item.brand, name: item.name }}>
+                        <Item last={data.slice(0, count).length == index + 1}>
+                            <Body>
+                                <Top>
+                                    <Brand>{item.brand}</Brand>
+                                    <UserContainer>
+                                        {Array(10).fill(1).map((el, i) =>
+                                            <User key={i} />
+                                        )}
+                                    </UserContainer>
+                                </Top>
+                                <ProductName>{item.name}</ProductName>
+                            </Body>
+                            <Join>
+                                <Action>
+                                    {t('join')}
+                                </Action>
+                                <Count>
+                                    {Math.floor(Math.random() * 100)}
+                                </Count>
+                            </Join>
+                        </Item>
+                    </ActiveLink>
+                ))
             }
         </div >
     )
@@ -214,25 +240,40 @@ const List = ({ data, count }) => {
 
 const CustomTab = ({ t, theme, count }) => {
     const [loading, setLoading] = useState(true);
-    const [key, setKey] = useState('issues');
+    const [activeKey, setKey] = useState(1);
 
     return (
         <Container>
             <h3>{t('populartoday')}</h3>
             <SvgContainer>
-                <İPhone />
-                <Watch />
-                <Camera />
-                <Video />
-                <Delivery />
-                <FlashCard />
-                <MemoryCard />
-                <Mic />
-                <Monitor />
+                <SvgButton onClick={() => setKey(1)} active={activeKey == 1}>
+                    <İPhone />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(2)} active={activeKey == 2}>
+                    <Watch />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(3)} active={activeKey == 3}>
+                    <Camera />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(5)} active={activeKey == 5}>
+                    <Delivery />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(6)} active={activeKey == 6}>
+                    <FlashCard />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(7)} active={activeKey == 7}>
+                    <MemoryCard />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(8)} active={activeKey == 8}>
+                    <Mic />
+                </SvgButton>
+                <SvgButton onClick={() => setKey(9)} active={activeKey == 9}>
+                    <Monitor />
+                </SvgButton>
             </SvgContainer>
 
             <ItemContainer>
-                <List count={count} data={device_data} />
+                <List t={t} count={count} data={device_data} />
             </ItemContainer>
         </Container>
     )

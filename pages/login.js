@@ -1,18 +1,11 @@
-import { Link, i18n, withTranslation } from '../i18n'
 import React, { useEffect, useState } from 'react';
-import { Tab, Tabs } from "@blueprintjs/core";
-import {
-    isBrowser,
-    isMobile
-} from "react-device-detect";
+import { i18n, withTranslation } from '../i18n'
 
+import { API_URL } from '../helpers/urls'
 import ActiveLink from '../components/ActiveLink'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { Icon } from "@blueprintjs/core"
-import Issue from "./issue"
 import Left from '../components/Login/Left'
-import Row from 'react-bootstrap/Row'
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components'
 
@@ -29,8 +22,21 @@ const Right = styled.div`
     background:${({ theme }) => theme.body};
     
 `
+
+const Back = styled.h3`
+        font-size:24px;
+        color:${({ theme }) => theme.detail_text};
+        padding:5vh 10vw;
+        svg{
+            margin-right:1em;
+            path{
+                fill:${({ theme }) => theme.detail_text};
+            }
+        }
+    
+`
 const Content = styled.div`
-    padding:${props => props.noSidebar ? '2em' : '20vh 10vw'};
+    padding:${props => props.noSidebar ? '2em' : '10vh 10vw'};
     
     @media only screen and (max-width: 960px) {
         padding:2em;
@@ -88,13 +94,23 @@ const Header = styled.div`
 const Login = ({ t, noSidebar = false, background }) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
-    console.log(noSidebar, name, password);
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        alert(`Submitting Name ${name}`)
-    }
 
-    //${({ theme }) => theme.dark_text};
+        fetch(`${API_URL}auth/local`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ identifier: name, password: password })
+        }).then(response => response.json()).then(data => {
+            if(data.jwt){
+                alert("Giriş başarılı")
+            } else {
+                alert("Kullanıcı adı veya şifre hatalı.")
+                console.log(data.message[0].messages[0].id)
+                //Auth.form.error.invalid T İLE ÇEVİR
+            }
+        });
+    }
 
     return (
         <LoginContainer>
@@ -103,6 +119,17 @@ const Login = ({ t, noSidebar = false, background }) => {
                 : null
             }
             <Right background={background}>
+                {!noSidebar ?
+                    <ActiveLink href="/">
+                        <Back>
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M6.41412 13L12.707 19.2928L11.2928 20.7071L2.58569 12L11.2928 3.29285L12.707 4.70706L6.41412 11H20.9999V13H6.41412Z" fill="black" />
+                            </svg>
+                            {t('backtohome')}
+                        </Back>
+                    </ActiveLink>
+                    : null
+                }
                 <Content noSidebar={noSidebar}>
                     <Header>
                         <h1>{t('login')}</h1>
@@ -116,14 +143,14 @@ const Login = ({ t, noSidebar = false, background }) => {
                     <Form>
                         <Form.Group className="form-item" controlId="username">
                             <Form.Label>{t('usernameoremail')}</Form.Label>
-                            <Form.Control type="email" placeholder={t('usernameoremail')} onChange={e => setName(e.target.value)} />
+                            <Form.Control placeholder={t('usernameoremail')} onChange={e => setName(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="form-item" controlId="password">
                             <Form.Label>{t('password')}</Form.Label>
                             <Form.Control type="password" placeholder={t('password')} onChange={e => setPassword(e.target.value)} />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
                             {t('login')}
                         </Button>
                         <ActiveLink href="/forgot">

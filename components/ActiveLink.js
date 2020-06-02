@@ -1,14 +1,17 @@
-import { Router } from '../i18n'
+//import { Router } from '../i18n'
 import { useRouter } from 'next/router'
 
-function ActiveLink({ children, href, style, white }) {
-  //const router = useRouter()
+function ActiveLink({ children, href, query, style, white }) {
+  const router = useRouter()
   const customStyle = { textDecoration: 'none', color: white ? 'white' : 'initial' }
 
   const handleClick = e => {
     if (href) {
       e.preventDefault()
-      Router.push(href)
+      router.push({
+        pathname: href,
+        query: query
+      }, href)
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
@@ -17,7 +20,7 @@ function ActiveLink({ children, href, style, white }) {
   }
 
   return (
-    <a href={href} onClick={handleClick} style={{ ...customStyle, ...style }}>
+    <a href={href} query={query} onClick={handleClick} style={{ ...customStyle, ...style }}>
       {children}
     </a>
   )

@@ -26,13 +26,14 @@ const TabItem = styled.div`
     height:64px;
     border-radius:50%;
     cursor:pointer;
-    background:${props => props.active ? props.theme.c_text : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
+    background:${props => props.active ? props.theme.darken_body : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
     box-shadow: ${props => props.active ? '0px 4px 3px 0px rgba(0, 0, 0, 0.15)' : 'initial'};
     justify-content: center;
     align-items: center;
     
+    transition:all .2s;
+
     margin-bottom: 1em;
-    transition:background-color .6s;
     &:after {
         content:"";
         position:absolute;
@@ -40,14 +41,19 @@ const TabItem = styled.div`
         top:25px;
         width:16px;
         height:16px;
-        background:${props => props.active ? props.theme.c_text : 'transparent'};
+        background:${props => props.active ? props.theme.darken_body : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
         border-left:none;
         border-bottom:none;
         transform:rotate(45deg);
         -webkit-transform:rotate(45deg);
         user-select:none;
         -webkit-user-select: none;
-        transition:background-color .6s;
+
+        left:${props => props.active ? '54px' : '45px'};
+        opacity:${props => props.active ? 1 : 0};
+        transition:all .2s;
+
+
     }
     @media only screen and (max-width: 960px) {
         width:48px;
@@ -61,6 +67,10 @@ const TabItem = styled.div`
             width:10px;
             height:10px;
         }
+    }
+
+    svg path{
+        fill:${props => props.active ? props.theme.text : props.theme.dark_text};
     }
 `
 const Title = styled.h2`

@@ -1,6 +1,4 @@
 import 'normalize.css';
-//import '@blueprintjs/icons/lib/css/blueprint-icons.css'
-//import '@blueprintjs/core/lib/css/blueprint.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../helpers/styles.css'
 
@@ -13,10 +11,23 @@ import Head from 'next/head'
 import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from '../contexts/useDarkMode';
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
   if (!componentMounted) {
     return <div />
+  }
+
+  // Next.js currently does not allow trailing slash in a route, but Netlify appends trailing slashes. This is a
+  // client side redirect in case trailing slash occurs. See https://github.com/zeit/next.js/issues/5214 for details
+  if (asPath && asPath.length > 1) {
+    const [path, query = ""] = asPath.split("?");
+    if (path.endsWith("/")) {
+      const asPathWithoutTrailingSlash = path.replace(/\/*$/gim, "") + (query ? `?${query}` : "");
+      if (typeof window !== "undefined") {
+        router.replace(asPathWithoutTrailingSlash, undefined, { shallow: true });
+        return null;
+      }
+    }
   }
 
   return (
@@ -29,6 +40,7 @@ const App = ({ Component, pageProps }) => {
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
+      {/* İç sayfalar için Header burada tanımlanabilir*/}
       <Component
         {...pageProps}
         language={i18n.language}

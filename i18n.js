@@ -4,7 +4,7 @@ module.exports = new NextI18Next({
     initImmediate: false,
     preload: ["en", "tr"],
     defaultLanguage: "en",
-    otherLanguages: ['tr', 'de', 'fr', 'es', 'ja'],
+    otherLanguages: ['tr', 'de', 'fr', 'es', 'ja', 'ru', 'sv'],
     localePath: "public/static/locales",
     localeSubpaths: {
         tr: 'tr',
@@ -12,7 +12,9 @@ module.exports = new NextI18Next({
         de: 'de',
         fr: 'fr',
         es: 'es',
-        ja: 'ja'
+        ja: 'ja',
+        ru: 'ru',
+        sv: 'sv',
     }
 })
 

@@ -5,10 +5,11 @@ import Button from '../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Fade from 'react-reveal/Fade';
-import Footer from '../components/Home/Footer'
-import Header from "./header"
-import { Icon } from "@blueprintjs/core";
-import Issue from "./issue"
+import Footer from '../components/Footer'
+import Head from 'next/head'
+import Header from '../components/Header'
+import Issue from "../components/Issue"
+import ItemHeader from "../components/Detail/Header"
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast'
 import styled from 'styled-components';
@@ -24,7 +25,6 @@ const Find = styled.h2`
     font-weight:700;
     margin-bottom:1.3em;
 `
-
 const Add = styled.div`
     display:flex;
     flex-direction:column;
@@ -60,8 +60,6 @@ const ToastContainer = styled.div`
         right:10px;
     }
 `
-
-
 const CustomToast = ({ isShow }) => {
     const [show, setShow] = useState(true);
     const size = useWindowSize();
@@ -86,7 +84,10 @@ const CustomToast = ({ isShow }) => {
     )
 }
 
-const Detail = ({ t, theme }) => {
+const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
+
+    const name = query && query.name ? `${query.brand} ${query.name}` : "Macbook Pro"
+    //const query = router.query
     const [showToast, setShowToast] = useState(false)
 
     const handleToast = () => {
@@ -98,9 +99,15 @@ const Detail = ({ t, theme }) => {
     }
     return (
         <Fade duration={600}>
+            <Head>
+                <title>{name}</title>
+            </Head>
             <DetailContainer>
+                <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
                 <CustomToast isShow={showToast} />
-                <Header />
+                <ItemHeader
+                    name={name}
+                />
                 <br /><br />
                 <Container>
                     <Row className="justify-content-md-center">
@@ -132,8 +139,11 @@ const Detail = ({ t, theme }) => {
     )
 }
 
-Detail.getInitialProps = async () => ({
-    namespacesRequired: ['detail'],
-})
+const getInitialProps = ({ res, query, err }) => {
+    const namespacesRequired = ["detail"];
+    return { namespacesRequired, query };
+}
+
+Detail.getInitialProps = getInitialProps;
 
 export default withTranslation('detail')(Detail)

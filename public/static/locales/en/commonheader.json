@@ -1,5 +1,9 @@
 {
     "brand": "longus.io",
     "welcome": "Welcome",
-    "categories": "Categories"
+    "categories": "Categories",
+
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log Out"
 }
