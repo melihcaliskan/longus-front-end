@@ -140,7 +140,7 @@ const HeroText = styled.h2`
         font-size:30px;
     }
 `
-const FindButton = styled.div`
+export const FindButton = styled.div`
     display:inline-flex;
     align-items:center;
     cursor:pointer;
@@ -166,6 +166,10 @@ const FindButton = styled.div`
             fill:${({ theme }) => theme.text};
         }
         margin-right:1em;
+    }
+
+    ${"img"}{
+        margin-right:1em; 
     }
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
 

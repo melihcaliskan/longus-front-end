@@ -1,13 +1,61 @@
+import ActiveLink from '../components/ActiveLink'
+import Container from 'react-bootstrap/Container'
+import { FindButton } from '../components/Home/Header'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 import React from 'react'
+import styled from 'styled-components';
 import { withTranslation } from '../i18n'
 
-const Error = ({ statusCode, t }) => (
-  <div style={{ "position": "fixed", "top": "50%", "left": "50%", "transform": "translate(-50%, -50%)" }}>
-    <h1>{statusCode
-      ? t('error-with-status', { statusCode })
-      : "Aradığın sayfa bulunamadı."}
-    </h1>
-  </div>
+const Title = styled.h1`
+    font-weight:800;
+    margin:1em 0;
+`
+
+const FourZeroFour = styled.h1`
+    font-size:140px;
+    font-weight:800;
+    margin:0 0 -0.2em 0;
+    opacity:.2;
+`
+
+const CustomContainer = styled.div`
+    margin-top:4em;
+    margin-bottom:15em;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+
+    h3{
+      font-size:18px;
+    }
+    @media only screen and (max-width: 960px) {
+      
+    }
+`
+
+const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language }) => (
+  <>
+    <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
+    <CustomContainer as={Container}>
+      <div>
+        <FourZeroFour>404</FourZeroFour>
+        <Title>{t('notfound')}</Title>
+        <h3>{t('detail')}</h3>
+        <ActiveLink href="/all">
+          <FindButton>
+            <img src="assets/back.svg" width={20}/>
+            <p>{t('gohome')}</p>
+          </FindButton>
+        </ActiveLink>
+      </div>
+      <img width={400} src="assets/404.svg" />
+    </CustomContainer>
+    <Footer />
+  </>
 )
 
-export default withTranslation('home')(Error)
+Error.getInitialProps = async () => ({
+  namespacesRequired: ['common'],
+})
+export default withTranslation('common')(Error)

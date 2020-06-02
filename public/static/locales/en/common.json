@@ -1,1 +1,5 @@
-{}
+{
+    "notfound":"You weren't supposed to be here!",
+    "detail":"Because we can't find the page you are looking for",
+    "gohome": "Go home"
+}
