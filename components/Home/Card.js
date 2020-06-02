@@ -51,11 +51,11 @@ const customStyle = {
     justifyContent: 'flex-start'
 }
 const Card = ({ children, style, svg, img, href }) => {
+    const src = img ? img : `data:image/svg+xml;utf8;base64, ${svg}`
     return (
         <CustomCard style={style}>
             <ActiveLink style={customStyle} href={href ? `/${href}` : null}>
-            <img src={`data:image/svg+xml;utf8;base64, ${svg}`}/>
-                {img ? <Image src={img} /> : null}
+                <Image src={src} />
                 <Content>{children}</Content>
             </ActiveLink>
         </CustomCard>
