@@ -29,6 +29,7 @@ const Left = styled.div`
 
   a{
     font-weight:600;
+    margin-right:1em;
   }
 
   @media only screen and (max-width: 960px) {
@@ -41,13 +42,18 @@ const Right = styled.div`
   display:flex;
   align-items:center;
 
+  .header-buttons{
+    display:flex;
+  }
+
   .header-buttons svg{
     cursor:pointer;
     margin-right:2em;
   }
+
   @media only screen and (max-width: 960px) {
     .header-buttons svg{
-      display:none;
+      margin-right:1em;
     }
   }
 `
@@ -108,10 +114,9 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
       />
       <Left>
         <ActiveLink href="/"><Title>{t('brand')}</Title></ActiveLink>
-        <ActiveLink href="/"><p className="no-mobile">{t('categories')}</p></ActiveLink>
+        <ActiveLink href="/issues"><p className="no-mobile">{t('issues')}</p></ActiveLink>
+        <ActiveLink href="/categories"><p className="no-mobile">{t('categories')}</p></ActiveLink>
       </Left>
-
-
       <Right>
         <div className="header-buttons">
           <ActiveLink href="/add"><Plus /></ActiveLink>

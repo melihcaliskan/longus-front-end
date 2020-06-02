@@ -1,6 +1,8 @@
 {
     "brand": "longus.io",
     "welcome": "Welcome",
+
+    "issues": "Issues",
     "categories": "Categories",
 
     "profile": "Profile",

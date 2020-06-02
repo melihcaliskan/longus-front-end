@@ -198,10 +198,10 @@ const Issue = ({ t, resolved, theme }) => {
 
         <Buttons>
           <Left>
-            <IconButton text={t('buttons.samehere')} count={item.count.sameHere} icon={Sad} color={light_colors.SAME_HERE_RED} />
-            <IconButton text={t('buttons.discuss')} count={item.count.discuss} icon={Question} color={theme.text} />
+            <IconButton text={t('samehere')} count={item.count.sameHere} icon={Sad} color={light_colors.SAME_HERE_RED} />
+            <IconButton text={t('discuss')} count={item.count.discuss} icon={Question} color={theme.text} />
             {!resolved ?
-              <IconButton text={t('buttons.resolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
+              <IconButton text={t('resolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
               : null}
           </Left>
           <ShareButton>

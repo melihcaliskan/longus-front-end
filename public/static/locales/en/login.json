@@ -20,5 +20,8 @@
     "alreadymember": "Already a member?",
     "memberlogin": "Login to your account",
 
+    "somethingwrong": "Something went wrong",
+    "passworderror": "Username or password is wrong",
+
     "backtohome": "Go back to homepage"
 }

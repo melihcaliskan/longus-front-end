@@ -16,13 +16,7 @@ const CustomCard = styled.div`
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
     margin-right:1em;
     border-radius:6px;
-    ${"svg"}{
-        transform: scale(0.7);
-        margin-bottom:1em;
-        ${"path"}{
-            fill:${({ theme }) => theme.text};
-        }
-    }
+    
     @media only screen and (max-width: 940px) {
         transform:scale(0.85);
         margin:0em;

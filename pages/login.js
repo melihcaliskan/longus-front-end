@@ -3,6 +3,7 @@ import { i18n, withTranslation } from '../i18n'
 
 import { API_URL } from '../helpers/urls'
 import ActiveLink from '../components/ActiveLink'
+import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
@@ -94,6 +95,7 @@ const Header = styled.div`
 const Login = ({ t, noSidebar = false, background }) => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
     const handleSubmit = (evt) => {
         evt.preventDefault();
 
@@ -102,12 +104,15 @@ const Login = ({ t, noSidebar = false, background }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identifier: name, password: password })
         }).then(response => response.json()).then(data => {
-            if(data.jwt){
+            if (data.jwt) {
                 alert("Giriş başarılı")
             } else {
-                alert("Kullanıcı adı veya şifre hatalı.")
+                if (data.message[0].messages[0].id == "Auth.form.error.invalid") {
+                    setError(t('passworderror'))
+                } else {
+                    setError(t('somethingwrong'))
+                }
                 console.log(data.message[0].messages[0].id)
-                //Auth.form.error.invalid T İLE ÇEVİR
             }
         });
     }
@@ -140,6 +145,11 @@ const Login = ({ t, noSidebar = false, background }) => {
                             </svg>
                         </ActiveLink>
                     </Header>
+                    {error ?
+                        <Alert style={{ marginBottom: '3em' }} variant={"danger"}>
+                            {error}
+                        </Alert>
+                        : null}
                     <Form>
                         <Form.Group className="form-item" controlId="username">
                             <Form.Label>{t('usernameoremail')}</Form.Label>

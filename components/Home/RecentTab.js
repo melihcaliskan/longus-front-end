@@ -128,6 +128,7 @@ const CustomTab = ({ t, theme, data }) => {
         <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
           {t('seeall')}
         </Button>
+        tümünü gör patlıyor
       </Row>
     </Container>
   )

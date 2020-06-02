@@ -2,8 +2,9 @@ import React, { memo } from 'react'
 
 import twemoji from 'twemoji'
 
-const Twemoji = ({ emoji }) => (
+const Twemoji = ({ emoji, style }) => (
   <span
+    style={style}
     dangerouslySetInnerHTML={{
       __html: twemoji.parse(emoji, {
         folder: 'svg',

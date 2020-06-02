@@ -4,17 +4,19 @@ module.exports = new NextI18Next({
     initImmediate: false,
     preload: ["en", "tr"],
     defaultLanguage: "en",
-    otherLanguages: ['tr', 'de', 'fr', 'es', 'ja', 'ru', 'sv'],
-    //localePath: "public/static/locales",
+    otherLanguages: ['en', 'tr', 'es', 'de', 'fr', 'hi', 'ru', 'ko', 'ja', 'sv'],
+    localePath: "public/static/locales",
     localeSubpaths: {
         tr: 'tr',
         en: 'en',
+        es: 'es',
         de: 'de',
         fr: 'fr',
-        es: 'es',
-        ja: 'ja',
+        hi: 'hi',
         ru: 'ru',
-        sv: 'sv',
+        ko: 'ko',
+        ja: 'ja',
+        sv: 'sv'
     }
 })
 

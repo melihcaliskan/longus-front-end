@@ -20,5 +20,9 @@
     "alreadymember": "Zaten üye misin?",
     "memberlogin": "Hesabına giriş yap",
 
+    "somethingwrong": "Bir şeyler yanlış gitti",
+    "passworderror": "Kullanıcı adı veya şifre hatalı",
+
+
     "backtohome": "Anasayfaya geri dön"
 }
