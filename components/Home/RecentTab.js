@@ -118,15 +118,15 @@ const CustomTab = ({ t, theme, data }) => {
           id="tab"
           activeKey={key}
           onSelect={(k) => setKey(k)}>
-          <Tab eventKey="issues" title={t('tab.issues')}>
+          <Tab eventKey="issues" title={t('issues')}>
             {loading ? <Loader type={"issue"} /> : <List data={data} />}
           </Tab>
-          <Tab eventKey="devices" title={t('tab.devices')}>
+          <Tab eventKey="devices" title={t('devices')}>
             {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
           </Tab>
         </Tabs>
         <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
-          {t('tab.seeall')}
+          {t('seeall')}
         </Button>
       </Row>
     </Container>

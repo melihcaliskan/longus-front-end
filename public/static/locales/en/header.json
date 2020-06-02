@@ -5,7 +5,5 @@
     "comment": "comment",
     "comments": "comments",
     "fit": "Suitable for daily use",
-    "mobile": {
-        "fit": "Suitable"
-    }
+    "mobileFit": "Suitable"
 }

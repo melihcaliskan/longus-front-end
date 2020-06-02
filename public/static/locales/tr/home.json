@@ -5,11 +5,11 @@
     "signup": "Kayıt Ol",
     "description": "Aklındaki cihazın kronik sorunlarını bul",
     "find-now": "Hemen Bul",
-    "tab": {
-        "issues": "Popüler Sorunlar",
-        "devices": "Popüler Cihazlar",
-        "seeall": "Tümünü Gör"
-    },
+
+    "issues": "Güncel Sorunlar",
+    "devices": "Güncel Cihazlar",
+    "seeall": "Tümünü Gör",
+
     "populartoday": "Bugün popüler",
     "join": "Katıl"
 }

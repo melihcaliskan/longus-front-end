@@ -5,11 +5,12 @@
     "signup": "Sign Up",
     "description": "Find the chronic issues of your next device.",
     "find-now": "Find Now",
-    "tab": {
-        "issues": "Popular Issues",
-        "devices": "Popular Devices",
-        "seeall": "See All"
-    },
+
+
+    "issues": "Recent Issues",
+    "devices": "Recent Devices",
+    "seeall": "See All",
+
     "populartoday": "Popular today",
     "join": "Join"
 }
