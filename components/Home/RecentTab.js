@@ -89,7 +89,7 @@ const List = ({ data, language = i18n.language }) => {
     <CardContainer>
       {data.map(item => (
         <Card key={item.id} href={`issue/${item.slug}`} svg={item.icon} img={item.img}>
-          {item.name[0][language]}
+          {item.name[0][language] ? item.name[0][language] : item.name[0]["en"]}
         </Card>
       ))}
     </CardContainer>
