@@ -155,15 +155,15 @@ const Footer = ({ t }) => {
           </select>
         </div>
         <div className="no-mobile">
-          <Title>{t('quicklinks.title')}</Title>
+          <Title>{t('title')}</Title>
           <ActiveLink href={links.home}>
-            <p>{t('quicklinks.home')}</p>
+            <p>{t('home')}</p>
           </ActiveLink>
           <ActiveLink href={links.aboutus}>
-            <p>{t('quicklinks.about')}</p>
+            <p>{t('about')}</p>
           </ActiveLink>
           <ActiveLink href={links.contact}>
-            <p>{t('quicklinks.contact')}</p>
+            <p>{t('contact')}</p>
           </ActiveLink>
         </div >
       </Left >

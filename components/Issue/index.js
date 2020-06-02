@@ -182,10 +182,10 @@ const Issue = ({ t, resolved, theme }) => {
 
         <EffectCard usageEffect={3} repeatFreq={3} />
 
-        <Title>{t('company.response')}</Title>
+        <Title>{t('companyresponse')}</Title>
         <Text>{item.company_response}</Text>
 
-        <Title>{t('company.solution')}</Title>
+        <Title>{t('companysolution')}</Title>
         <Text>{item.company_solution}</Text>
 
         <Info>
