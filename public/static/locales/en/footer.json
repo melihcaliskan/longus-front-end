@@ -4,12 +4,10 @@
     "madein": "Made in <img class='emoji' draggable='false' alt='🌍' src='https://twemoji.maxcdn.com/v/13.0.0/svg/1f30d.svg'> İstanbul with <img class='emoji' draggable='false' alt='❤️' src='https://twemoji.maxcdn.com/v/13.0.0/svg/2764.svg'>",
     "year": "2020",
 
-    "quicklinks": {
-        "title": "Quick Links",
-        "home": "Home",
-        "about": "About Us",
-        "contact": "Contact"
-    },
+    "title": "Quick Links",
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
 
     "followus": "Follow Us"
 }

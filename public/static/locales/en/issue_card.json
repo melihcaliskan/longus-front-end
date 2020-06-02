@@ -20,16 +20,14 @@
 
   "low": "Low",
   "high": "High",
-  "company": {
-    "response": "Company response:",
-    "solution": "Company solution:"
-  },
-  "buttons": {
-    "samehere": "Same here!",
-    "discuss": "Discuss this issue",
-    "resolved": "Mark as resolved"
 
-  },
+  "companyresponse": "Company response:",
+  "companysolution": "Company solution:",
+
+  "samehere": "Same here!",
+  "discuss": "Discuss this issue",
+  "resolved": "Mark as resolved",
+
   "addedby": "Added by:",
   "resolved": "This issue has been resolved permanently."
 }

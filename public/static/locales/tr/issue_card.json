@@ -20,15 +20,14 @@
 
   "low": "Az",
   "high": "Çok",
-  "company": {
-    "response": "Firma açıklaması:",
-    "solution": "Firma cevabı:"
-  },
-  "buttons": {
-    "samehere": "Ben de yaşıyorum!",
-    "discuss": "Bu sorunu tartış",
-    "resolved": "Çözüldü olarak işaretle"
-  },
+
+  "response": "Firma açıklaması:",
+  "solution": "Firma cevabı:",
+
+  "samehere": "Ben de yaşıyorum!",
+  "discuss": "Bu sorunu tartış",
+  "resolved": "Çözüldü olarak işaretle",
+
   "addedby": "Ekleyen:",
   "resolved": "Bu sorun kalıcı olarak çözüldü."
 }
