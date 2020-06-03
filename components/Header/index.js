@@ -103,7 +103,7 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
   const [modalShow, setModalShow] = useState(false);
 
   const { scrollY } = useScroll();
-  let isCollapsed = scrollY > 200
+  let isCollapsed = scrollY > 210
   
   const size = useWindowSize();
   const isMobile = size.width < 960
