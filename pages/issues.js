@@ -158,7 +158,7 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
         setLoading(true)
         setStart(start + limit)
 
-        const res = await fetch(`${API_URL}issues?_start=${start}&_limit=${limit}`)
+        const res = await fetch(`${API_URL}issues/start=${start}&limit=${limit}`)
         const result = await res.json()
 
         setIssues([...issues, ...result])
@@ -201,7 +201,7 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
 }
 
 Issues.getInitialProps = async ctx => {
-    const res = await fetch(`${API_URL}issues?_start=0&_limit=10`)
+    const res = await fetch(`${API_URL}issues/start=0&limit=10`)
     const issues = await res.json()
     return { data: issues }
 }
