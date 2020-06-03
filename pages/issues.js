@@ -1,24 +1,16 @@
-import { Link, i18n, withTranslation } from '../i18n'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { API_URL } from '../helpers/urls'
-import ActiveLink from '../components/ActiveLink'
-import Button from 'react-bootstrap/Button'
-import Card from '../components/All/Card'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Fade from 'react-reveal/Fade';
-import Footer from '../components/Footer'
-import Form from 'react-bootstrap/Form'
-import Head from 'next/head'
-import Header from '../components/Header'
-import LargeCard from '../components/All/LargeCard'
-import Overlay from 'react-bootstrap/Overlay'
-import Popover from 'react-bootstrap/Popover'
-import Twemoji from '../components/Twemoji'
+import { API_URL } from '../helpers/urls';
+import ActiveLink from '../components/ActiveLink';
+import Button from '../components/Button'
+import Container from 'react-bootstrap/Container';
+import Footer from '../components/Footer';
+import Form from 'react-bootstrap/Form';
+import Head from 'next/head';
+import Header from '../components/Header';
+import Twemoji from '../components/Twemoji';
 import styled from 'styled-components';
-
-const list = ["Amoled yanması", "Isınma sorunu", "Şarj soketi sorunu", "Batarya sorunu", "Kamera sorunu"]
+import { withTranslation } from '../i18n';
 
 const ContactHeader = styled.div`
     background:${({ theme }) => theme.body};
@@ -57,14 +49,16 @@ const IssueList = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 40px;
 
+    margin-bottom:6em;
     @media only screen and (max-width: 1260px) {
         gap: 30px;
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
     @media only screen and (max-width: 960px) {
-        gap: 20px;
-        grid-template-columns: 1fr 1fr 1fr;
+        padding:0 10px;
+        gap: 30px;
+        grid-template-columns: 1fr 1fr;
     }
 `
 
@@ -106,19 +100,19 @@ const IssueItemContainer = styled.div`
 
 
 const Image = styled.img`
-    width:48px;
-    height:48px;
+    width:54px;
+    height:54px;
     filter:${props => props.isLight ? 'invert(0)' : 'invert(0.9)'};
 
     @media only screen and (max-width: 1024px) {
-        width:36px;
-        height:36px;
+        width:48px;
+        height:48px;
     }
 
     @media only screen and (max-width: 960px) {
     }
-
 `
+
 const IssueItem = ({ data, lang, isLight }) => {
     return (
         <ActiveLink href={`/issue/${data.slug}`}>
@@ -130,35 +124,51 @@ const IssueItem = ({ data, lang, isLight }) => {
     )
 }
 
+const Issues = ({ t, language, isLight, toggleTheme, data }) => {
+    const [loading, setLoading] = useState(false);
 
-const Issues = ({ t, language, isLight, toggleTheme, issues }) => {
-    const [loading, setLoading] = useState(true);
+    const [issues, setIssues] = useState(data);
+    const [start, setStart] = useState(10);
+    const limit = 10;
+
+    const [seeMore, setSeeMore] = useState(true);
 
     const [search, setSearch] = useState('');
     const [searchData, setSearchData] = useState('');
-    const placeholder = list[Math.floor(Math.random() * list.length)];
-
-    const handleSearch = async (value) => {
-        // diğer tablodan slug çek
-        setSearch(value)
-
-    }
+    // Fetch random placeholder for input
+    const placeholder = t(`placeholder${Math.floor(Math.random() * 2)}`)
 
     useEffect(() => {
+        // diğer tablodan slug çek
         const delay = setTimeout(async () => {
             setLoading(true)
             if (search.length > 3) {
-                const res = await fetch(`${API_URL} issue / ${language} /${search}`)
+                const res = await fetch(`${API_URL}issue/${language}/${search}`)
                 const data = await res.json()
                 setSearchData(data)
             } else {
                 setSearchData('')
             }
         }, 400)
-
         return () => clearTimeout(delay)
+
     }, [search])
 
+    const fetchData = async (count) => {
+        setLoading(true)
+        setStart(start + limit)
+
+        const res = await fetch(`${API_URL}issues?_start=${start}&_limit=${limit}`)
+        const result = await res.json()
+
+        setIssues([...issues, ...result])
+
+        if (result.length < limit) {
+            console.log(result.length, limit)
+            setSeeMore(false)
+        }
+        setLoading(false)
+    }
     return (
         <>
             <Head>
@@ -173,30 +183,27 @@ const Issues = ({ t, language, isLight, toggleTheme, issues }) => {
                     </Form.Group>
                 </Container>
             </ContactHeader>
-            <Container style={{ marginTop: '5em' }}>
-
-                {!searchData ?
-                    <IssueList>
-                        {issues.map((item, id) => (
-                            <IssueItem key={id} data={item} isLight={isLight} lang={language} />
-                        ))}
-                    </IssueList>
-                    :
-                    <div>
-                        {JSON.stringify(searchData)}
-                    </div>
-                }
+            <Container style={{ display: 'flex', flexDirection: 'column', marginTop: '5em', marginBottom: '10em' }}>
+                <IssueList>
+                    {issues.map((item, id) => (
+                        <IssueItem key={id} data={item} isLight={isLight} lang={language} />
+                    ))}
+                </IssueList>
+                {seeMore ?
+                    <Button type="primary" onClick={() => fetchData()} style={{ alignSelf: 'center', width: '180px' }}>
+                        {t('seemore')}
+                    </Button>
+                    : null}
             </Container>
-            <br /><br /><br /><br /><br /><br /><br /><br />
             <Footer />
         </>
     )
 }
 
 Issues.getInitialProps = async ctx => {
-    const res = await fetch(`${API_URL}issues`)
+    const res = await fetch(`${API_URL}issues?_start=0&_limit=10`)
     const issues = await res.json()
-    return { issues: issues }
+    return { data: issues }
 }
 
 export default withTranslation('issues')(Issues)
