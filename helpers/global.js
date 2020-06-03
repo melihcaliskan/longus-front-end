@@ -136,11 +136,10 @@ input[type=range]::-webkit-slider-thumb {
 }
 
 input[type=range]:focus::-webkit-slider-runnable-track {
-  background: white;
+
 }
 
 input[type=range]:hover::-webkit-slider-thumb {
-  background:white;
 }
 
 input[type=range]::-moz-range-track {
@@ -192,10 +191,10 @@ input[type=range]::-ms-thumb {
   height: 8.3px;
 }
 input[type=range]:focus::-ms-fill-lower {
-  background: white;
+
 }
 input[type=range]:focus::-ms-fill-upper {
-  background: white;
+
 }
 
 
