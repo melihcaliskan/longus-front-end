@@ -140,7 +140,7 @@ const CustomTab = ({ t, theme, isLight, toggleTheme, count }) => {
                 <title>Add New Issue</title>
             </Head>
             <Header reverse />
-            <Container style={{ marginBottom: '10em' }}>
+            <Container style={{padding:'0 20px', marginBottom: '10em' }}>
                 <Form>
                     <Fade bottom distance={'1.2em'} duration={600}>
                         <Title>{t('addnew')}</Title>
