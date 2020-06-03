@@ -1,6 +1,15 @@
 import { light_colors } from '../helpers/colors'
+import styled from 'styled-components';
 import { useRouter } from 'next/router'
-function Button({ children, href, type, shadow, style }) {
+
+const CustomButton = styled.a`
+  cursor:pointer;
+  &:hover{
+    filter: brightness(90%);
+  }
+`
+
+const Button = ({ children, href, onClick, type, shadow, style }) => {
   const router = useRouter()
   const customStyle = {
     padding: '0.6em 2em',
@@ -9,21 +18,24 @@ function Button({ children, href, type, shadow, style }) {
     color: type && type == "primary" ? "white" : light_colors.TEXT_COLOR,
     boxShadow: shadow ? "0px 2px 2px 0px rgba(0,0,0,0.1)" : "none",
     textDecoration: 'none',
-    textAlign:'center',
+    textAlign: 'center',
     ...style
   }
 
-  // TODO: i18n ile değiştir.
-
   const handleClick = e => {
-    e.preventDefault()
-    router.push(href)
+    if (onClick) {
+      onClick()
+    }
+    if (href) {
+      e.preventDefault()
+      router.push(href)
+    }
   }
 
   return (
-    <a href={href} onClick={handleClick} style={customStyle}>
+    <CustomButton href={href} onClick={handleClick} style={customStyle}>
       {children}
-    </a>
+    </CustomButton>
   )
 }
 
