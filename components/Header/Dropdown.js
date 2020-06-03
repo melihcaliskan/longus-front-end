@@ -11,10 +11,11 @@ import styled from 'styled-components';
 
 const Container = styled.div`
     .dropdown-menu{
-        left:-10px !important;
+        left:-5px !important;
         top:10px !important;
         background:${({ theme }) => theme.blank};
         border-radius:8px;
+        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
     }
     .dropdown-divider{
         border-top:1px solid ${({ theme }) => theme.darken_body};
@@ -29,6 +30,9 @@ const Container = styled.div`
 
     .dropdown-item:hover{
         background:${({ theme }) => theme.darken_body};
+    }
+    @media only screen and (max-width: 960px) {
+        left:-10px !important;
     }
 `
 const ProfilePicture = styled.img`
@@ -131,7 +135,7 @@ const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fillRule="evenodd" clipRule="evenodd" d="M10 7C10 5.02543 10.8205 3.18477 12.2398 1.86765L13.7174 0.496474L11.7317 0.149561C11.1634 0.0502852 10.5847 0 10 0C4.47715 0 0 4.47715 0 10C0 15.5228 4.47715 20 10 20C13.3854 20 16.4843 18.3038 18.3266 15.5396L19.4432 13.8643L17.4336 13.9868C17.2898 13.9956 17.1452 14 17 14C13.134 14 10 10.866 10 7ZM10 18C5.58172 18 2 14.4183 2 10C2 5.74791 5.31735 2.27062 9.50514 2.01506C8.53668 3.46848 8 5.19184 8 7C8 11.439 11.2137 15.1274 15.4414 15.8655C13.9878 17.2153 12.061 18 10 18Z" fill="#656565" />
                                 </svg>
-                                <DropdownText> {t('darkmode')}</DropdownText>
+                                <DropdownText> {t('nightmode')}</DropdownText>
                             </>
                         }
                     </Dropdown.Item>
