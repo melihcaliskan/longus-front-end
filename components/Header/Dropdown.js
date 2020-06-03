@@ -13,7 +13,7 @@ const Container = styled.div`
     .dropdown-menu{
         left:-5px !important;
         top:10px !important;
-        background:${({ theme }) => theme.body_100};
+        background:${({ theme }) => theme.body};
         border-radius:8px;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
     }
@@ -29,17 +29,17 @@ const Container = styled.div`
     }
 
     .dropdown-item:hover{
-        background:${({ theme }) => theme.darken_body};
+        background:${({ theme }) => theme.body_100};
     }
     @media only screen and (max-width: 960px) {
         left:-10px !important;
     }
 `
 const ProfilePicture = styled.img`
-  width:30px;
-  height:30px;
-  border-radius:50%;
-  margin-left:0.4em;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    margin-left:0.4em;
 `
 
 const HomeDropdown = styled.div`

@@ -29,8 +29,20 @@ const CustomContainer = styled.div`
     h3{
       font-size:18px;
     }
+    .no-desktop{
+      display:none;
+    }
     @media only screen and (max-width: 960px) {
-      
+      .no-desktop{
+        display:initial;
+        margin-bottom:2em;
+      }
+      .no-mobile{
+        display:none;
+      }
+      align-items:center;
+      flex-direction:column;
+      text-align:center;
     }
 `
 
@@ -38,18 +50,19 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
   <>
     <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
     <CustomContainer as={Container}>
+      <img className="no-desktop" src="assets/404.svg" width={200} />
       <div>
         <FourZeroFour>{statusCode ? statusCode : "404"}</FourZeroFour>
         <Title>{t('notfound')}</Title>
         <h3>{t('detail')}</h3>
         <ActiveLink href="/all">
           <FindButton>
-            <img src="assets/back.svg" width={20} />
+            <img src="assets/back.svg" style={{width:'20px',height:'20px'}} />
             <p>{t('gohome')}</p>
           </FindButton>
         </ActiveLink>
       </div>
-      <img width={400} src="assets/404.svg" />
+      <img className="no-mobile" width={400} src="assets/404.svg" />
     </CustomContainer>
     <Footer />
   </>
