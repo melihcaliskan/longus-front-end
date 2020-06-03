@@ -57,7 +57,7 @@ export const darkTheme = {
   button_bg: '#303030',
   dark_button: '#303030',
 
-  blank: 'rgb(25,25,25)',
+  blank: 'rgb(0,0,0)',
 
   text: 'rgb(220,220,220)',
   title: 'rgb(240,240,240)',
