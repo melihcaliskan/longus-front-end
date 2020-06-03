@@ -1,4 +1,9 @@
 export const theme = {
+  tab_bg: "#FFE199",
+
+  dark_text_200: "#474747",
+  dark_text_300: "#606060",
+
   BUTTON_BLUE: '#2B7CF6',
 
 
@@ -55,7 +60,7 @@ export const lightTheme = {
 
   VERY_LIGHT_GREEN: '#E6FFF3',
 
-  header_bg: 'rgba(238, 238, 238,0.7)',
+  header_bg: 'rgba(238, 238, 238,0.5)',
 
 
   ...theme

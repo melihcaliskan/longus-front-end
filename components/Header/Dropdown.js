@@ -13,12 +13,12 @@ const Container = styled.div`
     .dropdown-menu{
         left:-5px !important;
         top:10px !important;
-        background:${({ theme }) => theme.blank};
+        background:${({ theme }) => theme.body_100};
         border-radius:8px;
         box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
     }
     .dropdown-divider{
-        border-top:1px solid ${({ theme }) => theme.darken_body};
+        border-top:1px solid ${({ theme }) => theme.body_200};
     }
     .dropdown-item{
         padding-top:0.4em;
@@ -58,7 +58,7 @@ const DropdownText = styled.span`
 const CustomDropdown = styled.div`
     button{
         color:${({ theme }) => theme.text} !important;
-        background:${({ theme }) => theme.body} !important;
+        background:${({ theme }) => theme.body_100} !important;
 
         padding: 0.6em 1.3em;
 

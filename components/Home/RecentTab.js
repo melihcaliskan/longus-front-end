@@ -32,57 +32,23 @@ export const CardContainer = styled.div`
   @media only screen and (max-width: 640px) {
   }
 `
+export const TabTitle = styled.div`
+  background:${({ theme }) => theme.tab_bg};
+  padding:0.4em 1em;
+  display:inline-flex;
+  text-transform: uppercase;
+  border-radius: 7px;
+  font-weight: 700;
+  margin-bottom: 1em;
+  box-shadow: inset 0px 0px 10px 1px rgba(0,0,0,0.05);
+`
 
-const device_data = [
-  {
-    id: 22,
-    name: "Samsung Note 10",
-    url: "isinma-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 2222,
-    name: "iPhone 11",
-    url: "gps-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 2223,
-    name: "Macbook Pro 2018",
-    url: "kamera-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 222224,
-    name: "Logitech MX Master",
-    url: "ekran-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 225,
-    name: "Samsung Note 10",
-    url: "isinma-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 226,
-    name: "iPhone 11",
-    url: "gps-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 722,
-    name: "Macbook Pro 2018",
-    url: "kamera-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-  {
-    id: 228,
-    name: "Logitech MX Master",
-    url: "ekran-sorunu",
-    img: "https://i.picsum.photos/id/223/400/600.jpg",
-  },
-]
+export const CustomContainer = styled.div`
+  display:inline-flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+`
 
 const List = ({ data, language = i18n.language }) => {
   return (
@@ -96,41 +62,13 @@ const List = ({ data, language = i18n.language }) => {
   )
 }
 
-const tabStyle = {
-  background: '#F4F4F4',
-  display: 'flex',
-  justifyContent: 'space-between',
-  textTransform: 'uppercase',
-  borderRadius: '7px',
-  fontWeight: '700',
-  marginBottom: '1em'
-}
-
 const CustomTab = ({ t, theme, data }) => {
-  const [loading, setLoading] = useState(false);
-  const [key, setKey] = useState('issues');
 
   return (
-    <Container >
-      <Row style={{ justifyContent: 'center' }} className="home-tabs justify-content-md-center">
-        <Tabs
-          style={tabStyle}
-          id="tab"
-          activeKey={key}
-          onSelect={(k) => setKey(k)}>
-          <Tab eventKey="issues" title={t('issues')}>
-            {loading ? <Loader type={"issue"} /> : <List data={data} />}
-          </Tab>
-          <Tab eventKey="devices" title={t('devices')}>
-            {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
-          </Tab>
-        </Tabs>
-        <ActiveLink style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
-          {t('seeall')}
-        </ActiveLink>
-        tümünü gör patlıyor
-      </Row>
-    </Container>
+    <CustomContainer as={Container} style={{ marginBottom: '5em' }}>
+      <TabTitle>{t('issues')}</TabTitle>
+      <List data={data} />
+    </CustomContainer>
   )
 }
 

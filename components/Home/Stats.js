@@ -14,25 +14,6 @@ const Title = styled.h2`
     }
 `
 
-const CircleContainer = styled.div`
-    display:inline-flex;
-    position:relative;
-    strong{
-        font-size:32px;
-    }
-    p{
-        font-size:18px;
-    }
-    @media only screen and (max-width: 960px) {
-        strong{
-            font-size:24px;
-        }
-        p{
-            font-size:16px;
-        }
-    }
-`
-
 const Low = styled.div`
     display:flex;
     flex-direction:column;
@@ -107,6 +88,7 @@ const MeatballContainer = styled.div`
     }
 `
 const CustomContainer = styled.div`
+    padding:3em 0;
     overflow: hidden;
     @media only screen and (max-width: 960px) {
         padding:1em 4em 1em 1.5em;
@@ -131,10 +113,10 @@ const Emoji = styled.div`
     align-items:center;
     justify-content:center;
 
-    width:240px;
-    height:240px;
+    width:200px;
+    height:200px;
     border-radius:50%;
-    background:${({ theme }) => theme.body_100};
+    background:${({ theme }) => theme.body_200};
     span{
         font-size:96px;
     }
@@ -142,13 +124,32 @@ const Emoji = styled.div`
         width:90px;
         height:90px;
         border-radius:50%;
-        background:${({ theme }) => theme.body_100};
         span{
             font-size:48px;
         } 
     }
 `
 
+const CircleContainer = styled.div`
+    display:inline-flex;
+    position:relative;
+    strong{
+        color:${({ theme }) => theme.dark_text_200};
+        font-size:32px;
+    }
+    p{
+        color:${({ theme }) => theme.dark_text_300};
+        font-size:18px;
+    }
+    @media only screen and (max-width: 960px) {
+        strong{
+            font-size:24px;
+        }
+        p{
+            font-size:16px;
+        }
+    }
+`
 
 const CountItem = styled.div`
     display:flex;
@@ -159,10 +160,12 @@ const CountItem = styled.div`
         margin-right:6em;
     }    
     strong{
+        color:${({ theme }) => theme.body_700};
         font-size:64px;
     }
     p{
         font-size:32px;
+        color:${({ theme }) => theme.body_600};
     }
 
     @media only screen and (max-width: 960px) {
@@ -177,47 +180,58 @@ const CountItem = styled.div`
         }
     }
 `
+const Bg = styled.div`
+    padding:1em 0 1.3em 0;
+    background-color: ${({ theme }) => theme.body_100};
+    mask-image: url("assets/stat-bg.svg");
+    -webkit-mask-image: url("assets/stat-bg.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-bottom:5em;
+`
 
-const Stats = ({ t }) => {
+const Stats = ({ t, theme }) => {
     return (
-        <CustomContainer as={Container}>
-            <MeatballContainer>
-                <Title>
-                    <Twemoji style={{ marginRight: '0.5em' }} emoji="🚀" />
-                    {t('growing')}
-                </Title>
-                <CircleContainer>
-                    <Low>
-                        <strong>100+</strong>
-                        <p>{t('low')}</p>
-                    </Low>
-                    <Medium>
-                        <strong>50+</strong>
-                        <p>{t('medium')}</p>
-                    </Medium>
-                    <High>
-                        <strong>10+</strong>
-                        <p>{t('high')}</p>
-                    </High>
-                </CircleContainer>
-            </MeatballContainer>
+        <Bg>
+            <CustomContainer as={Container}>
+                <MeatballContainer>
+                    <Title>
+                        <Twemoji style={{ marginRight: '0.5em' }} emoji="🚀" />
+                        {t('growing')}
+                    </Title>
+                    <CircleContainer>
+                        <Low>
+                            <strong>100+</strong>
+                            <p>{t('low')}</p>
+                        </Low>
+                        <Medium>
+                            <strong>50+</strong>
+                            <p>{t('medium')}</p>
+                        </Medium>
+                        <High>
+                            <strong>10+</strong>
+                            <p>{t('high')}</p>
+                        </High>
+                    </CircleContainer>
+                </MeatballContainer>
 
-            <CountContainer>
-                <Emoji>
-                    <Twemoji emoji="🙋‍♀️" />
-                </Emoji>
-                <div>
-                    <CountItem>
-                        <strong>20+</strong>
-                        <p>{t('device')}</p>
-                    </CountItem>
-                    <CountItem>
-                        <strong>100+</strong>
-                        <p>{t('user')}</p>
-                    </CountItem>
-                </div>
-            </CountContainer>
-        </CustomContainer>
+                <CountContainer>
+                    <Emoji>
+                        <Twemoji emoji="🙋‍♀️" />
+                    </Emoji>
+                    <div>
+                        <CountItem>
+                            <strong>20+</strong>
+                            <p>{t('device')}</p>
+                        </CountItem>
+                        <CountItem>
+                            <strong>100+</strong>
+                            <p>{t('user')}</p>
+                        </CountItem>
+                    </div>
+                </CountContainer>
+            </CustomContainer>
+        </Bg>
     )
 }
 

@@ -29,13 +29,13 @@ const Home = ({ t, tReady, isLight, theme, toggleTheme, tabData, language }) => 
           <br /><br />
         </>
         : null}
+
       <Container>
-        {1 == 2 ?
-          <RecentTab theme={theme} data={tabData} />
-          : null}
+        <RecentTab theme={theme} data={tabData} />
       </Container>
 
-      <Stats />
+      <Stats theme={theme} />
+      
       <Footer />
     </>
   )
