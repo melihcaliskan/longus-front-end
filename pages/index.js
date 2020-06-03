@@ -8,6 +8,7 @@ import Header from '../components/Home/Header'
 import Loader from '../helpers/Loader'
 import React from 'react';
 import RecentTab from '../components/Home/RecentTab'
+import Stats from '../components/Home/Stats'
 import styled from 'styled-components';
 import useWindowSize from "../helpers/windowSize"
 
@@ -29,16 +30,18 @@ const Home = ({ t, tReady, isLight, theme, toggleTheme, tabData, language }) => 
         </>
         : null}
       <Container>
-        {tabData ?
+        {1 == 2 ?
           <RecentTab theme={theme} data={tabData} />
           : null}
       </Container>
+
+      <Stats />
       <Footer />
     </>
   )
 }
 Home.getInitialProps = async ctx => {
-  const res = await fetch(`${API_URL}issues`)
+  const res = await fetch(`${API_URL}issues/start=0&limit=10`)
   const issues = await res.json()
   return { tabData: issues }
 }

@@ -11,5 +11,12 @@
     "seeall": "Tümünü Gör",
 
     "populartoday": "Bugün popüler",
-    "join": "Katıl"
+    "join": "Katıl",
+
+    "growing": "Gün geçtikçe büyüyor...",
+    "user": "kullanıcı",
+    "device": "cihaz",
+    "low": "düşük",
+    "medium": "orta",
+    "high": "yüksek"
 }

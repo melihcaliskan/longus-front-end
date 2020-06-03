@@ -12,5 +12,12 @@
     "seeall": "See All",
 
     "populartoday": "Popular today",
-    "join": "Join"
+    "join": "Join",
+
+    "growing": "It is growing day by day...",
+    "user": "user",
+    "device": "device",
+    "low": "low",
+    "medium": "medium",
+    "high": "high"
 }
