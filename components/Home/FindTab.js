@@ -16,7 +16,7 @@ import Tabs from 'react-bootstrap/Tabs'
 import styled from 'styled-components';
 
 const Container = styled.div`
-    background: ${({ theme }) => theme.button_bg};
+    background: ${({ theme }) => theme.body_100};
     border-radius:7px;
     
     margin:0 1em;
@@ -45,7 +45,7 @@ const Top = styled.div`
 `
 
 const ItemContainer = styled.div`
-    background:${({ theme }) => theme.blank};
+    background:${({ theme }) => theme.body};
     padding:2em 2em 1em 2em;
     margin-top:1.5em;
     border-radius:7px;
@@ -138,9 +138,6 @@ const SvgContainer = styled.div`
     margin-top:1.4em;
     justify-content:space-between;
     padding:0 0.4em;
-    svg path{
-        fill: ${({ theme }) => theme.detail_text};
-    }
 `
 const SvgItem = styled.div`
     transition:all .3s;
@@ -148,7 +145,7 @@ const SvgItem = styled.div`
     
     padding:0.6em;
     border-radius:50%;
-    background: ${props => props.active ? props.theme.scrollbar_dark : props.theme.scrollbar_light};
+    background: ${props => props.active ? props.theme.body_200 : props.theme.body};
 
     svg,path{
         fill: ${props => props.active ? props.theme.title : props.theme.text} !important;

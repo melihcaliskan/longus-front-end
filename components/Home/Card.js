@@ -12,7 +12,7 @@ const CustomCard = styled.div`
     margin:1em;
     padding:1em 1em 0 1em;
     min-width:140px;
-    background:${({ theme }) => theme.button_bg};
+    background:${({ theme }) => theme.body_100};
     box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
     margin-right:1em;
     border-radius:6px;

@@ -39,12 +39,12 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
     <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
     <CustomContainer as={Container}>
       <div>
-        <FourZeroFour>404</FourZeroFour>
+        <FourZeroFour>{statusCode ? statusCode : "404"}</FourZeroFour>
         <Title>{t('notfound')}</Title>
         <h3>{t('detail')}</h3>
         <ActiveLink href="/all">
           <FindButton>
-            <img src="assets/back.svg" width={20}/>
+            <img src="assets/back.svg" width={20} />
             <p>{t('gohome')}</p>
           </FindButton>
         </ActiveLink>

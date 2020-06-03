@@ -27,7 +27,7 @@ export const GlobalStyles = createGlobalStyle`
 
   .home-tabs .nav-tabs {
     border-bottom: 0;
-    background:${({ theme }) => theme.darken_body} !important;
+    background:${({ theme }) => theme.body_100} !important;
   }
 
   .home-tabs .nav-tabs .nav-link {
@@ -71,12 +71,6 @@ export const GlobalStyles = createGlobalStyle`
     height: 1em;
     vertical-align: -0.125em;
   }
-  
-  .form-control{
-    color:${({ theme }) => theme.text} !important;
-    background-color: ${({ theme }) => theme.darken_body} !important;
-    border:0;
-  }
 
   .modal-body, .modal-content{
     background-color:${({ theme }) => theme.body};
@@ -101,8 +95,9 @@ export const GlobalStyles = createGlobalStyle`
 
 
   .form-control{
-    background: ${({ theme }) => theme.darken_body};
+    background: ${({ theme }) => theme.body_100};
     color: ${({ theme }) => theme.text};
+    border:0;
   }
 
 

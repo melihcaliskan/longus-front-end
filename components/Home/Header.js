@@ -69,7 +69,7 @@ const Brand = styled.h2`
 `
 const HomeDropdown = styled.div`
     display: ${props => props.noMobile ? "none" : "inline-flex"};
-    background:${({ theme }) => theme.button_bg};
+    background:${({ theme }) => theme.body_100};
     color:${({ theme }) => theme.text};
     border-radius:60px;
     padding:0.2em 2em;
@@ -221,48 +221,6 @@ const MarqueeItem = styled.div`
         }
     }
 `
-
-const StatContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    background:${({ theme }) => theme.darken_body};
-    position:absolute;
-    top:280px;
-    right:80px;
-    width:400px;
-    border-radius:7px;
-    box-shadow: 0px 4px 7px 0px rgba(0,0,0,0.29);
-    @media only screen and (max-width: 1260px) {
-        display:none;
-    }
-
-    h2{
-        padding:0.5em;
-    }
-
-    hr{
-        width:100%;
-        border-top: 1px solid red;
-    }
-`
-const StatHeader = styled.div`
-    display:flex;
-    justify-content:space-between;
-    padding:1em;
-
-`
-const StatItem = styled.div`
-    transition:all .4s ease-out;
-    display:flex;
-    justify-content:space-between;
-
-    padding:1em;
-    
-    &:hover{
-        background:${({ theme }) => theme.scrollbar_hover};
-    }
-`
-
 
 const MotionContainer = ({ item, theme }) => {
     return (
