@@ -5,6 +5,9 @@
     "issues": "Issues",
     "categories": "Categories",
 
+    "add": "Add",
+    "search": "Search",
+
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Log Out"
