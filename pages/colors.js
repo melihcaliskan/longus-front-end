@@ -40,14 +40,16 @@ const ColorContainer = styled.div`
     }
 `
 
-const Contact = ({ t, theme, }) => {
+const Contact = ({ t, theme, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(true);
     return (
         <>
             <Head>
                 <title>Colors</title>
             </Head>
-            <Header />
+
+            <Header isLight={isLight} toggleTheme={toggleTheme} />
+
             <ContactHeader>
                 <h3>Colors</h3>
             </ContactHeader>
