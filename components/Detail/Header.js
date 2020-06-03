@@ -151,6 +151,8 @@ const data = {
 const AnimatedHeader = ({ t, name }) => {
   const [loading, setLoading] = useState(true);
   const [collapse, setCollapse] = useState(true);
+
+  // TODO: Bu bilgi _app içerisinde props olarak yollanacak.
   const size = useWindowSize();
   const isMobile = size.width < 960
   return (
