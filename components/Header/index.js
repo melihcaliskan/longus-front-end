@@ -9,8 +9,7 @@ import SearchModal from './Search'
 import Twemoji from '../Twemoji'
 import styled from 'styled-components';
 import { useScroll } from '../../helpers/useScroll'
-
-//User dropdown'ı ayrı dosyaya al.
+import useWindowSize from "../../helpers/windowSize";
 
 const Title = styled.h2`
   font-weight:700;
@@ -53,7 +52,7 @@ const Right = styled.div`
 
   @media only screen and (max-width: 960px) {
     .header-buttons svg{
-      margin-right:1em;
+      display:none;
     }
   }
 `
@@ -105,7 +104,10 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
 
   const { scrollY } = useScroll();
   let isCollapsed = scrollY > 200
-
+  
+  const size = useWindowSize();
+  const isMobile = size.width < 960
+  
   return (
     <Container reverse={reverse} isCollapsed={isCollapsed}>
       <SearchModal
@@ -124,7 +126,7 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
             <Search />
           </span>
         </div>
-        <Dropdown toggleTheme={toggleTheme} isLight={isLight} />
+        <Dropdown isMobile={isMobile} toggleTheme={toggleTheme} isLight={isLight} />
       </Right>
     </Container>
   )
