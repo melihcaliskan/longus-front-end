@@ -18,6 +18,10 @@ const Container = styled.div`
     .dropdown-divider{
         border-top:1px solid ${({ theme }) => theme.darken_body};
     }
+    .dropdown-item{
+        padding-top:0.4em;
+        padding-top:0.4em;
+    }
     .dropdown-item svg path{
         fill:${({ theme }) => theme.text};
     }
@@ -43,7 +47,7 @@ const HomeDropdown = styled.div`
 
 const DropdownText = styled.span`
     color:${({ theme }) => theme.text};
-    margin-left:0.4em;
+    margin-left:0.6em;
 `
 
 const CustomDropdown = styled.div`
@@ -92,7 +96,7 @@ const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
                         <>
                             <Dropdown.Item href="/add">
                                 <Plus />
-                                <DropdownText>{t('add')}</DropdownText>
+                                <DropdownText>{"  "}{t('add')}</DropdownText>
                             </Dropdown.Item>
                             <Dropdown.Item onClick={() => setModalShow(true)} >
                                 <Search />
