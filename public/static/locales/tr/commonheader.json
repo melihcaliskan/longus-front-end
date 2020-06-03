@@ -8,6 +8,9 @@
     "add": "Ekle",
     "search": "Ara",
 
+    "lightmode":"Gündüz modu",
+    "nightmode":"Gece modu",
+
     "profile": "Profil",
     "settings": "Ayarlar",
     "logout": "Çıkış Yap"

@@ -8,6 +8,9 @@
     "add": "Add",
     "search": "Search",
 
+    "lightmode":"Light mode",
+    "nightmode":"Night mode",
+
     "profile": "Profile",
     "settings": "Settings",
     "logout": "Log Out"
