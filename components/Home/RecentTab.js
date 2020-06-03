@@ -1,7 +1,7 @@
 import { Link, i18n, withTranslation } from '../../i18n'
 import React, { useEffect, useState } from 'react';
 
-import Button from '../Button'
+import ActiveLink from '../ActiveLink'
 import Camera from "../svg/Camera"
 import Card from "../Home/Card"
 import Col from 'react-bootstrap/Col'
@@ -125,9 +125,9 @@ const CustomTab = ({ t, theme, data }) => {
             {loading ? <Loader type={"devices"} /> : <List data={device_data} />}
           </Tab>
         </Tabs>
-        <Button style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
+        <ActiveLink style={{ background: theme.darken_body, color: theme.text, marginTop: '3em', width: '180px' }} shadow href="/issues">
           {t('seeall')}
-        </Button>
+        </ActiveLink>
         tümünü gör patlıyor
       </Row>
     </Container>
