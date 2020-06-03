@@ -14,6 +14,7 @@ import LargeCard from '../components/All/LargeCard'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
 import Twemoji from '../components/Twemoji'
+import {randomDevice} from '../helpers/placeholderGenerator'
 import styled from 'styled-components';
 
 const ContactHeader = styled.div`
@@ -123,7 +124,7 @@ const All = ({ t, isLight, toggleTheme }) => {
             <ContactHeader>
                 <h3><Twemoji emoji="🔍" /> {t('startsearching')}</h3>
                 <Form.Group style={{ width: '80%', marginTop: '1.5em' }} controlId="formBasicEmail">
-                    <Form.Control placeholder="Samsung Galaxy Note 10 (todo: random)" />
+                    <Form.Control placeholder={randomDevice} />
                 </Form.Group>
             </ContactHeader>
             <Container style={{ marginTop: '5em' }}>
