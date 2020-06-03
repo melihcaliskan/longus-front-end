@@ -22,6 +22,10 @@ const Left = styled.div`
   display:flex;
   align-items:center;
 
+  .nav-item{
+    margin-right:2em
+  }
+  
   h2{
     margin:0 1.5em 0 0;
   }
@@ -116,8 +120,8 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
       />
       <Left>
         <ActiveLink href="/"><Title>{t('brand')}</Title></ActiveLink>
-        <ActiveLink href="/issues"><p className="no-mobile">{t('issues')}</p></ActiveLink>
-        <ActiveLink href="/categories"><p className="no-mobile">{t('categories')}</p></ActiveLink>
+        <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
+        <ActiveLink href="/categories"><p className="nav-item no-mobile">{t('categories')}</p></ActiveLink>
       </Left>
       <Right>
         <div className="header-buttons">
