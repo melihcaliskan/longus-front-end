@@ -49,7 +49,7 @@ const IssueList = styled.div`
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     gap: 40px;
 
-    margin-bottom:6em;
+    margin-bottom:3em;
     @media only screen and (max-width: 1260px) {
         gap: 30px;
         grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -183,7 +183,7 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
                     </Form.Group>
                 </Container>
             </ContactHeader>
-            <Container style={{ display: 'flex', flexDirection: 'column', marginTop: '5em', marginBottom: '10em' }}>
+            <Container style={{ display: 'flex', flexDirection: 'column', marginTop: '5em', marginBottom: '5em' }}>
                 <IssueList>
                     {issues.map((item, id) => (
                         <IssueItem key={id} data={item} isLight={isLight} lang={language} />
