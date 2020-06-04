@@ -68,9 +68,4 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
     <Footer />
   </>
 )
-
-Error.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
-})
-
 export default withTranslation('common')(Error)
