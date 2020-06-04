@@ -34,11 +34,11 @@ const Header = styled.div`
         margin-bottom:4em;
     }
 
-    .test{
+    .popular-today{
         width:460px;
         height:500px;
         position:absolute;
-        right:100px;
+        right:10vw;
         top:150px;
     }
 `
@@ -294,7 +294,7 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                 </Bottom>
             </Fade>
             {!isTablet ?
-                <div className="test">
+                <div className="popular-today">
                     <FindTab theme={theme} />
                 </div>
                 : null}
