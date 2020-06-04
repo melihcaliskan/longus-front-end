@@ -15,7 +15,7 @@ import { useDarkMode } from '../contexts/useDarkMode';
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
   if (!componentMounted) {
-    return <div />
+    return <Loader />
   }
 
   /*
@@ -37,9 +37,6 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
 
       {/* Component render olacak ama gözükmeyecek. */}
       {/* Aksi takdirde meta tagleri bozuluyor. */}
-      {!componentMounted ?
-        <Loader />
-        : null}
       <Component
         {...pageProps}
         language={i18n.language}
