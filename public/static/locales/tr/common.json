@@ -1,5 +1,17 @@
 {
     "notfound": "Burada olmamalıydın!",
     "detail": "Çünkü aradığın sayfayı bulamıyoruz",
-    "gohome": "Anasayfaya dön"
+    "gohome": "Anasayfaya dön",
+
+    "categorylist":"Kategori Listesi",
+    "issuelist":"Sorun Listesi",
+    "seemore": "Devamını Gör",
+
+    "issueplaceholder0":"Kamera Sorunu",
+    "issueplaceholder1":"Batarya Sorunu",
+    "issueplaceholder2":"Isınma sorunu",
+
+    "categoryplaceholder0":"Kamera",
+    "categoryplaceholder1":"Akıllı Telefon",
+    "categoryplaceholder2":"Akıllı Saat"
 }

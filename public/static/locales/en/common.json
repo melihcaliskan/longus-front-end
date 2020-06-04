@@ -1,5 +1,17 @@
 {
     "notfound":"You weren't supposed to be here!",
     "detail":"Because we can't find the page you are looking for",
-    "gohome": "Go home"
+    "gohome": "Go home",
+
+    "categorylist":"Category List",
+    "issuelist":"Issue List",
+    "seemore": "See More",
+
+    "issueplaceholder0": "Camera Issue",
+    "issueplaceholder1": "Battery Issue",
+    "issueplaceholder2": "Heating Issue",
+
+    "categoryplaceholder0":"Camera",
+    "categoryplaceholder1":"Smartphone",
+    "categoryplaceholder2":"Smartwatch"
 }
