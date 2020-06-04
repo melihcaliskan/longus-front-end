@@ -5,23 +5,24 @@ import { withTranslation } from '../i18n'
 
 const Issues = ({ t, language, isLight, toggleTheme, data }) => {
     return (
-        <>
-            <GridTemplate
-                type="issue"
-                title={t('list')}
-                emoji="📖"
-                isLight={isLight}
-                toggleTheme={toggleTheme}
-                data={data}
-            />
-        </>
+        <GridTemplate
+            type="issue"
+            url="issues"
+            searchUrl="issue"
+            title={t('issuelist')}
+            emoji="📖"
+            isLight={isLight}
+            toggleTheme={toggleTheme}
+            data={data}
+        />
     )
 }
 
 Issues.getInitialProps = async ctx => {
-    const res = await fetch(`${API_URL}issues/start=0&limit=10`)
+    const namespacesRequired = ["common"];
+    const res = await fetch(`${API_URL}issues/start=0&limit=12`)
     const issues = await res.json()
-    return { data: issues }
+    return { namespacesRequired, data: issues }
 }
 
-export default withTranslation('issues')(Issues)
+export default withTranslation('common')(Issues)
