@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Button from '../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
-import { DefaultSeo } from 'next-seo';
 import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Head from 'next/head'
@@ -88,6 +87,9 @@ const CustomToast = ({ isShow }) => {
 const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
 
     const name = query && query.name ? `${query.brand} ${query.name}` : "Macbook Pro"
+    const description = "Deneme 1 2 3"
+    const url = "http://frontend.melihcaliskan.com/detail"
+    const keyword = "a,b,c"
     //const query = router.query
     const [showToast, setShowToast] = useState(false)
 
@@ -102,7 +104,13 @@ const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
         <Fade duration={600}>
             <Head>
                 <title>{name}</title>
-                <meta property="og:title" content={name} key="title" />
+                <meta name="og:type" content="website" />
+                <meta name="description" content={description} />
+                <meta name="og:title" content={name} />
+                <meta name="description" content={description} />
+                <meta name="keywords" content={keyword} />
+                <meta name="og:url" content={url} />
+                <meta name="og:description" content={description} />
             </Head>
             <DetailContainer>
                 <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
