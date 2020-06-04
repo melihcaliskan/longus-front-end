@@ -261,9 +261,6 @@ const CustomTab = ({ t, theme, count }) => {
                 <SvgButton onClick={() => setKey(7)} active={activeKey == 7}>
                     <MemoryCard />
                 </SvgButton>
-                <SvgButton onClick={() => setKey(8)} active={activeKey == 8}>
-                    <Mic />
-                </SvgButton>
                 <SvgButton onClick={() => setKey(9)} active={activeKey == 9}>
                     <Monitor />
                 </SvgButton>
