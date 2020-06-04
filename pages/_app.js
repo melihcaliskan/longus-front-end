@@ -2,22 +2,21 @@ import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../helpers/styles.css'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
 
 import { GlobalStyles } from '../helpers/global';
 import Head from 'next/head'
+import Loader from '../helpers/Loader'
 import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from '../contexts/useDarkMode';
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
-  /*
-  if (!componentMounted) {
-    return <div />
-  }
-  */
+  useEffect(() => {
+    !componentMounted ? document.body.style.overflow = "hidden" : document.body.style.overflow = "initial"
+  });
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>
@@ -29,6 +28,12 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
       </Head>
       <GlobalStyles />
       {/* İç sayfalar için Header burada tanımlanabilir*/}
+
+      {/* Component render olacak ama gözükmeyecek. */}
+      {/* Aksi takdirde meta tagleri bozuluyor. */}
+      {!componentMounted ?
+        <Loader />
+        : null}
       <Component
         {...pageProps}
         language={i18n.language}

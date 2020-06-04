@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ActiveLink from "../ActiveLink"
 import Fade from 'react-reveal/Fade';
 import FindTab from "./FindTab"
-import Loader from '../../helpers/Loader'
 import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
 import Toggle from '../../components/Toggle'
@@ -244,10 +243,6 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
     const [modalShow, setModalShow] = useState(false);
     return (
         <Header>
-            {/* State index'te tutulup erişilebilir. */}
-            {loading ?
-                <Loader />
-                : null}
             <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
             <Up>
                 <ActiveLink white href="/">

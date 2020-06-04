@@ -8,7 +8,7 @@ import Search from '../svg/Search'
 import SearchModal from './Search'
 import Twemoji from '../Twemoji'
 import styled from 'styled-components';
-import { useScroll } from '../../helpers/useScroll'
+import {useScrollPosition} from '../../helpers/useScroll'
 import useWindowSize from "../../helpers/windowSize";
 
 const Title = styled.h2`
@@ -105,13 +105,20 @@ const Container = styled.div`
 
 const Header = ({ t, toggleTheme, isLight, reverse }) => {
   const [modalShow, setModalShow] = useState(false);
-
-  const { scrollY } = useScroll();
-  let isCollapsed = scrollY > 210
+  const [isCollapsed, setCollapsed] = useState(false);
+  
+  useScrollPosition(
+    ({ prevPos, currPos }) => {
+      console.log(currPos)
+      const isVisible = currPos.y < -220
+      setCollapsed(isVisible)
+    },
+    [isCollapsed]
+  )
   
   const size = useWindowSize();
   const isMobile = size.width < 960
-  
+
   return (
     <Container reverse={reverse} isCollapsed={isCollapsed}>
       <SearchModal
