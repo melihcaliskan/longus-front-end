@@ -11,7 +11,7 @@ const Header = styled.div`
   transition: all .2s;
   display:flex;
   justify-content:space-between;
-  background: ${props => `linear-gradient(75deg, ${props.lower} 10%, ${props.higher} 100%)`};
+  background: ${props => `linear-gradient(${props.deg}, ${props.lower} 5%, ${props.higher} 100%)`};
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -69,9 +69,9 @@ const InfoContainer = styled.div`
 const MobileImage = styled.img`
   transition: all .2s;
   display:none;
-  max-width:220px;
+  max-height:180px;
 
-  margin:-2em 0;
+  margin:-1em 0 1em 0;
   
   object-fit:contain;
   mix-blend-mode: multiply;
@@ -152,8 +152,8 @@ const AnimatedHeader = ({ t, name, photo, count, fit }) => {
           const dark_vibrant = palette.Vibrant.rgb
           const dark_muted = palette.LightVibrant.rgb
           console.log(dark_vibrant, palette)
-          setLower(`rgb(${dark_vibrant[0] + 70}, ${dark_vibrant[1] + 70}, ${dark_vibrant[2] + 70})`)
-          setHigher(`rgb(${dark_muted[0] + 70}, ${dark_muted[1] + 70}, ${dark_muted[2] + 70})`)
+          setLower(`rgb(${dark_vibrant[0] + 110}, ${dark_vibrant[1] + 110}, ${dark_vibrant[2] + 110})`)
+          setHigher(`rgb(${dark_muted[0] + 90}, ${dark_muted[1] + 90}, ${dark_muted[2] + 90})`)
           console.log(`rgb(${dark_vibrant[0]}, ${dark_vibrant[1]}, ${dark_vibrant[2]})`, `rgb(${dark_muted[0]}, ${dark_muted[2]}, ${dark_muted[2]})`)
         })
       isSetGradient(true)
@@ -167,7 +167,8 @@ const AnimatedHeader = ({ t, name, photo, count, fit }) => {
     <Fade duration={400}>
       <Header
         lower={gradientLower}
-        higher={gradientHigher}>
+        higher={gradientHigher}
+        deg={!isMobile ? '75deg' : '180deg'}>
         <InfoContainer>
           <div className="back-button">
             <ProductName>{name}</ProductName>
