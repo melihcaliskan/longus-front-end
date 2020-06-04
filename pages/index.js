@@ -40,12 +40,10 @@ const Home = ({ t, tReady, isLight, theme, toggleTheme, tabData, language }) => 
     </>
   )
 }
-Home.getInitialProps = async ctx => {
-  const namespacesRequired = ["detail"];
-  
+Home.getInitialProps = async ctx => {  
   const res = await fetch(`${API_URL}issues/start=0&limit=10`)
   const issues = await res.json()
-  return {namespacesRequired, tabData: issues }
+  return { tabData: issues }
 }
 
 export default withTranslation('home')(Home)
