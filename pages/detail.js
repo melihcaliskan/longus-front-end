@@ -101,11 +101,8 @@ const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
     return (
         <Fade duration={600}>
             <Head>
-                <title>My page title</title>
-                <meta property="og:title" content="My page title" key="title" />
-            </Head>
-            <Head>
                 <title>{name}</title>
+                <meta property="og:title" content={name} key="title" />
             </Head>
             <DetailContainer>
                 <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
