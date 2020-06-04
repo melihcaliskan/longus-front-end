@@ -14,15 +14,11 @@ import { useDarkMode } from '../contexts/useDarkMode';
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
+
   if (!componentMounted) {
     return <Loader />
   }
-
-  /*
-    useEffect(() => {
-      !componentMounted ? document.body.style.overflow = "hidden" : document.body.style.overflow = "initial"
-    });
-  */
+  
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>
@@ -46,6 +42,7 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
     </ThemeProvider>
   )
 }
+
 App.getInitialProps = async ({ Component, ctx }) => {
   let pageProps = {}
   if (Component.getInitialProps) {
