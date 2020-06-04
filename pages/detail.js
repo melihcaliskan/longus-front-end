@@ -4,13 +4,13 @@ import React, { useEffect, useState } from 'react';
 import Button from '../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+import { DefaultSeo } from 'next-seo';
 import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Issue from "../components/Issue"
 import ItemHeader from "../components/Detail/Header"
-import { NextSeo } from 'next-seo';
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast'
 import styled from 'styled-components';
@@ -100,34 +100,15 @@ const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
     }
     return (
         <Fade duration={600}>
-            <NextSeo
-                title="Macbook Pro 2018"
-                description="This example uses more of the available config options."
-                canonical="https://www.canonical.ie/"
+            <DefaultSeo
                 openGraph={{
-                    url: 'https://www.url.ie/a',
-                    title: 'Macbook Pro 2018',
-                    description: 'Open Graph Description',
-                    images: [
-                        {
-                            url: 'https://picsum.photos/id/1/200/300',
-                            width: 800,
-                            height: 600,
-                            alt: 'Og Image Alt',
-                        },
-                        {
-                            url: 'https://picsum.photos/id/1/200/300',
-                            width: 900,
-                            height: 800,
-                            alt: 'Og Image Alt Second',
-                        },
-                        { url: 'https://picsum.photos/id/1/200/300' },
-                        { url: 'https://picsum.photos/id/1/200/300' },
-                    ],
-                    site_name: 'longus.io',
+                    type: 'website',
+                    locale: 'en_IE',
+                    url: 'https://www.url.ie/',
+                    site_name: 'SiteName',
                 }}
                 twitter={{
-                    handle: '@test',
+                    handle: '@handle',
                     site: '@site',
                     cardType: 'summary_large_image',
                 }}
