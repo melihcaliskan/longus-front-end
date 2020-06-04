@@ -29,6 +29,7 @@ const Low = styled.div`
         width:160px;
         height:160px;
     }
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
 const Medium = styled.div`
     position:absolute;
@@ -51,6 +52,7 @@ const Medium = styled.div`
         width:100px;
         height:100px;
     }
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
 
 const High = styled.div`
@@ -73,6 +75,7 @@ const High = styled.div`
         width:80px;
         height:80px;
     }
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
 const MeatballContainer = styled.div`
     display:flex;

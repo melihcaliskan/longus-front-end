@@ -15,7 +15,7 @@ import { withTranslation } from '../../i18n';
 const GridHeader = styled.div`
     background-image:url('/assets/issue-bg.png');
     background-repeat:repat;
-    background-size: 480px;
+    background-size: 60px;
     height:350px;
     margin-top:-9em;
     padding:10em 10vw 0 10vw;
