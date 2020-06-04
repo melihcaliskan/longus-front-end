@@ -53,7 +53,7 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
     <CustomContainer as={Container}>
       <img className="no-desktop" src="/assets/404.svg" width={200} />
       <div>
-        <FourZeroFour>{statusCode ? statusCode : "404"}</FourZeroFour>
+        <FourZeroFour>{statusCode}</FourZeroFour>
         <Title>{t('notfound')}</Title>
         <h3>{t('detail')}</h3>
         <ActiveLink href="/">
