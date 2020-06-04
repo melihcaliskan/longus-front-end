@@ -116,7 +116,10 @@ const Detail = ({ device, t, isLight, toggleTheme, theme }) => {
                     photo={API_URL_W +
                         (device.photo.formats.large ?
                             device.photo.formats.large.url :
-                            device.photo.formats.small.url)}
+                            device.photo.formats.small ?
+                                device.photo.formats.small.url :
+                                device.photo.formats.thumbnail.url
+                        )}
                     count={{ issue: device.issues.length, comment: 0 }}
                     fit={3}
                 />
