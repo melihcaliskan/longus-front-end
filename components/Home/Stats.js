@@ -12,6 +12,9 @@ const Title = styled.h2`
     @media only screen and (max-width: 960px) {
         font-size:28px;
     }
+    @media only screen and (max-width: 640px) {
+        padding:0.5em 0 0 0.5em;
+    }
 `
 
 const Low = styled.div`
@@ -28,6 +31,10 @@ const Low = styled.div`
     @media only screen and (max-width: 960px) {
         width:160px;
         height:160px;
+    }
+    @media only screen and (max-width: 640px) {
+        width:130px;
+        height:130px;
     }
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
@@ -52,6 +59,11 @@ const Medium = styled.div`
         width:100px;
         height:100px;
     }
+    @media only screen and (max-width: 640px) {
+        width:90px;
+        height:90px;
+        right:-60px;
+    }
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
 
@@ -75,6 +87,11 @@ const High = styled.div`
         width:80px;
         height:80px;
     }
+    @media only screen and (max-width: 640px) {
+        width:70px;
+        height:70px;
+        bottom:-10px;
+    }
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 `
 const MeatballContainer = styled.div`
@@ -83,14 +100,14 @@ const MeatballContainer = styled.div`
     align-items:center;
     padding: 1em 7vw 1em 0;
     @media only screen and (max-width: 960px) {
-        padding:0;
+        padding-right:2em;
     }
 `
 const CustomContainer = styled.div`
     padding:3em 0;
     overflow: hidden;
     @media only screen and (max-width: 960px) {
-        padding:1em 4em 1em 1.5em;
+        padding:1.5em;
     }
 `
 
@@ -105,6 +122,9 @@ const CountContainer = styled.div`
     div{
         display:flex;
         align-items:center;
+    }
+    @media only screen and (max-width: 960px) {
+        padding-right:0;
     }
 `
 const Emoji = styled.div`
@@ -127,6 +147,13 @@ const Emoji = styled.div`
             font-size:48px;
         } 
     }
+    @media only screen and (max-width: 480px) {
+        width:80px;
+        height:80px;
+        span{
+            font-size:42px;
+        } 
+    }
 `
 
 const CircleContainer = styled.div`
@@ -146,6 +173,14 @@ const CircleContainer = styled.div`
         }
         p{
             font-size:16px;
+        }
+    }
+    @media only screen and (max-width: 640px) {
+        strong{
+            font-size:20px;
+        }
+        p{
+            font-size:13px;
         }
     }
 `
