@@ -11,7 +11,7 @@ const Header = styled.div`
   transition: all .2s;
   display:flex;
   justify-content:space-between;
-  background: ${props => `linear-gradient(75deg, ${props.lower} 50%, ${props.higher} 100%)`};
+  background: ${props => `linear-gradient(75deg, ${props.lower} 10%, ${props.higher} 100%)`};
   background-repeat: no-repeat;
   background-size: cover;
   
