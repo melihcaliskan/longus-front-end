@@ -13,6 +13,7 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
             isLight={isLight}
             toggleTheme={toggleTheme}
             data={data}
+            language={language}
         />
     )
 }

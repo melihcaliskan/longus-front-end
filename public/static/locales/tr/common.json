@@ -7,11 +7,11 @@
     "issuelist":"Sorun Listesi",
     "seemore": "Devamını Gör",
 
-    "issueplaceholder0":"Kamera Sorunu",
-    "issueplaceholder1":"Batarya Sorunu",
-    "issueplaceholder2":"Isınma sorunu",
+    "issueplaceholder0":"📷 Kamera Sorunu",
+    "issueplaceholder1":"🔋 Batarya Sorunu",
+    "issueplaceholder2":"🔥 Isınma sorunu",
 
-    "categoryplaceholder0":"Kamera",
-    "categoryplaceholder1":"Akıllı Telefon",
-    "categoryplaceholder2":"Akıllı Saat"
+    "categoryplaceholder0":"📷 Kamera",
+    "categoryplaceholder1":"📱 Akıllı Telefon",
+    "categoryplaceholder2":"⌚️ Akıllı Saat"
 }

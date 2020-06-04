@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 
 import { API_URL } from '../../helpers/urls';
 import ActiveLink from '../ActiveLink';
-import Button from '../Button'
+import Button from '../Button';
 import Container from 'react-bootstrap/Container';
 import Footer from '../Footer';
 import Form from 'react-bootstrap/Form';
 import Header from '../Header';
-import Loader from '../../helpers/Loader'
+import Loader from '../../helpers/Loader';
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
 import { withTranslation } from '../../i18n';
@@ -141,7 +141,8 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
             if (search.length > 3) {
                 const res = await fetch(`${API_URL}${searchUrl}/${language}/${search}`)
                 const data = await res.json()
-                setSearchData(data)
+                console.log(data)
+                data.length > 0 ? setSearchData(data) : null
             } else {
                 setSearchData('')
             }
@@ -177,11 +178,18 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
                 <h3><Twemoji style={{ marginRight: '0.5em' }} emoji={emoji} />{t(`${searchUrl}list`)}</h3>
                 <Container style={{ marginTop: '1.5em' }}>
                     <Form.Group controlId="formBasicEmail">
-                        <Form.Control placeholder={placeholder} value={search} onChange={(e) => setSearch(e.target.value)} />
+                        <Form.Control size="lg" placeholder={placeholder} value={search} onChange={(e) => setSearch(e.target.value)} />
                     </Form.Group>
                 </Container>
             </GridHeader>
             <Container style={{ display: 'flex', flexDirection: 'column', marginTop: '5em', marginBottom: '5em' }}>
+                {searchData ?
+                    <List>
+                        {searchData.map((item, id) => (
+                            <Item key={id} url={url} data={item} isLight={isLight} lang={language} />
+                        ))}
+                    </List>
+                    : null}
                 <List>
                     {items.map((item, id) => (
                         <Item key={id} url={url} data={item} isLight={isLight} lang={language} />

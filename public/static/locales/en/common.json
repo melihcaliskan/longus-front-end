@@ -7,11 +7,11 @@
     "issuelist":"Issue List",
     "seemore": "See More",
 
-    "issueplaceholder0": "Camera Issue",
-    "issueplaceholder1": "Battery Issue",
-    "issueplaceholder2": "Heating Issue",
+    "issueplaceholder0": "📷 Camera Issue",
+    "issueplaceholder1": "🔋 Battery Issue",
+    "issueplaceholder2": "🔥 Heating Issue",
 
-    "categoryplaceholder0":"Camera",
-    "categoryplaceholder1":"Smartphone",
-    "categoryplaceholder2":"Smartwatch"
+    "categoryplaceholder0":"📷 Camera",
+    "categoryplaceholder1":"📱 Smartphone",
+    "categoryplaceholder2":"⌚️ Smartwatch"
 }
