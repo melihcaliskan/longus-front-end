@@ -3,15 +3,15 @@ import { i18n, withTranslation } from '../i18n'
 import { API_URL } from '../helpers/urls'
 import Container from 'react-bootstrap/Container'
 import FindTab from '../components/Home/FindTab'
-//import Footer from '../components/Footer'
 import Header from '../components/Home/Header'
 import Loader from '../helpers/Loader'
 import React from 'react';
+import dynamic from "next/dynamic";
+import useWindowSize from "../helpers/windowSize"
+
+//import Footer from '../components/Footer'
 //import RecentTab from '../components/Home/RecentTab'
 //import Stats from '../components/Home/Stats'
-import dynamic from "next/dynamic";
-import styled from 'styled-components';
-import useWindowSize from "../helpers/windowSize"
 
 const RecentTab = dynamic(import("../components/Home/RecentTab"))
 const Stats = dynamic(import("../components/Home/Stats"))
