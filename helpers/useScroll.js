@@ -1,5 +1,15 @@
 import { useEffect, useState } from "react";
-
+export function useScroll() {
+  const scrollY = 0;
+  const scrollX = 0
+  const scrollDirection = "down"
+  return {
+    scrollY,
+    scrollX,
+    scrollDirection
+  };
+}
+/*
 export function useScroll() {
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const [bodyOffset, setBodyOffset] = useState(
@@ -30,3 +40,4 @@ export function useScroll() {
     scrollDirection
   };
 }
+*/

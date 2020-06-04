@@ -185,12 +185,10 @@ const LoginContainer = styled.div`
     }
     @media only screen and (max-width: 960px) {
         button{
-        margin-right:0;
-    }
+            margin-right:0;
+        }
     }
 `
-
-
 function LoginModal(props) {
     return (
         <Modal style={{ marginTop: '4em' }} {...props} aria-labelledby="contained-modal-title-vcenter">
@@ -225,7 +223,7 @@ const MotionContainer = ({ item, theme }) => {
     return (
         <Motion
             key={`child-1e`}
-            initDeg={randomIntFromInterval(0, 360)}
+            initDeg={randomIntFromInterval(0)}
             direction={"clockwise"}
             velocity={10}
             radius={60}>
@@ -281,7 +279,7 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
             <MarqueeContainer opacity={loading ? 0 : 1}>
                 <Marquee velocity={15} minScale={0.7} resetAfterTries={600} scatterRandomly={!isMobile2} onFinish={() => setLoading(false)}>
                     {svgList.map((item, index) => (
-                        <MotionContainer key={index} item={item} theme={theme} />
+                        <MotionContainer key={index} item={item} theme={theme} opacity={loading ? 0 : 1} />
                     ))}
                 </Marquee>
             </MarqueeContainer>

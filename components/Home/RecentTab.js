@@ -1,8 +1,11 @@
 import { i18n, withTranslation } from '../../i18n'
 
+import Button from '../Button'
 import Card from "../Home/Card"
+import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import React from 'react';
+import Row from 'react-bootstrap/Row'
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
@@ -35,6 +38,7 @@ export const CustomContainer = styled.div`
   flex-direction:column;
   justify-content:center;
   align-items:center;
+  margin:0;
 `
 
 const List = ({ data, language = i18n.language }) => {
@@ -54,7 +58,12 @@ const CustomTab = ({ t, theme, data }) => {
   return (
     <CustomContainer as={Container} style={{ marginBottom: '5em' }}>
       <TabTitle>{t('issues')}</TabTitle>
-      <List data={data} />
+        <Col>
+          <List data={data} />
+        </Col>
+      <Button shadow href="/issues" style={{ marginTop: '2em', alignSelf: 'center', width: '180px' }}>
+        {t('seeall')}
+      </Button>
     </CustomContainer>
   )
 }

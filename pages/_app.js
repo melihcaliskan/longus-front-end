@@ -13,7 +13,11 @@ import { useDarkMode } from '../contexts/useDarkMode';
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
-  
+  /*
+  if (!componentMounted) {
+    return <div />
+  }
+  */
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>
