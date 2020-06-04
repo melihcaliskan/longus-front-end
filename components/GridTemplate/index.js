@@ -102,7 +102,7 @@ const IssueItemContainer = styled.div`
 const Image = styled.img`
     width:54px;
     height:54px;
-    filter:${props => props.isLight ? 'invert(0)' : 'invert(0.9)'};
+    filter:${props => props.isLight ? 'invert(0.2)' : 'invert(0.9)'};
 
     @media only screen and (max-width: 1024px) {
         width:48px;
