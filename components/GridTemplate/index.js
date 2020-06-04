@@ -13,8 +13,7 @@ import styled from 'styled-components';
 import { withTranslation } from '../../i18n';
 
 const GridHeader = styled.div`
-    background:${({ theme }) => theme.body};
-    background:url('/assets/issue-bg.png');
+    background-image:url('/assets/issue-bg.png');
     background-repeat:repat;
     background-size: 480px;
     height:350px;
