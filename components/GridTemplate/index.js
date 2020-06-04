@@ -30,28 +30,22 @@ const GridHeader = styled.div`
     }
 
     @media only screen and (max-width: 960px) {
-        h3{
-        font-size:30px;
-    }
         padding:11em 3vw 0 3vw;
+        h3{
+            font-size:30px;
+        }
     }
 `
 
-const SectionTitle = styled.h3`
-    text-transform:uppercase;
-    font-weight:700;
-    font-size:30px;
-`
-
-const IssueList = styled.div`
+const List = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    gap: 30px;
 
     margin-bottom:3em;
     @media only screen and (max-width: 1260px) {
         gap: 30px;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 
     @media only screen and (max-width: 960px) {
@@ -61,7 +55,7 @@ const IssueList = styled.div`
     }
 `
 
-const IssueItemContainer = styled.div`
+const ItemContainer = styled.div`
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -70,7 +64,7 @@ const IssueItemContainer = styled.div`
 
     border-radius:8px;
     
-    height:190px;
+    height:160px;
     padding:2em 1em 1em 1em;
 
     background:${({ theme }) => theme.button_bg};
@@ -112,38 +106,39 @@ const Image = styled.img`
     }
 `
 
-const IssueItem = ({ data, lang, isLight }) => {
+const Item = ({ data, lang, isLight }) => {
     return (
-        <ActiveLink href={`/issue/${data.slug}`}>
-            <IssueItemContainer>
+        <ActiveLink href={`/category/${data.slug}`}>
+            <ItemContainer>
                 <Image src={`data:image/svg+xml;utf8;base64, ${data.icon}`} isLight={isLight} />
                 <p>{data.name[0][lang] ? data.name[0][lang] : data.name[0]["en"]}</p>
-            </IssueItemContainer>
+            </ItemContainer>
         </ActiveLink>
     )
 }
 
 
-const GridTemplate = ({ title, emoji, t, data, language, isLight, toggleTheme }) => {
+const GridTemplate = ({ title, emoji, url, searchUrl, t, data, language, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(false);
 
-    const [issues, setIssues] = useState(data);
+    const [items, setItems] = useState(data);
     const [start, setStart] = useState(10);
-    const limit = 10;
+    const limit = 12;
 
     const [seeMore, setSeeMore] = useState(true);
 
     const [search, setSearch] = useState('');
     const [searchData, setSearchData] = useState('');
+
     // Fetch random placeholder for input
-    const placeholder = t(`placeholder${Math.floor(Math.random() * 2)}`)
+    const placeholder = t(`${searchUrl}placeholder${Math.floor(Math.random() * 2)}`)
 
     useEffect(() => {
         // diğer tablodan slug çek
         const delay = setTimeout(async () => {
             setLoading(true)
             if (search.length > 3) {
-                const res = await fetch(`${API_URL}issue/${language}/${search}`)
+                const res = await fetch(`${API_URL}${searchUrl}/${language}/${search}`)
                 const data = await res.json()
                 setSearchData(data)
             } else {
@@ -158,10 +153,10 @@ const GridTemplate = ({ title, emoji, t, data, language, isLight, toggleTheme })
         setLoading(true)
         setStart(start + limit)
 
-        const res = await fetch(`${API_URL}issues/start=${start}&limit=${limit}`)
+        const res = await fetch(`${API_URL}${url}/start=${start}&limit=${limit}`)
         const result = await res.json()
 
-        setIssues([...issues, ...result])
+        setItems([...items, ...result])
 
         if (result.length < limit) {
             console.log(result.length, limit)
@@ -182,11 +177,11 @@ const GridTemplate = ({ title, emoji, t, data, language, isLight, toggleTheme })
                 </Container>
             </GridHeader>
             <Container style={{ display: 'flex', flexDirection: 'column', marginTop: '5em', marginBottom: '5em' }}>
-                <IssueList>
-                    {issues.map((item, id) => (
-                        <IssueItem key={id} data={item} isLight={isLight} lang={language} />
+                <List>
+                    {items.map((item, id) => (
+                        <Item key={id} url={url} data={item} isLight={isLight} lang={language} />
                     ))}
-                </IssueList>
+                </List>
                 {seeMore ?
                     <Button type="primary" onClick={() => fetchData()} style={{ alignSelf: 'center', width: '180px' }}>
                         {t('seemore')}
@@ -199,6 +194,6 @@ const GridTemplate = ({ title, emoji, t, data, language, isLight, toggleTheme })
 }
 
 GridTemplate.getInitialProps = async () => ({
-    namespacesRequired: ['all'],
+    namespacesRequired: ['common'],
 })
-export default withTranslation('issues')(GridTemplate)
+export default withTranslation('common')(GridTemplate)
