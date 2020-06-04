@@ -57,7 +57,7 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
         <h3>{t('detail')}</h3>
         <ActiveLink href="/all">
           <FindButton>
-            <img src="assets/back.svg" style={{width:'20px',height:'20px'}} />
+            <img src="/assets/back.svg" style={{width:'20px',height:'20px'}} />
             <p>{t('gohome')}</p>
           </FindButton>
         </ActiveLink>
