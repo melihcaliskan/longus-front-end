@@ -9,7 +9,6 @@ const Categories = ({ t, language, isLight, toggleTheme, data }) => {
             type="category"
             url="categories"
             searchUrl="category"
-            title={t('categorylist')}
             emoji="🔠"
             isLight={isLight}
             toggleTheme={toggleTheme}

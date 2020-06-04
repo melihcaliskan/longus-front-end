@@ -9,7 +9,6 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
             type="issue"
             url="issues"
             searchUrl="issue"
-            title={t('issuelist')}
             emoji="📖"
             isLight={isLight}
             toggleTheme={toggleTheme}

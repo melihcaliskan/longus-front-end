@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import Footer from '../Footer';
 import Form from 'react-bootstrap/Form';
 import Header from '../Header';
+import Loader from '../../helpers/Loader'
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
 import { withTranslation } from '../../i18n';
@@ -118,7 +119,7 @@ const Item = ({ data, lang, isLight }) => {
 }
 
 
-const GridTemplate = ({ title, emoji, url, searchUrl, t, data, language, isLight, toggleTheme }) => {
+const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(false);
 
     const [items, setItems] = useState(data);
@@ -165,11 +166,15 @@ const GridTemplate = ({ title, emoji, url, searchUrl, t, data, language, isLight
         setLoading(false)
     }
 
+    if (!tReady) {
+        return <Loader />
+    }
+
     return (
         <>
             <Header isLight={isLight} toggleTheme={toggleTheme} />
             <GridHeader>
-                <h3><Twemoji style={{ marginRight: '0.5em' }} emoji={emoji} />{title}</h3>
+                <h3><Twemoji style={{ marginRight: '0.5em' }} emoji={emoji} />{t(`${searchUrl}list`)}</h3>
                 <Container style={{ marginTop: '1.5em' }}>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control placeholder={placeholder} value={search} onChange={(e) => setSearch(e.target.value)} />
