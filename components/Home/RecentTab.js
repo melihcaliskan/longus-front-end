@@ -19,10 +19,6 @@ export const CardContainer = styled.div`
   display:flex;
   overflow-x:scroll;
   -webkit-overflow-scrolling: touch;
-  
-  max-width:55vw;
-  margin:0 auto;
-
   text-align:center;
   padding-bottom:1em;
 
@@ -34,6 +30,7 @@ export const CardContainer = styled.div`
 `
 export const TabTitle = styled.div`
   background:${({ theme }) => theme.tab_bg};
+  color:${({ theme }) => theme.dark_text_200};
   padding:0.4em 1em;
   display:inline-flex;
   text-transform: uppercase;
