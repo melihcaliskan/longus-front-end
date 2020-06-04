@@ -111,7 +111,15 @@ const Tabs = ({ t }) => {
         </TabContainer>
     )
 }
+/*
 
+                <CardContainer>
+                    {[...Array(10)].map((item, index) => (
+                        index == 2 ? <LargeCard className="grid-2" /> : <Card />
+                    ))}
+                </CardContainer>
+
+*/
 const All = ({ t, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(true);
 
@@ -130,13 +138,6 @@ const All = ({ t, isLight, toggleTheme }) => {
             <Container style={{ marginTop: '5em' }}>
                 <SectionTitle><Twemoji emoji="💻" /> {t('devices')}</SectionTitle>
                 <Tabs t={t} />
-
-                <CardContainer>
-                    {[...Array(10)].map((item, index) => (
-                        index == 2 ? <LargeCard className="grid-2" /> : <Card />
-                    ))}
-                </CardContainer>
-
             </Container>
             <br /><br /><br /><br /><br /><br /><br /><br />
             <Footer />

@@ -1,10 +1,7 @@
 import ActiveLink from '../ActiveLink'
 import React from 'react';
-import { light_colors } from '../../helpers/colors'
 import styled from 'styled-components'
 import { withTranslation } from '../../i18n'
-
-//background-image:url("assets/login-bg-pattern.png"),linear-gradient(to bottom, rgba(50,115,184, 1),rgba(115,209,240, 100));
 
 const Left = styled.div`
     display:flex;
@@ -15,7 +12,6 @@ const Left = styled.div`
     padding:30vh 1em 1em 1em;
     background: rgb(64,156,255);
     background-image:${({ theme }) => `url("assets/login-bg-pattern.png"),linear-gradient(to bottom, ${theme.login_gradient_first},${theme.login_gradient_second});`};
-
     
     @media only screen and (max-width: 740px) {
         width:100vw;

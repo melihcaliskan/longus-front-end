@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-
 import ActiveLink from '../ActiveLink'
-import { light_colors } from '../../helpers/colors'
 import styled from 'styled-components';
 
 const CustomCard = styled.div`

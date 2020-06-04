@@ -1,18 +1,8 @@
-import { Link, i18n, withTranslation } from '../../i18n'
-import React, { useEffect, useState } from 'react';
+import { i18n, withTranslation } from '../../i18n'
 
-import ActiveLink from '../ActiveLink'
-import Camera from "../svg/Camera"
 import Card from "../Home/Card"
-import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import Lightning from "../svg/Lightning"
-import { Tabs as Loader } from '../Loaders/Tabs'
-import LocationNo from "../svg/LocationNo"
-import Phone from "../svg/Phone"
-import Row from 'react-bootstrap/Row'
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
+import React from 'react';
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`

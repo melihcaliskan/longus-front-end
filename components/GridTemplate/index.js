@@ -6,7 +6,6 @@ import Button from '../Button'
 import Container from 'react-bootstrap/Container';
 import Footer from '../Footer';
 import Form from 'react-bootstrap/Form';
-import Head from 'next/head';
 import Header from '../Header';
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
@@ -173,9 +172,6 @@ const GridTemplate = ({ title, emoji, t, data, language, isLight, toggleTheme })
 
     return (
         <>
-            <Head>
-                <title>{title}</title>
-            </Head>
             <Header isLight={isLight} toggleTheme={toggleTheme} />
             <GridHeader>
                 <h3><Twemoji style={{ marginRight: '0.5em' }} emoji={emoji} />{title}</h3>

@@ -3,10 +3,8 @@ import { i18n, withTranslation } from '../i18n'
 
 import ActiveLink from './ActiveLink'
 import Facebook from './svg/Facebook'
-import Fade from 'react-reveal/Fade';
 import Instagram from './svg/Instagram'
 import Router from "next/router"
-import Twemoji from './Twemoji'
 import Twitter from './svg/Twitter'
 import links from '../helpers/footerLinks'
 import styled from 'styled-components';

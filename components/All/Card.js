@@ -7,10 +7,7 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
     cursor:pointer;
-    background:red;
-
     height:200px;
-
 `
 
 

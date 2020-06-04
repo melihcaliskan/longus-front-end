@@ -1,17 +1,14 @@
-import { Link, i18n, withTranslation } from '../i18n'
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Button from '../components/Button'
-import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
 import Header from '../components/Header'
-import Row from 'react-bootstrap/Row'
 import Select from 'react-select';
 import styled from 'styled-components';
+import { withTranslation } from '../i18n'
 
 const options = [
     { value: 'chocolate', label: 'Chocolate' },

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Fade from 'react-reveal/Fade';
-import Router from 'next/router'
 import styled from 'styled-components';
 import useWindowSize from "../../helpers/windowSize";
 import { withTranslation } from '../../i18n';
@@ -15,7 +14,7 @@ const Header = styled.div`
   background-size: cover;
   
   margin-top:-9em;
-  padding:9em 3em 0 3em;
+  padding:9em 3em 3em 3em;
   
   @media only screen and (max-width: 960px) {
       margin-top:-7.2em;

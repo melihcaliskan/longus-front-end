@@ -1,19 +1,9 @@
-import { Calculator, Camera, Case, Delivery, FlashCard, MemoryCard, Mic, Monitor, Video, Watch, İPhone } from '../svg/find/index'
-import { Link, i18n, withTranslation } from '../../i18n'
-import React, { useEffect, useState } from 'react';
+import { Camera, Case, Delivery, FlashCard, MemoryCard, Monitor, Watch, İPhone } from '../svg/find/index'
+import React,{useState} from 'react';
 
 import ActiveLink from '../ActiveLink'
-import Button from '../Button'
-import Card from "../Home/Card"
-import Col from 'react-bootstrap/Col'
-import Lightning from "../svg/Lightning"
-import { Tabs as Loader } from '../Loaders/Tabs'
-import LocationNo from "../svg/LocationNo"
-import Phone from "../svg/Phone"
-import Row from 'react-bootstrap/Row'
-import Tab from 'react-bootstrap/Tab'
-import Tabs from 'react-bootstrap/Tabs'
 import styled from 'styled-components';
+import { withTranslation } from '../../i18n'
 
 const Container = styled.div`
     background: ${({ theme }) => theme.body_100};

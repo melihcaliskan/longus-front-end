@@ -2,15 +2,17 @@ import React, { useState } from 'react';
 
 import Head from 'next/head'
 import Header from '../../components/Header'
-import { withTranslation } from '../../i18n'
 
 const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
     return (
         <div>
             <Head>
-                <title>{"test"}</title>
+                <title>{query.slug}</title>
+                <meta name="description" content="Free Web tutorials" />
+                <meta name="keywords" content="HTML,CSS,JavaScript" />
+                <meta name="author" content="John Doe" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-            <Header isLight={isLight} toggleTheme={toggleTheme} />
             {JSON.stringify(query)}
         </div>
     )
@@ -23,4 +25,5 @@ const getInitialProps = ({ res, query, err }) => {
 
 Detail.getInitialProps = getInitialProps;
 
-export default withTranslation('detail')(Detail)
+//export default withTranslation('detail')(Detail)
+export default Detail

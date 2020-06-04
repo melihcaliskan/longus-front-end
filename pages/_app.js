@@ -13,23 +13,7 @@ import { useDarkMode } from '../contexts/useDarkMode';
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
-  if (!componentMounted) {
-    return <div />
-  }
-
-  // Next.js currently does not allow trailing slash in a route, but Netlify appends trailing slashes. This is a
-  // client side redirect in case trailing slash occurs. See https://github.com/zeit/next.js/issues/5214 for details
-  if (asPath && asPath.length > 1) {
-    const [path, query = ""] = asPath.split("?");
-    if (path.endsWith("/")) {
-      const asPathWithoutTrailingSlash = path.replace(/\/*$/gim, "") + (query ? `?${query}` : "");
-      if (typeof window !== "undefined") {
-        router.replace(asPathWithoutTrailingSlash, undefined, { shallow: true });
-        return null;
-      }
-    }
-  }
-
+  
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>

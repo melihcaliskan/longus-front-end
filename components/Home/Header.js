@@ -1,7 +1,5 @@
-import { Link, i18n, withTranslation } from '../../i18n'
 import Marquee, { Motion, randomIntFromInterval } from "react-marquee-slider";
-import React, { useContext, useEffect, useState } from 'react';
-import { mobileSvgList, svgList } from "../../helpers/svgList"
+import React, { useState } from 'react';
 
 import ActiveLink from "../ActiveLink"
 import Fade from 'react-reveal/Fade';
@@ -11,8 +9,9 @@ import Login from '../../pages/login'
 import Modal from 'react-bootstrap/Modal'
 import Toggle from '../../components/Toggle'
 import styled from 'styled-components';
-import { theme } from '../../helpers/theme'
+import { svgList } from "../../helpers/svgList"
 import useWindowSize from "../../helpers/windowSize"
+import { withTranslation } from '../../i18n'
 
 const Header = styled.div`
     opacity: ${props => props.opacity};
