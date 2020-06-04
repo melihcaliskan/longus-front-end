@@ -3,25 +3,26 @@ import GridTemplate from '../components/GridTemplate'
 import React from 'react';
 import { withTranslation } from '../i18n';
 
-const Issues = ({ t, language, isLight, toggleTheme, data }) => {
+const Categories = ({ t, language, isLight, toggleTheme, data }) => {
     return (
-        <>
-            <GridTemplate
-                type="category"
-                title={"Categories"}
-                emoji="🔠"
-                isLight={isLight}
-                toggleTheme={toggleTheme}
-                data={data}
-            />
-        </>
+        <GridTemplate
+            type="category"
+            url="categories"
+            searchUrl="category"
+            title={t('categorylist')}
+            emoji="🔠"
+            isLight={isLight}
+            toggleTheme={toggleTheme}
+            data={data}
+        />
     )
 }
 
-Issues.getInitialProps = async ctx => {
-    const res = await fetch(`${API_URL}issues/start=0&limit=10`)
-    const issues = await res.json()
-    return { data: issues }
+Categories.getInitialProps = async ctx => {
+    const namespacesRequired = ["common"];
+    const res = await fetch(`${API_URL}categories/start=0&limit=12`)
+    const categories = await res.json()
+    return { namespacesRequired, data: categories }
 }
 
-export default withTranslation('issues')(Issues)
+export default withTranslation('common')(Categories)
