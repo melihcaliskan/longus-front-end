@@ -178,7 +178,7 @@ const CountItem = styled.div`
 `
 const Bg = styled.div`
     padding:1em 0 1.3em 0;
-    background-image: ${props => props.isLight ? 'url("assets/stat-bg.svg")' : 'url("assets/stat-bg-dark.svg")'};
+    background-image: ${props => props.isLight ? 'url("assets/stat-bg-light.svg")' : 'url("assets/stat-bg-dark.svg")'};
     background-size: cover;
     background-repeat: no-repeat;
     margin-bottom:5em;
