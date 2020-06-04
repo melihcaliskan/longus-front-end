@@ -196,7 +196,7 @@ const List = ({ t, data, count }) => {
                 .sort((a, b) => a.sort - b.sort)
                 .map((a) => a.value)
                 .slice(0, count).map((item, index) => (
-                    <ActiveLink key={item.id} href={"/detail"} query={{ brand: item.brand, name: item.name }}>
+                    <ActiveLink key={item.id} href={"/device/1"} query={{ brand: item.brand, name: item.name }}>
                         <Item last={data.slice(0, count).length == index + 1}>
                             <Body>
                                 <Top>

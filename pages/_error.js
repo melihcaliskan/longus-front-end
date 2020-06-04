@@ -33,6 +33,7 @@ const CustomContainer = styled.div`
       display:none;
     }
     @media only screen and (max-width: 960px) {
+      margin-top:2em;
       .no-desktop{
         display:initial;
         margin-bottom:2em;
