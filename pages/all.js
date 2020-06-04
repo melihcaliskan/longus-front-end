@@ -18,9 +18,9 @@ import {randomDevice} from '../helpers/placeholderGenerator'
 import styled from 'styled-components';
 
 const ContactHeader = styled.div`
-    background:url('/assets/contact-bg.png');
-    background-repeat:no-repeat;
-    background-size:cover;
+    background-image:url('/assets/issue-bg.png');
+    background-repeat:repat;
+    background-size: 60px;
     height:350px;
     margin-top:-9em;
     padding:10em 10vw 0 10vw;
