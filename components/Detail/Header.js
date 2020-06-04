@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import * as Vibrant from 'node-vibrant'
+
+import React, { useEffect, useState } from 'react';
 
 import Fade from 'react-reveal/Fade';
 import styled from 'styled-components';
@@ -9,7 +11,7 @@ const Header = styled.div`
   transition: all .2s;
   display:flex;
   justify-content:space-between;
-  background: linear-gradient(75deg, rgba(255,240,255,1) 50%, rgba(225,225,225,1) 100%);
+  background: ${props => `linear-gradient(75deg, ${props.lower} 50%, ${props.higher} 100%)`};
   background-repeat: no-repeat;
   background-size: cover;
   
@@ -136,44 +138,54 @@ const Info = styled.div`
     }
 
 `
-
-const data = {
-  name: "Macbook Pro 2018",
-  img: "https://www.notebookcheck.net/fileadmin/_processed_/4/0/csm_MacBook_Pro_concept_white_2d8e43124c.jpg",
-  count: {
-    issue: 5,
-    comment: 5,
-  },
-  fit: 3,
-}
-
-const AnimatedHeader = ({ t, name }) => {
+const AnimatedHeader = ({ t, name, photo, count, fit }) => {
   const [loading, setLoading] = useState(true);
   const [collapse, setCollapse] = useState(true);
+
+  const [gradientLower, setLower] = useState('rgb(255, 255, 255)');
+  const [gradientHigher, setHigher] = useState('rgb(255, 255, 255)');
+  const [gradient, isSetGradient] = useState(false)
+  useEffect(() => {
+    if (!gradient) {
+      Vibrant.from(photo).getPalette()
+        .then((palette) => {
+          const dark_vibrant = palette.Vibrant.rgb
+          const dark_muted = palette.LightVibrant.rgb
+          console.log(dark_vibrant, palette)
+          setLower(`rgb(${dark_vibrant[0] + 70}, ${dark_vibrant[1] + 70}, ${dark_vibrant[2] + 70})`)
+          setHigher(`rgb(${dark_muted[0] + 70}, ${dark_muted[1] + 70}, ${dark_muted[2] + 70})`)
+          console.log(`rgb(${dark_vibrant[0]}, ${dark_vibrant[1]}, ${dark_vibrant[2]})`, `rgb(${dark_muted[0]}, ${dark_muted[2]}, ${dark_muted[2]})`)
+        })
+      isSetGradient(true)
+    }
+  });
 
   // TODO: Bu bilgi _app içerisinde props olarak yollanacak.
   const size = useWindowSize();
   const isMobile = size.width < 960
   return (
     <Fade duration={400}>
-      <Header>
+      <Header
+        lower={gradientLower}
+        higher={gradientHigher}>
         <InfoContainer>
           <div className="back-button">
             <ProductName>{name}</ProductName>
           </div>
-          <MobileImage height={250} src={data.img} />
+
+          <MobileImage height={250} src={photo} />
           <Info>
             <div>
               <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M2.22222 0H22.2222C23.4495 0 24.4444 0.994923 24.4444 2.22222V17.7778C24.4444 19.0051 23.4495 20 22.2222 20H2.22222C0.994923 20 0 19.0051 0 17.7778V2.22222C0 0.994923 0.994923 0 2.22222 0ZM2.22222 2.22222V17.7778H22.2222V2.22222H2.22222ZM6.66667 15.5556H8.88889V8.88896H6.66667V15.5556ZM13.3335 15.5555H11.1112V4.44438H13.3335V15.5555ZM15.5554 15.5557H17.7776V7.77791H15.5554V15.5557Z" fill="#464646" />
               </svg>
-              <p>3 {t('issues')}</p>
+              <p>{count.issue} {t('issues')}</p>
             </div>
             <div>
               <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M6 21.8042L12.0868 18H20C21.1046 18 22 17.1046 22 16V4C22 2.89543 21.1046 2 20 2H4C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H6V21.8042ZM11.5132 16L7.99999 18.1958V16H3.99999V4.00001H20V16H11.5132Z" fill="#464646" />
               </svg>
-              <p>13 {t('comments')}</p>
+              <p>{count.comment} {t('comments')}</p>
             </div>
             <div>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -183,7 +195,7 @@ const AnimatedHeader = ({ t, name }) => {
             </div>
           </Info>
         </InfoContainer>
-        <ProductImage height={250} src={data.img} />
+        <ProductImage height={250} src={photo} />
       </Header>
     </Fade>
   )
