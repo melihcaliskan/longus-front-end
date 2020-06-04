@@ -58,7 +58,7 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
         <h3>{t('detail')}</h3>
         <ActiveLink href="/">
           <FindButton>
-            <img src="/assets/back.svg" style={{width:'20px',height:'20px'}} />
+            <img src="/assets/back.svg" style={{ width: '20px', height: '20px' }} />
             <p>{t('gohome')}</p>
           </FindButton>
         </ActiveLink>
@@ -69,7 +69,4 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
   </>
 )
 
-Error.getInitialProps = async () => ({
-  namespacesRequired: ['common'],
-})
 export default withTranslation('common')(Error)
