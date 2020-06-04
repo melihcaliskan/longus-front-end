@@ -72,7 +72,7 @@ const MobileImage = styled.img`
   display:none;
   max-height:180px;
 
-  margin:-1em 0 1em 0;
+  margin:0 0 1em 0;
   
   object-fit:contain;
   
@@ -97,6 +97,7 @@ const ProductName = styled.h2`
   font-size:45px;
   font-weight:800;
   color:${({ theme }) => theme.dark_text};
+  margin:0.4em 0;
   @media only screen and (max-width: 1260px) {
     font-size:40px;
   }
@@ -119,6 +120,7 @@ const Info = styled.div`
     p {
       color:${({ theme }) => theme.dark_400_text};
       font-size:18px;
+      font-weight:600;
     }
     
     margin-right:1em;
@@ -162,6 +164,7 @@ const AnimatedHeader = ({ t, name, photo, count, fit }) => {
   // TODO: Bu bilgi _app içerisinde props olarak yollanacak.
   const size = useWindowSize();
   const isMobile = size.width < 960
+  console.log(isMobile)
   return (
     <Fade duration={400}>
       <Header
@@ -179,13 +182,13 @@ const AnimatedHeader = ({ t, name, photo, count, fit }) => {
               <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M2.22222 0H22.2222C23.4495 0 24.4444 0.994923 24.4444 2.22222V17.7778C24.4444 19.0051 23.4495 20 22.2222 20H2.22222C0.994923 20 0 19.0051 0 17.7778V2.22222C0 0.994923 0.994923 0 2.22222 0ZM2.22222 2.22222V17.7778H22.2222V2.22222H2.22222ZM6.66667 15.5556H8.88889V8.88896H6.66667V15.5556ZM13.3335 15.5555H11.1112V4.44438H13.3335V15.5555ZM15.5554 15.5557H17.7776V7.77791H15.5554V15.5557Z" fill="#464646" />
               </svg>
-              <p>{count.issue} {t('issues')}</p>
+              <p>{count.issue} {!isMobile ? t('issues') : t('mobileIssues')}</p>
             </div>
             <div>
               <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path fillRule="evenodd" clipRule="evenodd" d="M6 21.8042L12.0868 18H20C21.1046 18 22 17.1046 22 16V4C22 2.89543 21.1046 2 20 2H4C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H6V21.8042ZM11.5132 16L7.99999 18.1958V16H3.99999V4.00001H20V16H11.5132Z" fill="#464646" />
               </svg>
-              <p>{count.comment} {t('comments')}</p>
+              <p>{count.comment} {!isMobile ? t('comment') : t('mobileComment')}</p>
             </div>
             <div>
               <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">

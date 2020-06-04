@@ -62,7 +62,7 @@ const TabItem = styled.div`
             transform:scale(0.75)
         }
         &:after {
-            right:-4px;
+            left:43px;
             top:20px;
             width:10px;
             height:10px;
@@ -77,10 +77,13 @@ const Title = styled.h2`
     font-size:21px;
     margin-bottom:2em;
     font-weight:700;
+    @media only screen and (max-width: 320px) {
+        font-size:18px;
+    }
     `
 
 const TabContent = styled.div`
-    `
+`
 const ChartContainer = styled.div`
     position:relative;
     
@@ -94,6 +97,10 @@ const ChartContainer = styled.div`
             font-size:14px;
             color:${({ theme }) => theme.c_text};
         }
+    }
+    @media only screen and (max-width: 320px) {
+        transform:scale(0.8);
+        margin-left:-2em;
     }
 `
 const Chart = styled.div`

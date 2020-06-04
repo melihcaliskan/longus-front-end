@@ -34,20 +34,15 @@ const Container = styled.div`
     @media only screen and (max-width: 960px) {
         left:-10px !important;
     }
+    @media only screen and (max-width: 320px) {
+        margin-left:-3em;
+    }
 `
 const ProfilePicture = styled.img`
     width:30px;
     height:30px;
     border-radius:50%;
     margin-left:0.4em;
-`
-
-const HomeDropdown = styled.div`
-    display: ${props => props.noMobile ? "none" : "inline-flex"};
-    margin-right:1em;
-    align-items:center;
-    justify-content:space-between;
-    height:50px;
 `
 
 const DropdownText = styled.span`
@@ -60,7 +55,7 @@ const CustomDropdown = styled.div`
         color:${({ theme }) => theme.text} !important;
         background:${({ theme }) => theme.body_100} !important;
 
-        padding: 0.6em 1.3em;
+        padding: 0.6em 1em;
 
         border:0;
         border-radius:60px;
@@ -69,6 +64,9 @@ const CustomDropdown = styled.div`
         @media only screen and (max-width: 960px) {
             transform:scale(0.8);
         }
+        @media only screen and (max-width: 320px) {
+            transform:scale(0.7);
+        }
     }
     
     button:hover{
@@ -76,8 +74,6 @@ const CustomDropdown = styled.div`
         background:${({ theme }) => theme.scrollbar_light};
     }
 `
-
-//dropdown-toggle
 
 const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
     const [modalShow, setModalShow] = useState(false);

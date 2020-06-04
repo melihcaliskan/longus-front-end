@@ -24,7 +24,10 @@ const DetailContainer = styled.div`
 const Find = styled.h2`
     font-size:30px;
     font-weight:700;
-    margin-bottom:1.3em;
+    margin-bottom:0.4em;
+    text-align:center;
+    padding:0 1em;
+    line-height:1.4em;
 `
 const Add = styled.div`
     display:flex;
@@ -34,7 +37,7 @@ const Add = styled.div`
     align-items:center;
 `
 const List = styled.div`
-    margin-top:5em;
+    margin-top:3em;
     @media only screen and (max-width: 960px) {
         padding:1em;
     }

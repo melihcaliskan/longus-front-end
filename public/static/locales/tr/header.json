@@ -5,5 +5,9 @@
     "comment": "yorum",
     "comments": "yorum",
     "fit": "Günlük kullanıma uygun",
+
+    "mobileIssues": "sorun",
+    "mobileComment": "",
+    "mobileComments": "",
     "mobileFit": "Uygun"
 }

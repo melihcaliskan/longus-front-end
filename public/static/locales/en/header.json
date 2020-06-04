@@ -5,5 +5,9 @@
     "comment": "comment",
     "comments": "comments",
     "fit": "Suitable for daily use",
+
+    "mobileIssues": "issue",
+    "mobileComment": "",
+    "mobileComments": "",
     "mobileFit": "Suitable"
 }

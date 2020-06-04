@@ -18,8 +18,6 @@ export const CardContainer = styled.div`
   @media only screen and (max-width: 1440px) {
     max-width:95vw;
   }
-  @media only screen and (max-width: 640px) {
-  }
 `
 export const TabTitle = styled.div`
   background:${({ theme }) => theme.tab_bg};
