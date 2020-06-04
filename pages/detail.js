@@ -100,19 +100,10 @@ const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
     }
     return (
         <Fade duration={600}>
-            <DefaultSeo
-                openGraph={{
-                    type: 'website',
-                    locale: 'en_IE',
-                    url: 'https://www.url.ie/',
-                    site_name: 'SiteName',
-                }}
-                twitter={{
-                    handle: '@handle',
-                    site: '@site',
-                    cardType: 'summary_large_image',
-                }}
-            />
+            <Head>
+                <title>My page title</title>
+                <meta property="og:title" content="My page title" key="title" />
+            </Head>
             <Head>
                 <title>{name}</title>
             </Head>
