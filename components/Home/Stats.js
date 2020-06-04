@@ -25,7 +25,6 @@ const Low = styled.div`
     width:200px;
     height:200px;
     border-radius:50%;
-    box-shadow: 0px 2px 15px 0px ${({ theme }) => theme.effect_low};
     @media only screen and (max-width: 960px) {
         width:160px;
         height:160px;
@@ -46,7 +45,6 @@ const Medium = styled.div`
     width:140px;
     height:140px;
     border-radius:50%;
-    box-shadow: 0px 2px 15px 0px ${({ theme }) => theme.effect_medium};
     @media only screen and (max-width: 960px) {
         top:0px;
         right:-70px;
@@ -70,8 +68,6 @@ const High = styled.div`
     width:100px;
     height:100px;
     border-radius:50%;
-    box-shadow: 0px 2px 15px 0px ${({ theme }) => theme.effect_high};
-
     @media only screen and (max-width: 960px) {
         right:-30px;
         width:80px;
@@ -182,17 +178,15 @@ const CountItem = styled.div`
 `
 const Bg = styled.div`
     padding:1em 0 1.3em 0;
-    background-color: ${({ theme }) => theme.body_100};
-    mask-image: url("assets/stat-bg.svg");
-    -webkit-mask-image: url("assets/stat-bg.svg");
+    background-image: ${props => props.isLight ? 'url("assets/stat-bg.svg")' : 'url("assets/stat-bg-dark.svg")'};
     background-size: cover;
     background-repeat: no-repeat;
     margin-bottom:5em;
 `
 
-const Stats = ({ t, theme }) => {
+const Stats = ({ t, theme, isLight }) => {
     return (
-        <Bg>
+        <Bg isLight={isLight}>
             <CustomContainer as={Container}>
                 <MeatballContainer>
                     <Title>
