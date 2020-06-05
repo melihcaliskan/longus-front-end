@@ -227,7 +227,7 @@ const Register = ({ t, isAuth }) => {
                                 })}
                                 isValid={watch('password') && watch('password').length > 8 && !errors.password}
                                 placeholder={t('password')} />
-                            {errors.password && <Form.Control.Feedback type="invalid">{errors.password.type == "required" ? t('passwordequired') : t('passwordlength')}</Form.Control.Feedback>}
+                            {errors.password && <Form.Control.Feedback type="invalid">{errors.password.type == "required" ? t('passwordrequired') : t('passwordlength')}</Form.Control.Feedback>}
                         </Form.Group>
                         <Form.Group className="form-item">
                             <Form.Label>{t('repeatpassword')}</Form.Label>
