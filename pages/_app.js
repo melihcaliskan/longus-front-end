@@ -9,16 +9,20 @@ import { getJwt, getUserData } from '../helpers/auth'
 
 import { GlobalStyles } from '../helpers/global';
 import Head from 'next/head'
+import Header from '../components/Header'
 import Loader from '../helpers/Loader'
 import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from '../contexts/useDarkMode';
-import useWindowSize  from '../helpers/windowSize'
+import useWindowSize from '../helpers/windowSize'
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
 
   const size = useWindowSize();
   const isMobile = size.width < 960
+
+  const noHeader = ['/', '/home', '/login', '/register']
+  const currentRoute = router.route
 
   if (!componentMounted) {
     return <Loader />
@@ -35,19 +39,23 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
       </Head>
       <GlobalStyles />
 
-      {/* İç sayfalar için Header burada tanımlanabilir*/}
-
       {/* Component render olacak ama gözükmeyecek. */}
       {/* Aksi takdirde meta tagleri bozuluyor. */}
+
+      {!noHeader.includes(currentRoute) &&
+        <Header isLight={theme === 'light'} toggleTheme={toggleTheme} />
+      }
+
       <Component
         isMobile={isMobile}
         jwt={getJwt()}
         isAuth={getJwt()}
-        {...pageProps}
         language={i18n.language}
         isLight={theme === 'light'}
         theme={theme === 'light' ? lightTheme : darkTheme}
-        toggleTheme={toggleTheme} />
+        toggleTheme={toggleTheme}
+        {...pageProps}
+      />
     </ThemeProvider>
   )
 }
