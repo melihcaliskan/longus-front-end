@@ -27,7 +27,7 @@
     "usernamerequired": "Kullanıcı adı gereklidir",
     "usernamenotavailable": "Bu kullanıcı farklı bir kullanıcı tarafından kullanılmaktadır",
     "usernamenotallowed": "Bu kullanıcı uygun olmayan karakter içermektedir",
-    "emailrequired": "E-Posta gereklidir",
+    "emailrequired": "E-posta gereklidir",
     "invalidemail": "Geçerli bir e-posta giriniz",
     "passwordrequired": "Şifre gereklidir",
     "passwordmatch": "Şifreleriniz eşleşmemektedir",

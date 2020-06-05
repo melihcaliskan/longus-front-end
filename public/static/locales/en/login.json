@@ -27,7 +27,7 @@
     "usernamerequired": "Username required",
     "usernamenotavailable": "This username is used by a another user",
     "usernamenotallowed": "This username has inappropriate characters",
-    "emailrequired": "E-Mail required",
+    "emailrequired": "E-mail required",
     "invalidemail": "Please enter a valid e-mail",
     "passwordrequired": "Password required",
     "passwordmatch": "Your passwords doesn't match",
