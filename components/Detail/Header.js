@@ -143,7 +143,7 @@ const Info = styled.div`
     }
 
 `
-const AnimatedHeader = ({ t, name, photo, count, fit }) => {
+const AnimatedHeader = ({ t, name, photo, count, fit, isMobile }) => {
   const [loading, setLoading] = useState(true);
   const [collapse, setCollapse] = useState(true);
 
@@ -165,10 +165,6 @@ const AnimatedHeader = ({ t, name, photo, count, fit }) => {
     }
   });
 
-  // TODO: Bu bilgi _app içerisinde props olarak yollanacak.
-  const size = useWindowSize();
-  const isMobile = size.width < 960
-  console.log(isMobile)
   return (
     <Fade duration={400}>
       <Header
