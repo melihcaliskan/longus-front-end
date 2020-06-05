@@ -8,7 +8,7 @@ import Search from '../svg/Search'
 import SearchModal from './Search'
 import Twemoji from '../Twemoji'
 import styled from 'styled-components';
-import {useScrollPosition} from '../../helpers/useScroll'
+import { useScrollPosition } from '../../helpers/useScroll'
 import useWindowSize from "../../helpers/windowSize";
 
 const Title = styled.h2`
@@ -18,7 +18,7 @@ const Title = styled.h2`
   }
 `
 
-const Left = styled.div`
+const Left = styled.div`  
   display:flex;
   align-items:center;
 
@@ -86,12 +86,12 @@ const Container = styled.div`
   
   ${Left}{
     ${Title}, a, p{
-      color:${props => props.isCollapsed ? props.theme.title : props.theme.always_dark};
+      color:${props => props.isCollapsed ? props.theme.title : props.theme.body_700};
     }
   }
   ${Right}{
     svg, path{
-      fill:${props => props.isCollapsed ? props.theme.title : props.theme.always_dark};
+      fill:${props => props.isCollapsed ? props.theme.title : props.theme.body_700};
     }
   }
 
@@ -103,10 +103,10 @@ const Container = styled.div`
   box-shadow:${props => props.isCollapsed ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
 `
 
-const Header = ({ t, toggleTheme, isLight, reverse }) => {
+const Header = ({ t, toggleTheme, isLight, reverse, noNav = false }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setCollapsed] = useState(false);
-  
+
   useScrollPosition(
     ({ prevPos, currPos }) => {
       console.log(currPos)
@@ -115,7 +115,7 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
     },
     [isCollapsed]
   )
-  
+
   const size = useWindowSize();
   const isMobile = size.width < 960
 
@@ -127,8 +127,12 @@ const Header = ({ t, toggleTheme, isLight, reverse }) => {
       />
       <Left>
         <ActiveLink href="/"><Title>{t('brand')}</Title></ActiveLink>
-        <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
-        <ActiveLink href="/categories"><p className="nav-item no-mobile">{t('categories')}</p></ActiveLink>
+        {!noNav &&
+          <>
+            <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
+            <ActiveLink href="/categories"><p className="nav-item no-mobile">{t('categories')}</p></ActiveLink>
+          </>
+        }
       </Left>
       <Right>
         <div className="header-buttons">
