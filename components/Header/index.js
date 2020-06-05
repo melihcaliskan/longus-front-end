@@ -69,7 +69,8 @@ const Container = styled.div`
   justify-content:space-between;
   
   width:100%;
-
+  transition:opacity 1s;
+  
   svg{
     path{
       fill:${({ theme }) => theme.always_dark};
@@ -104,7 +105,7 @@ const Container = styled.div`
   box-shadow:${props => props.isCollapsed ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
 `
 
-const Header = ({ t, toggleTheme, isLight, reverse, noNav = false }) => {
+const Header = ({ style, t, toggleTheme, isLight, reverse, noNav = false }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -121,7 +122,7 @@ const Header = ({ t, toggleTheme, isLight, reverse, noNav = false }) => {
   const isMobile = size.width < 960
 
   return (
-    <Container reverse={reverse} isCollapsed={isCollapsed}>
+    <Container style={style} reverse={reverse} isCollapsed={isCollapsed}>
       <SearchModal
         show={modalShow}
         onHide={() => setModalShow(false)}

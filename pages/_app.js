@@ -26,17 +26,20 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const noFooter = ['/login', '/register']
   const currentRoute = router.route
 
-  if (!componentMounted) {
-    return <Loader />
-  }
-
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>
         <title>longus.io</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
-        <link rel="icon" href="assets/favicon.ico" />
+
+        <meta property="og:title" content="longus.io" />
+        <meta property="og:url" content="https://longus.io" />
+        <meta name="keywords" content="chronic issue, device issues, smartphone issues" />
+        <meta property="description" content="PROJE AÇIKLAMASI" />
+        <meta property="og:description" content="PROJE AÇIKLAMASI" />
+
+        <link rel="icon" href="/assets/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
@@ -44,14 +47,16 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
       {/* Component render olacak ama gözükmeyecek. */}
       {/* Aksi takdirde meta tagleri bozuluyor. */}
 
+      {/* TODO: Detay sayfasında renkler siyah yapılacak */}
       {!noHeader.includes(currentRoute) &&
-        <Header isLight={theme === 'light'} toggleTheme={toggleTheme} />
+        <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} toggleTheme={toggleTheme} />
       }
 
       <Component
+        loading={!componentMounted}
         isMobile={isMobile}
-        jwt={getJwt()}
-        isAuth={getJwt()}
+        //jwt={getJwt()}
+        //isAuth={getJwt()}
         language={i18n.language}
         isLight={theme === 'light'}
         theme={theme === 'light' ? lightTheme : darkTheme}

@@ -13,18 +13,18 @@ import useWindowSize from "../helpers/windowSize"
 const RecentTab = dynamic(import("../components/Home/RecentTab"))
 const Stats = dynamic(import("../components/Home/Stats"))
 
-const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabData, language }) => {
+const Home = ({ style, isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabData, language, loading }) => {
   const router = useRouter()
   if (isAuth) {
     router.push("/dashboard")
     return <Loader />
   }
 
-  if (!tReady) {
+  if (!tReady || loading) {
     return <Loader />
   }
   return (
-    <>
+    <div style={style}>
       <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
       {isMobile ?
         <>
@@ -38,7 +38,7 @@ const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabDat
       </Container>
 
       <Stats isLight={isLight} theme={theme} />
-    </>
+    </div>
   )
 }
 Home.getInitialProps = async ctx => {

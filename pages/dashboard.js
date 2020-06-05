@@ -4,9 +4,9 @@ import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
 import Loader from '../helpers/Loader'
 import React from 'react'
+import Router from 'next/router'
 import Row from 'react-bootstrap/Row'
 import styled from 'styled-components';
-import { useRouter } from 'next/router'
 import { withTranslation } from '../i18n'
 const Title = styled.h1`
     font-weight:800;
@@ -27,11 +27,10 @@ const CustomContainer = styled.div`
 `
 
 const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, language }) => {
-  const router = useRouter()
-  if (!isAuth) {
-    router.push("/")
+  if (isAuth) {
+    Router.push("/dashboard")
     return <Loader />
-  }
+}
 
   return (
     <>
