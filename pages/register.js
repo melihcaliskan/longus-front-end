@@ -122,8 +122,7 @@ const Register = ({ t }) => {
                 console.log('User token', data.jwt);
             }
         }).catch((error) => {
-            console.log(error)
-            alert(error);
+            setResponseError(error)
         })
     }
 
@@ -140,12 +139,11 @@ const Register = ({ t }) => {
         }, 400)
         return () => clearTimeout(delay)
     }
-    console.log(errors)
     return (
         <RegisterContainer>
             <Left type="register" />
             <Right>
-                <CustomToast message={"Test"} />
+                {responseError && <CustomToast message={responseError} />}
                 <Content>
                     <Header>
                         <h1>{t('signin')}</h1>
