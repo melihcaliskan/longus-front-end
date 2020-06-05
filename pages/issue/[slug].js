@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import Head from 'next/head'
-import Header from '../../components/Header'
+import { withTranslation } from '../../i18n'
 
 const Detail = ({ query, t, isLight, toggleTheme, theme }) => {
     return (
@@ -25,5 +25,4 @@ const getInitialProps = ({ res, query, err }) => {
 
 Detail.getInitialProps = getInitialProps;
 
-//export default withTranslation('detail')(Detail)
-export default Detail
+export default withTranslation('detail')(Detail)
