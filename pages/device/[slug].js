@@ -90,12 +90,11 @@ const CustomToast = ({ isShow }) => {
     <CustomToast isShow={showToast} />
 }
 */
-const Detail = ({ device, t, isLight, toggleTheme, theme }) => {
+const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
     const [showToast, setShowToast] = useState(false)
 
     const handleToast = () => {
         setShowToast(true)
-
         setTimeout(() => {
             setShowToast(false)
         }, 3000);
@@ -125,6 +124,7 @@ const Detail = ({ device, t, isLight, toggleTheme, theme }) => {
                         )}
                     count={{ issue: device.issues.length, comment: 0 }}
                     fit={3}
+                    isMobile={isMobile}
                 />
                 <br /><br />
                 <Container>
