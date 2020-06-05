@@ -87,12 +87,12 @@ const Container = styled.div`
   
   ${Left}{
     ${Title}, a, p{
-      color:${props => props.isCollapsed ? props.theme.title : props.theme.body_700};
+      color:${props => props.isCollapsed ? props.theme.title : props.theme.dark_text_200};
     }
   }
   ${Right}{
     svg, path{
-      fill:${props => props.isCollapsed ? props.theme.title : props.theme.body_700};
+      fill:${props => props.isCollapsed ? props.theme.title : props.theme.dark_text_300};
     }
   }
 
