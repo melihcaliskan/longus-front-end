@@ -7,6 +7,7 @@ import Plus from '../svg/Plus'
 import Search from '../svg/Search'
 import SearchModal from './Search'
 import Twemoji from '../Twemoji'
+import { getUserData } from '../../helpers/auth'
 import styled from 'styled-components';
 import { useScrollPosition } from '../../helpers/useScroll'
 import useWindowSize from "../../helpers/windowSize";
@@ -126,7 +127,7 @@ const Header = ({ t, toggleTheme, isLight, reverse, noNav = false }) => {
         onHide={() => setModalShow(false)}
       />
       <Left>
-        <ActiveLink href="/"><Title>{t('brand')}</Title></ActiveLink>
+        <ActiveLink href={getUserData() ? "/dashboard" : "/"}><Title>{t('brand')}</Title></ActiveLink>
         {!noNav &&
           <>
             <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
