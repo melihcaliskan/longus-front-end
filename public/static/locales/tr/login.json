@@ -22,7 +22,18 @@
 
     "somethingwrong": "Bir şeyler yanlış gitti",
     "passworderror": "Kullanıcı adı veya şifre hatalı",
-
+    
+    "namerequired": "İsim gereklidir",
+    "usernamerequired": "Kullanıcı adı gereklidir",
+    "usernamenotavailable": "Bu kullanıcı farklı bir kullanıcı tarafından kullanılmaktadır",
+    "usernamenotallowed": "Bu kullanıcı uygun olmayan karakter içermektedir",
+    "emailrequired": "E-Posta gereklidir",
+    "invalidemail": "Geçerli bir e-posta giriniz",
+    "passwordrequired": "Şifre gereklidir",
+    "passwordmatch": "Şifreleriniz eşleşmemektedir",
+    "namelength": "İsminiz 20 karakterden fazla olamaz",
+    "passwordlength": "Şifreniz 8 karakterden kısa olamaz",
+    "anerroroccured": "Bir hata meydana geldi",
 
     "backtohome": "Anasayfaya geri dön"
 }
