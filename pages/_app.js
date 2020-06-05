@@ -5,6 +5,7 @@ import '../helpers/styles.css'
 import React, { useEffect, useState } from 'react'
 import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
+import { getJwt, getUserData } from '../helpers/auth'
 
 import { GlobalStyles } from '../helpers/global';
 import Head from 'next/head'
@@ -18,7 +19,7 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
   if (!componentMounted) {
     return <Loader />
   }
-  
+
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
       <Head>
@@ -29,11 +30,14 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
+      
       {/* İç sayfalar için Header burada tanımlanabilir*/}
 
       {/* Component render olacak ama gözükmeyecek. */}
       {/* Aksi takdirde meta tagleri bozuluyor. */}
       <Component
+        jwt={getJwt()}
+        isAuth={getJwt()}
         {...pageProps}
         language={i18n.language}
         isLight={theme === 'light'}

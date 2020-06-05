@@ -3,10 +3,11 @@ import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Loader from '../helpers/Loader'
 import React from 'react'
 import styled from 'styled-components';
+import { useRouter } from 'next/router'
 import { withTranslation } from '../i18n'
-
 const Title = styled.h1`
     font-weight:800;
     margin:1em 0;
@@ -47,14 +48,34 @@ const CustomContainer = styled.div`
     }
 `
 
-const Dashboard = ({ t, tReady, isLight, toggleTheme, theme, language }) => {
+const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, language }) => {
+  const router = useRouter()
+
+  if (!isAuth) {
+    router.push("/")
+    return <Loader />
+  }
+  const test = () => {
+    localStorage.setItem("jwt", "140px");
+    localStorage.setItem("USER_DATA", "345");
+  }
+  const twotest = () => {
+    localStorage.removeItem("jwt");
+    localStorage.removeItem("USER_DATA");
+  }
   return (
     <>
       <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
       <CustomContainer as={Container}>
         <img className="no-desktop" src="/assets/404.svg" width={200} />
-      welcome to dashboard
-    </CustomContainer>
+      welcome to dashboard {jwt}
+      </CustomContainer>
+      <button onClick={test}>
+        add
+      </button>
+      <button onClick={twotest}>
+        remove
+      </button>
       <Footer />
     </>
   )

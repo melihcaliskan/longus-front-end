@@ -7,7 +7,9 @@ import Plus from '../svg/Plus'
 import Search from '../svg/Search'
 import SearchModal from './Search'
 import Toggle from '../Toggle'
+import { logOut } from '../../helpers/auth'
 import styled from 'styled-components';
+import { useRouter } from 'next/router'
 
 const Container = styled.div`
     .dropdown-menu{
@@ -76,7 +78,13 @@ const CustomDropdown = styled.div`
 `
 
 const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
+    const router = useRouter()
     const [modalShow, setModalShow] = useState(false);
+
+    const handleLogout = () => {
+        logOut()
+        router.push("/")
+    }
     return (
         <Container>
             <SearchModal
@@ -117,7 +125,7 @@ const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
                     </Dropdown.Item>
 
                     <Dropdown.Divider />
-                    
+
                     <Dropdown.Item onClick={toggleTheme}>
                         {isLight ?
                             <>
