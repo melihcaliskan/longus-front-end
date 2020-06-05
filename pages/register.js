@@ -98,7 +98,7 @@ const CustomToast = (message) => {
     )
 }
 
-const Register = ({ t }) => {
+const Register = ({ t, isAuth }) => {
     const router = useRouter()
     if (isAuth) {
         router.push("/dashboard")
