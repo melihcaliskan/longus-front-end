@@ -4,8 +4,9 @@ import styled from 'styled-components';
 const ToggleContainer = styled.button`
   position: relative;
   display: flex;
+  align-items:center;
   justify-content: space-between;
-  background: ${({ theme }) => theme.button_bg};
+  background: ${({ theme }) => theme.body_100};
   width: 6rem;
   height: 3.2rem;
   margin: 0 auto;
