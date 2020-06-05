@@ -8,10 +8,11 @@
     "add": "Add",
     "search": "Search",
 
-    "lightmode":"Light mode",
-    "nightmode":"Night mode",
+    "lightmode": "Light mode",
+    "nightmode": "Night mode",
 
     "profile": "Profile",
     "settings": "Settings",
+    "login": "Login",
     "logout": "Log Out"
 }
