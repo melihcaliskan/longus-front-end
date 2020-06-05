@@ -12,9 +12,13 @@ import Head from 'next/head'
 import Loader from '../helpers/Loader'
 import { ThemeProvider } from 'styled-components';
 import { useDarkMode } from '../contexts/useDarkMode';
+import useWindowSize  from '../helpers/windowSize'
 
 const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
+
+  const size = useWindowSize();
+  const isMobile = size.width < 960
 
   if (!componentMounted) {
     return <Loader />
@@ -30,12 +34,13 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyles />
-      
+
       {/* İç sayfalar için Header burada tanımlanabilir*/}
 
       {/* Component render olacak ama gözükmeyecek. */}
       {/* Aksi takdirde meta tagleri bozuluyor. */}
       <Component
+        isMobile={isMobile}
         jwt={getJwt()}
         isAuth={getJwt()}
         {...pageProps}

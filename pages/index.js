@@ -18,14 +18,12 @@ const RecentTab = dynamic(import("../components/Home/RecentTab"))
 const Stats = dynamic(import("../components/Home/Stats"))
 const Footer = dynamic(import("../components/Footer"))
 
-const Home = ({ isAuth, t, tReady, isLight, theme, toggleTheme, tabData, language }) => {
+const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabData, language }) => {
   const router = useRouter()
   if (isAuth) {
     router.push("/dashboard")
     return <Loader />
   }
-  const size = useWindowSize();
-  const isMobile = size.width < 960
 
   if (!tReady) {
     return <Loader />

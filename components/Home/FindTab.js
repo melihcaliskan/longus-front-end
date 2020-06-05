@@ -1,5 +1,5 @@
 import { Camera, Case, Delivery, FlashCard, MemoryCard, Monitor, Watch, İPhone } from '../svg/find/index'
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 
 import ActiveLink from '../ActiveLink'
 import styled from 'styled-components';
@@ -19,14 +19,18 @@ const Container = styled.div`
         font-size:35px;
         padding:0.2em;
     }
+
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+    
     @media only screen and (max-width: 960px) {
         min-width:0;
         
+        background: ${({ theme }) => theme.body};
+        box-shadow:none;
         h3{
             font-size:25px;
         }
     }
-    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
 `
 
 const Top = styled.div`
@@ -44,6 +48,7 @@ const ItemContainer = styled.div`
     max-height:480px;
     @media only screen and (max-width: 960px) {
         overflow-y:auto;
+        padding:1em 0;
     }
     
 `
@@ -128,6 +133,10 @@ const SvgContainer = styled.div`
     margin-top:1.4em;
     justify-content:space-between;
     padding:0 0.4em;
+
+    @media only screen and (max-width: 960px) {
+       padding:0
+    }
 `
 const SvgItem = styled.div`
     transition:all .3s;
