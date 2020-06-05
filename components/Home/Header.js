@@ -65,7 +65,7 @@ const Brand = styled.h2`
         font-size:25px;
     }
 `
-const HomeDropdown = styled.div`
+export const HomeDropdown = styled.div`
     display: ${props => props.noMobile ? "none" : "inline-flex"};
     background:${({ theme }) => theme.body_100};
     color:${({ theme }) => theme.text};
@@ -188,7 +188,7 @@ const LoginContainer = styled.div`
         }
     }
 `
-function LoginModal(props) {
+export function LoginModal(props) {
     return (
         <Modal style={{ marginTop: '4em' }} {...props} aria-labelledby="contained-modal-title-vcenter">
             <Modal.Body>
@@ -249,27 +249,13 @@ const HeaderContainer = ({ t, isLight, theme, toggleTheme, tReady }) => {
                     <Brand>{t('brand')}</Brand>
                 </ActiveLink>
 
-                {login ?
-                    <HomeDropdown>
-                        <strong>{t('welcome')},</strong>
-                        <ProfilePicture width="30px" height="30px" src="https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg" />
-                        <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 8L0.803848 0.5L11.1962 0.5L6 8Z" fill="black" />
-                        </svg>
+                <LoginContainer>
+                    <Toggle isLight={isLight} toggleTheme={toggleTheme} />
+                    <HomeDropdown onClick={() => setModalShow(true)}>
+                        <strong>{t('login')}</strong>
                     </HomeDropdown>
-                    :
-                    <LoginContainer>
-                        <Toggle isLight={isLight} toggleTheme={toggleTheme} />
-                        <HomeDropdown onClick={() => setModalShow(true)}>
-                            <strong>{t('login')}</strong>
-                        </HomeDropdown>
-                        <HomeDropdown noMobile style={{ background: theme.yellow, color: theme.dark_text }}>
-                            <ActiveLink href="/register">
-                                <strong>{t('signup')}</strong>
-                            </ActiveLink>
-                        </HomeDropdown>
-                    </LoginContainer>
-                }
+                </LoginContainer>
+
             </Up>
             <MarqueeContainer opacity={loading ? 0 : 1}>
                 <Marquee velocity={15} minScale={0.7} resetAfterTries={600} scatterRandomly={!isMobile2} onFinish={() => setLoading(false)}>
