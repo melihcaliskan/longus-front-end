@@ -6,11 +6,13 @@ import ActiveLink from '../components/ActiveLink'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
+import Loader from '../helpers/Loader'
 import Toast from 'react-bootstrap/Toast'
 import axios from 'axios';
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components'
 import { useForm } from "react-hook-form";
+import { useRouter } from 'next/router'
 
 const RegisterContainer = styled.div`
     display:flex;
@@ -97,6 +99,11 @@ const CustomToast = (message) => {
 }
 
 const Register = ({ t }) => {
+    const router = useRouter()
+    if (isAuth) {
+        router.push("/dashboard")
+        return <Loader />
+    }
     const { register, handleSubmit, watch, errors } = useForm();
 
     const [loading, setLoading] = useState(false);

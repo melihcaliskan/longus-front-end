@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
+import Loader from '../helpers/Loader'
 import { light_colors } from '../helpers/colors'
 import { setLogin } from '../helpers/auth'
 import styled from 'styled-components'
@@ -94,9 +95,12 @@ const Header = styled.div`
         }
     }
 `
-const Login = ({ t, noSidebar = false, background }) => {
+const Login = ({ t, isAuth, noSidebar = false, background }) => {
     const router = useRouter()
-
+    if (isAuth) {
+        router.push("/dashboard")
+        return <Loader />
+    }
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
