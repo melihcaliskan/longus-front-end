@@ -23,9 +23,12 @@ const Container = styled.div`
     box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
     
     @media only screen and (max-width: 960px) {
+        background: ${({ theme }) => theme.body};
+        border-radius:0;
         min-width:0;
         
-        background: ${({ theme }) => theme.body};
+        margin:0;
+        padding:1em 2em;
         box-shadow:none;
         h3{
             font-size:25px;
@@ -39,7 +42,7 @@ const Top = styled.div`
 `
 
 const ItemContainer = styled.div`
-    background:${({ theme }) => theme.body};
+    background: ${({ theme }) => theme.body};
     padding:2em 2em 1em 2em;
     margin-top:1.5em;
     border-radius:7px;
@@ -48,7 +51,7 @@ const ItemContainer = styled.div`
     max-height:480px;
     @media only screen and (max-width: 960px) {
         overflow-y:auto;
-        padding:1em 0;
+        padding:0;
     }
     
 `
@@ -124,8 +127,16 @@ const Count = styled.h2`
 const Item = styled.div`
     display:flex;
     justify-content:space-between;
-    
+
     margin-bottom: ${props => props.last ? 0 : '2em'};
+    
+    border-radius:8px;
+    
+    @media only screen and (max-width: 960px) {
+        margin-bottom: ${props => props.last ? 0 : '1em'};
+        background: ${props => props.white ? props.theme.body : props.theme.body};
+        padding:1em;
+    }
 `
 
 const SvgContainer = styled.div`
@@ -135,19 +146,31 @@ const SvgContainer = styled.div`
     padding:0 0.4em;
 
     @media only screen and (max-width: 960px) {
-       padding:0
+       padding:0.4em 1em;
+       border-radius:30px;
+       background:${({ theme }) => theme.body_100};
     }
 `
 const SvgItem = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0.6em;
+    
     transition:all .3s;
     cursor:pointer;
     
-    padding:0.6em;
     border-radius:50%;
     background: ${props => props.active ? props.theme.body_200 : props.theme.body};
 
     svg,path{
         fill: ${props => props.active ? props.theme.title : props.theme.text} !important;
+    }
+    @media only screen and (max-width: 960px) {
+        padding:0;
+        width:40px;
+        height:40px;
     }
 `
 
@@ -206,7 +229,7 @@ const List = ({ t, data, count }) => {
                 .map((a) => a.value)
                 .slice(0, count).map((item, index) => (
                     <ActiveLink key={item.id} href={"/device/1"} query={{ brand: item.brand, name: item.name }}>
-                        <Item last={data.slice(0, count).length == index + 1}>
+                        <Item white={index % 2 == 0} last={data.slice(0, count).length == index + 1}>
                             <Body>
                                 <Top>
                                     <Brand>{item.brand}</Brand>
@@ -253,9 +276,6 @@ const CustomTab = ({ t, theme, count }) => {
                 </SvgButton>
                 <SvgButton onClick={() => setKey(5)} active={activeKey == 5}>
                     <Delivery />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(6)} active={activeKey == 6}>
-                    <FlashCard />
                 </SvgButton>
                 <SvgButton onClick={() => setKey(7)} active={activeKey == 7}>
                     <MemoryCard />
