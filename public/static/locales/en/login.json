@@ -22,6 +22,18 @@
 
     "somethingwrong": "Something went wrong",
     "passworderror": "Username or password is wrong",
+    
+    "namerequired": "Name required",
+    "usernamerequired": "Username required",
+    "usernamenotavailable": "This username is used by a another user",
+    "usernamenotallowed": "This username has inappropriate characters",
+    "emailrequired": "E-Mail required",
+    "invalidemail": "Please enter a valid e-mail",
+    "passwordrequired": "Password required",
+    "passwordmatch": "Your passwords doesn't match",
+    "namelength": "Your name cannot exceed 20 characters",
+    "passwordlength": "Your password cannot be less than 8 characters",
+    "anerroroccured": "An error has occurred",
 
     "backtohome": "Go back to homepage"
 }
