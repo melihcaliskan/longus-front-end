@@ -7,6 +7,7 @@ import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
 import { getJwt, getUserData } from '../helpers/auth'
 
+import Footer from '../components/Footer'
 import { GlobalStyles } from '../helpers/global';
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -22,6 +23,7 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const isMobile = size.width < 960
 
   const noHeader = ['/', '/home', '/login', '/register']
+  const noFooter = ['/login', '/register']
   const currentRoute = router.route
 
   if (!componentMounted) {
@@ -56,6 +58,11 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         toggleTheme={toggleTheme}
         {...pageProps}
       />
+
+      {!noFooter.includes(currentRoute) &&
+        <Footer />
+      }
+
     </ThemeProvider>
   )
 }
