@@ -143,7 +143,7 @@ const Info = styled.div`
     }
 
 `
-const AnimatedHeader = ({ t, name, photo, count, fit, isMobile }) => {
+const AnimatedHeader = ({ t, name, photo, count, fit, isMobile, }) => {
   const [loading, setLoading] = useState(true);
   const [collapse, setCollapse] = useState(true);
 
@@ -159,7 +159,6 @@ const AnimatedHeader = ({ t, name, photo, count, fit, isMobile }) => {
           console.log(dark_vibrant, palette)
           setLower(`rgb(${dark_vibrant[0] + 110}, ${dark_vibrant[1] + 110}, ${dark_vibrant[2] + 110})`)
           setHigher(`rgb(${dark_muted[0] + 90}, ${dark_muted[1] + 90}, ${dark_muted[2] + 90})`)
-          console.log(`rgb(${dark_vibrant[0]}, ${dark_vibrant[1]}, ${dark_vibrant[2]})`, `rgb(${dark_muted[0]}, ${dark_muted[2]}, ${dark_muted[2]})`)
         })
       isSetGradient(true)
     }
