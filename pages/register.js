@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { i18n, withTranslation } from '../i18n'
 
+import { API_URL } from '../helpers/urls'
 import ActiveLink from '../components/ActiveLink'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
+import Toast from 'react-bootstrap/Toast'
+import axios from 'axios';
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components'
+import { useForm } from "react-hook-form";
 
-const LoginContainer = styled.div`
+const RegisterContainer = styled.div`
     display:flex;
     flex-direction:row;
     @media only screen and (max-width: 740px) {
@@ -17,6 +21,7 @@ const LoginContainer = styled.div`
 `
 
 const Right = styled.div`
+    position:relative;
     width:100%;
 `
 const Content = styled.div`
@@ -77,21 +82,70 @@ const Header = styled.div`
         }
     }
 `
-const Register = ({ t }) => {
-    const [name, setName] = useState("");
-    const [username, setUserName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [repeatPassword, setRepeatPassword] = useState("");
 
-    const handleSubmit = (evt) => {
-        evt.preventDefault();
-        alert(`Submitting Name ${name}`)
-    }
+const CustomToast = (message) => {
     return (
-        <LoginContainer>
+        <Toast style={{ position: 'absolute', top: 100, left: "50%", right: "50%", transform: "translate(-50%, -50%)" }}>
+            <Toast.Header>
+                <img src="holder.js/20x20?text=%20" className="rounded mr-2" alt="" />
+                <strong className="mr-auto">Bootstrap</strong>
+                <small>11 mins ago</small>
+            </Toast.Header>
+            <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+        </Toast>
+    )
+}
+
+const Register = ({ t }) => {
+    const { register, handleSubmit, watch, errors } = useForm();
+
+    const [loading, setLoading] = useState(false);
+    const [usernameIsAvailable, setUsernameIsAvailable] = useState();
+    const [responseError, setResponseError] = useState();
+
+    const onSubmit = data => {
+        console.log(data)
+        const { name, username, email, password } = data
+        axios.post(`${API_URL}auth/local/register`, {
+            name,
+            username,
+            email,
+            password,
+        }).then(res => {
+            console.log(res)
+            const { data } = res
+            if (res.status == 400) {
+                setResponseError(res.message)
+            } else {
+                // CALL AUTH FUNC - REDIRECT TO DASHBOARD
+                console.log('User profile', data.user);
+                console.log('User token', data.jwt);
+            }
+        }).catch((error) => {
+            console.log(error)
+            alert(error);
+        })
+    }
+
+    const handleUserName = (username) => {
+        setUserName(username)
+        const delay = setTimeout(async () => {
+            setLoading(true)
+            if (username.length > 3) {
+                const res = await fetch(`${API_URL}users/username=${username}`)
+                const json = await res.json()
+                setUsernameIsAvailable(json.isAvailable)
+            }
+            setLoading(false)
+        }, 400)
+        return () => clearTimeout(delay)
+    }
+    console.log(errors)
+    return (
+        <RegisterContainer>
             <Left type="register" />
             <Right>
+                <CustomToast message={"Test"} />
                 <Content>
                     <Header>
                         <h1>{t('signin')}</h1>
@@ -102,26 +156,87 @@ const Register = ({ t }) => {
                             </svg>
                         </ActiveLink>
                     </Header>
-                    <Form>
-                        <Form.Group className="form-item" controlId="username">
-                            <Form.Label>{t('username')}</Form.Label>
-                            <Form.Control type="text" placeholder={t('username')} onChange={e => setName(e.target.value)} />
-                        </Form.Group>
-                        <Form.Group className="form-item" controlId="name">
+                    <Form onSubmit={handleSubmit(onSubmit)}>
+                        <Form.Group className="form-item" >
                             <Form.Label>{t('name')}</Form.Label>
-                            <Form.Control type="text" placeholder={t('name')} onChange={e => setUserName(e.target.value)} />
+                            <Form.Control
+                                isValid={watch("name")}
+                                isInvalid={errors.name}
+                                ref={register({ required: t('namerequired'), maxLength: 20 })}
+                                name="name"
+                                placeholder={t('name')} />
+
+                            {errors.name && <Form.Control.Feedback type="invalid">{t('namerequired')}</Form.Control.Feedback>}
+
                         </Form.Group>
-                        <Form.Group className="form-item" controlId="email">
+                        <Form.Group className="form-item" >
+                            <Form.Label>{t('username')}</Form.Label>
+                            <Form.Control
+                                isValid={usernameIsAvailable}
+                                isInvalid={errors.name}
+                                ref={register} name="username" placeholder={t('username')} />
+                            {usernameIsAvailable && usernameIsAvailable.length ?
+                                usernameIsAvailable ?
+                                    <Form.Text className="text-muted">
+                                        kullanılabilir
+                                    </Form.Text>
+                                    :
+                                    <Form.Text className="text-muted">
+                                        kullanılamaz
+                                    </Form.Text>
+                                :
+                                <Form.Text className="text-muted">
+                                    kontrol edilmedi
+                                </Form.Text>
+                            }
+                        </Form.Group>
+                        <Form.Group className="form-item" >
                             <Form.Label>{t('email')}</Form.Label>
-                            <Form.Control type="email" placeholder={t('email')} onChange={e => setEmail(e.target.value)} />
+                            <Form.Control
+                                name="email"
+                                type="email"
+                                isInvalid={errors.email}
+                                ref={register({
+                                    required: t('emailrequired'),
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                        message: "invalid email address"
+                                    }
+                                })}
+                                placeholder={t('email')} />
+                            {errors.email && <Form.Control.Feedback type="invalid">{errors.email.type == "required" ? t('emailrequired') : t('invalidemail')}</Form.Control.Feedback>}
                         </Form.Group>
-                        <Form.Group className="form-item" controlId="username">
+                        <Form.Group className="form-item">
                             <Form.Label>{t('password')}</Form.Label>
-                            <Form.Control type="password" placeholder={t('password')} onChange={e => setPassword(e.target.value)} />
+                            <Form.Control
+                                name="password"
+                                type="password"
+                                isValid={watch("password")}
+                                isInvalid={errors.password}
+                                ref={register({
+                                    required: "You must specify a password",
+                                    minLength: {
+                                        value: 8,
+                                        message: "Password must have at least 8 characters"
+                                    }
+                                })}
+                                isValid={watch('password') && watch('password').length > 8 && !errors.password}
+                                placeholder={t('password')} />
+                            {errors.password && <Form.Control.Feedback type="invalid">{errors.password.type == "required" ? t('passwordequired') : t('passwordlength')}</Form.Control.Feedback>}
                         </Form.Group>
-                        <Form.Group className="form-item" controlId="password">
+                        <Form.Group className="form-item">
                             <Form.Label>{t('repeatpassword')}</Form.Label>
-                            <Form.Control type="password" placeholder={t('repeatpassword')} onChange={e => setRepeatPassword(e.target.value)} />
+                            <Form.Control
+                                name="repeatpassword"
+                                type="password"
+                                ref={register({
+                                    validate: value =>
+                                        value === watch("password") || "The passwords do not match"
+                                })}
+                                isValid={watch("repeatpassword")}
+                                isInvalid={errors.repeatpassword}
+                                placeholder={t('repeatpassword')} />
+                            {errors.repeatpassword && <Form.Control.Feedback type="invalid">{t('passwordmatch')}</Form.Control.Feedback>}
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             {t('signin')}
@@ -135,7 +250,7 @@ const Register = ({ t }) => {
                     </Form>
                 </Content>
             </Right>
-        </LoginContainer>
+        </RegisterContainer>
     )
 }
 
