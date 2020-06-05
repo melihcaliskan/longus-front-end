@@ -30,7 +30,6 @@ const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabDat
   }
   return (
     <>
-      {/* TODO: React.Context ile erişilebilir? */}
       <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
       {isMobile ?
         <>

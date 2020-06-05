@@ -8,10 +8,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
 import Loader from '../helpers/Loader'
+import Router from 'next/router'
 import { light_colors } from '../helpers/colors'
 import { setLogin } from '../helpers/auth'
 import styled from 'styled-components'
-import { useRouter } from 'next/router'
 
 const LoginContainer = styled.div`
     display:flex;
@@ -96,9 +96,8 @@ const Header = styled.div`
     }
 `
 const Login = ({ t, isAuth, noSidebar = false, background }) => {
-    const router = useRouter()
     if (isAuth) {
-        router.push("/dashboard")
+        Router.push("/dashboard")
         return <Loader />
     }
     const [name, setName] = useState("");
@@ -106,8 +105,11 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
     const [error, setError] = useState(false);
     const handleSubmit = (evt) => {
         evt.preventDefault();
+        
         setLogin("testuser", "testuser")
-        router.push("/dashboard")
+        
+        // Workaround for modal.
+        Router.reload()
         /*
         fetch(`${API_URL}auth/local`, {
             method: 'POST',

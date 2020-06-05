@@ -8,7 +8,6 @@ import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
-import Header from '../components/Header'
 import styled from 'styled-components';
 
 const ContactHeader = styled.div`
@@ -34,7 +33,6 @@ const Contact = ({ t, isLight, toggleTheme }) => {
             <Head>
                 <title>{t('contactus')}</title>
             </Head>
-            <Header isLight={isLight} toggleTheme={toggleTheme} />
             <ContactHeader>
                 <h3>{t('contactus')}</h3>
             </ContactHeader>

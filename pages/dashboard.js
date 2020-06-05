@@ -3,7 +3,6 @@ import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
 import Footer from '../components/Footer'
-import Header from '../components/Header'
 import Loader from '../helpers/Loader'
 import React from 'react'
 import Row from 'react-bootstrap/Row'
@@ -37,7 +36,6 @@ const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, langua
 
   return (
     <>
-      <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} noNav />
       <CustomContainer as={Container}>
         <Row>
           <Col>

@@ -112,7 +112,6 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
                 <meta name="og:description" content={device.name} />
             </Head>
             <DetailContainer>
-                <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
                 <ItemHeader
                     name={device.name}
                     photo={API_URL_W +

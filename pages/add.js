@@ -6,7 +6,6 @@ import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
-import Header from '../components/Header'
 import Select from 'react-select';
 import styled from 'styled-components';
 import { withTranslation } from '../i18n'
@@ -137,7 +136,6 @@ const CustomTab = ({ t, theme, isLight, toggleTheme, count }) => {
             <Head>
                 <title>Add New Issue</title>
             </Head>
-            <Header reverse />
             <Container style={{padding:'0 20px', marginBottom: '10em' }}>
                 <Form>
                     <Fade bottom distance={'1.2em'} duration={600}>

@@ -7,7 +7,6 @@ import Container from 'react-bootstrap/Container'
 import Fade from 'react-reveal/Fade';
 import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
-import Header from '../components/Header'
 import Row from 'react-bootstrap/Row'
 import styled from 'styled-components';
 
@@ -31,7 +30,6 @@ const Contact = ({ t, theme, }) => {
     const [loading, setLoading] = useState(true);
     return (
         <>
-            <Header />
             <ContactHeader>
                 <h3>{t('aboutus')}</h3>
             </ContactHeader>

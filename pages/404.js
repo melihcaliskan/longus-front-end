@@ -2,7 +2,6 @@ import ActiveLink from '../components/ActiveLink'
 import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
 import Footer from '../components/Footer'
-import Header from '../components/Header'
 import React from 'react'
 import styled from 'styled-components';
 import { withTranslation } from '../i18n'
@@ -49,7 +48,6 @@ const CustomContainer = styled.div`
 
 const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language }) => (
   <>
-    <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
     <CustomContainer as={Container}>
       <img className="no-desktop" src="/assets/404.svg" width={200} />
       <div>

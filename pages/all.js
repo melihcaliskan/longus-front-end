@@ -128,7 +128,6 @@ const All = ({ t, isLight, toggleTheme }) => {
             <Head>
                 <title>{t('startsearching')}</title>
             </Head>
-            <Header isLight={isLight} toggleTheme={toggleTheme} />
             <ContactHeader>
                 <h3><Twemoji emoji="🔍" /> {t('startsearching')}</h3>
                 <Form.Group style={{ width: '80%', marginTop: '1.5em' }} controlId="formBasicEmail">

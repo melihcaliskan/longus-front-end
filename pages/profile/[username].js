@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import Head from 'next/head'
-import Header from '../../components/Header'
 import Loader from '../../helpers/Loader'
 import { useRouter } from 'next/router'
 import { withTranslation } from '../../i18n'
@@ -14,7 +13,6 @@ const Detail = ({ isAuth, query, t, isLight, toggleTheme, theme }) => {
     }
     return (
         <div>
-            <Header isLight={isLight} theme={theme} toggleTheme={toggleTheme} />
             <Head>
                 <title>{query.username}</title>
                 <meta name="description" content="Free Web tutorials" />
