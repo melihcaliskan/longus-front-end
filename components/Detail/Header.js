@@ -65,7 +65,6 @@ const InfoContainer = styled.div`
     }
   }
 `
-//  mix-blend-mode: multiply;
 
 const MobileImage = styled.img`
   transition: all .2s;
@@ -75,7 +74,8 @@ const MobileImage = styled.img`
   margin:0 0 1em 0;
   
   object-fit:contain;
-  
+  mix-blend-mode: multiply;
+
   @media only screen and (max-width: 960px) {
     display:initial;
   }
@@ -84,6 +84,10 @@ const ProductImage = styled.img`
   transition: all .2s;
   max-width:400px;
   object-fit:contain;
+  mix-blend-mode: multiply;
+  
+  margin-right:10vw;
+  
   @media only screen and (max-width: 1260px) {
     max-width:300px;
   }
