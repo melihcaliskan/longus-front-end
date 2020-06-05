@@ -69,8 +69,7 @@ const Container = styled.div`
   justify-content:space-between;
   
   width:100%;
-  transition:opacity 1s;
-  
+    
   svg{
     path{
       fill:${({ theme }) => theme.always_dark};

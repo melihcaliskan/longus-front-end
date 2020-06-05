@@ -1,45 +1,35 @@
+import { destroyCookie, parseCookies, setCookie } from 'nookies'
+
 export const setLogin = (JWT, USER_DATA) => {
-    if (typeof window !== 'undefined') {
-        localStorage.setItem("jwt", JWT);
-        localStorage.setItem("USER_DATA", USER_DATA);
-    }
+    setCookie(null, 'jwt', JWT, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+    })
+    setCookie(null, 'USER_DATA', USER_DATA, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+    })
 }
 
 export const getJwt = () => {
-    if (typeof window !== 'undefined') {
-        return localStorage.getItem("jwt");
-    }
+    const cookies = parseCookies()
+    const { jwt } = cookies
+    return jwt
 }
 
 export const getUserData = () => {
-    if (typeof window !== 'undefined') {
+    const cookies = parseCookies()
+    const { USER_DATA } = cookies
+    return USER_DATA
+}
 
-        return localStorage.getItem("USER_DATA");
-    }
+export const isAuth = () => {
+    const cookies = parseCookies()
+    const { USER_DATA } = cookies
+    return USER_DATA ? true : false
 }
 
 export const logOut = () => {
-    if (typeof window !== 'undefined') {
-        localStorage.removeItem("jwt");
-        localStorage.removeItem("USER_DATA");
-    }
+    destroyCookie(null, 'jwt')
+    destroyCookie(null, 'USER_DATA')
 }
-
-
-/*
-export const setLogin = (JWT, USER_DATA) => {
-
-}
-
-export const getJwt = () => {
-    return true
-}
-
-export const getUserData = () => {
-    return true
-}
-
-export const logOut = () => {
-    return true
-}
-*/

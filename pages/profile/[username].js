@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Head from 'next/head'
 import Loader from '../../helpers/Loader'
-import { useRouter } from 'next/router'
+import Router from 'next/router'
 import { withTranslation } from '../../i18n'
 
 const Detail = ({ isAuth, query, t, isLight, toggleTheme, theme }) => {
-    const router = useRouter()
     if (!isAuth) {
-        router.push("/dashboard")
+        useEffect(() => {
+            Router.push("/")
+        })
         return <Loader />
     }
     return (

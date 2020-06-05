@@ -5,7 +5,7 @@ import '../helpers/styles.css'
 import React, { useEffect, useState } from 'react'
 import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
-import { getJwt, getUserData } from '../helpers/auth'
+import { getUserData, isAuth } from '../helpers/auth'
 
 import Footer from '../components/Footer'
 import { GlobalStyles } from '../helpers/global';
@@ -52,11 +52,12 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} toggleTheme={toggleTheme} />
       }
 
+      {JSON.stringify(getUserData())}
       <Component
         loading={!componentMounted}
         isMobile={isMobile}
         //jwt={getJwt()}
-        //isAuth={getJwt()}
+        isAuth={isAuth()}
         language={i18n.language}
         isLight={theme === 'light'}
         theme={theme === 'light' ? lightTheme : darkTheme}

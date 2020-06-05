@@ -100,16 +100,21 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
         Router.push("/dashboard")
         return <Loader />
     }
+    const { route } = Router.router
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const handleSubmit = (evt) => {
         evt.preventDefault();
-        
+
         setLogin("testuser", "testuser")
-        
+
         // Workaround for modal.
-        Router.reload()
+        if (route == "/") {
+            Router.push("/dashboard")
+        } else {
+            Router.reload()
+        }
         /*
         fetch(`${API_URL}auth/local`, {
             method: 'POST',

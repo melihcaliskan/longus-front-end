@@ -1,13 +1,15 @@
+import React, { useEffect } from 'react'
+
 import ActiveLink from '../components/ActiveLink'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
 import Loader from '../helpers/Loader'
-import React from 'react'
 import Router from 'next/router'
 import Row from 'react-bootstrap/Row'
 import styled from 'styled-components';
 import { withTranslation } from '../i18n'
+
 const Title = styled.h1`
     font-weight:800;
     margin:1em 0;
@@ -27,29 +29,29 @@ const CustomContainer = styled.div`
 `
 
 const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, language }) => {
-  if (isAuth) {
-    Router.push("/dashboard")
+  if (!isAuth) {
+    useEffect(() => {
+      Router.push("/")
+    })
     return <Loader />
-}
+  }
 
   return (
-    <>
-      <CustomContainer as={Container}>
-        <Row>
-          <Col>
-            left menu
+    <CustomContainer as={Container}>
+      <Row>
+        <Col>
+          left menu
           </Col>
-          <Col xs={6}>
-            <h1>Akış</h1>
-            <img className="no-desktop" src="/assets/404.svg" width={200} />
-            <p> welcome to dashboard {jwt}</p>
+        <Col xs={6}>
+          <h1>Akış</h1>
+          <img className="no-desktop" src="/assets/404.svg" width={200} />
+          <p> welcome to dashboard {jwt}</p>
+        </Col>
+        <Col>
+          right menu
           </Col>
-          <Col>
-            right menu
-          </Col>
-        </Row>
-      </CustomContainer>
-    </>
+      </Row>
+    </CustomContainer>
   )
 }
 export default withTranslation('common')(Dashboard)
