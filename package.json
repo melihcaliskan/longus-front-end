@@ -12,6 +12,7 @@
     "svg": "npx @svgr/cli -d public/assets/svg components/svg"
   },
   "dependencies": {
+    "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -27,6 +28,7 @@
     "react": "16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "16.13.1",
+    "react-hook-form": "^5.7.2",
     "react-marquee-slider": "^1.0.16",
     "react-reveal": "^1.2.2",
     "react-select": "^3.1.0",
