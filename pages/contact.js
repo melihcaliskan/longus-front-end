@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/Button'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Fade from 'react-reveal/Fade';
-import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
 import styled from 'styled-components';
@@ -89,8 +88,6 @@ const Contact = ({ t, isLight, toggleTheme }) => {
                     </Button>
                 </Form>
             </Container>
-            <br /><br /><br /><br /><br /><br /><br /><br />
-            <Footer />
         </>
     )
 }

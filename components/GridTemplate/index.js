@@ -4,7 +4,6 @@ import { API_URL } from '../../helpers/urls';
 import ActiveLink from '../ActiveLink';
 import Button from '../Button';
 import Container from 'react-bootstrap/Container';
-import Footer from '../Footer';
 import Form from 'react-bootstrap/Form';
 import Loader from '../../helpers/Loader';
 import Twemoji from '../Twemoji';
@@ -199,7 +198,6 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
                     </Button>
                     : null}
             </Container>
-            <Footer />
         </>
     )
 }

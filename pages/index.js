@@ -10,13 +10,8 @@ import dynamic from "next/dynamic";
 import { useRouter } from 'next/router'
 import useWindowSize from "../helpers/windowSize"
 
-//import Footer from '../components/Footer'
-//import RecentTab from '../components/Home/RecentTab'
-//import Stats from '../components/Home/Stats'
-
 const RecentTab = dynamic(import("../components/Home/RecentTab"))
 const Stats = dynamic(import("../components/Home/Stats"))
-const Footer = dynamic(import("../components/Footer"))
 
 const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabData, language }) => {
   const router = useRouter()
@@ -43,8 +38,6 @@ const Home = ({ isMobile, isAuth, t, tReady, isLight, theme, toggleTheme, tabDat
       </Container>
 
       <Stats isLight={isLight} theme={theme} />
-
-      <Footer />
     </>
   )
 }

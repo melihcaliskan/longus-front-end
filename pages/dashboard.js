@@ -2,7 +2,6 @@ import ActiveLink from '../components/ActiveLink'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
-import Footer from '../components/Footer'
 import Loader from '../helpers/Loader'
 import React from 'react'
 import Row from 'react-bootstrap/Row'
@@ -51,7 +50,6 @@ const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, langua
           </Col>
         </Row>
       </CustomContainer>
-      <Footer />
     </>
   )
 }

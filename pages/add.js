@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import Button from '../components/Button'
 import Container from 'react-bootstrap/Container'
 import Fade from 'react-reveal/Fade';
-import Footer from '../components/Footer'
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
 import Select from 'react-select';
@@ -253,7 +252,6 @@ const CustomTab = ({ t, theme, isLight, toggleTheme, count }) => {
                     </Button>
                 </Form>
             </Container>
-            <Footer />
         </>
     )
 }

@@ -5,7 +5,6 @@ import Button from '../../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Fade from 'react-reveal/Fade';
-import Footer from '../../components/Footer'
 import Head from 'next/head'
 import Header from '../../components/Header'
 import Issue from "../../components/Issue"
@@ -151,7 +150,6 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
                     </List>
                 </Container>
             </DetailContainer>
-            <Footer />
         </Fade>
     )
 }

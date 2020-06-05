@@ -1,7 +1,6 @@
 import ActiveLink from '../components/ActiveLink'
 import Container from 'react-bootstrap/Container'
 import { FindButton } from '../components/Home/Header'
-import Footer from '../components/Footer'
 import React from 'react'
 import styled from 'styled-components';
 import { withTranslation } from '../i18n'
@@ -63,7 +62,6 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
       </div>
       <img className="no-mobile" width={400} src="/assets/404.svg" />
     </CustomContainer>
-    <Footer />
   </>
 )
 export default withTranslation('common')(Error)
