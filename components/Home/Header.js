@@ -147,7 +147,7 @@ export const FindButton = styled.div`
     font-size:20px;
     font-weight:400;
     line-height:1.3em;
-    background:${({ theme }) => theme.body};
+    background:${({ theme }) => theme.body_100};
     height:52px;
 
     margin-top:4em;
