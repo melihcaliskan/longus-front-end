@@ -32,8 +32,11 @@ const Add = styled.div`
     display:flex;
     flex-direction:column;
     align-self:center;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+    
+    margin-top:3em;
+
 `
 const List = styled.div`
     margin-top:3em;
@@ -124,7 +127,6 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
                     fit={3}
                     isMobile={isMobile}
                 />
-                <br /><br />
                 <Container>
                     <Row className="justify-content-md-center">
                         <Col xs lg="2" />
