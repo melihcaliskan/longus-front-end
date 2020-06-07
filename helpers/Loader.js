@@ -1,6 +1,6 @@
 export const Loader = ({ style }) => {
     return (
-        <div style={{ width: "100vw", height: "100vh", transition: ".7s all", transitionTimingFunction: "ease-out", ...style }}>
+        <div style={{ width: "100vw", height: "100vh", transition: ".3s all", transitionTimingFunction: "ease-out", ...style }}>
             <div style={{ position: "fixed", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
                 <svg width="120" height="30" viewBox="0 0 120 30" xmlns="http://www.w3.org/2000/svg" fill="#007BFF">
                     <circle cx="15" cy="15" r="15">
