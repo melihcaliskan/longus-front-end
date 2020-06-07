@@ -13,7 +13,7 @@ import LargeCard from '../components/All/LargeCard'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
 import Twemoji from '../components/Twemoji'
-import {randomDevice} from '../helpers/placeholderGenerator'
+import { randomDevice } from '../helpers/placeholderGenerator'
 import styled from 'styled-components';
 
 const ContactHeader = styled.div`
@@ -100,7 +100,7 @@ const Tabs = ({ t }) => {
     return (
         <TabContainer>
             <TabTitle>{t('categories')}</TabTitle>
-            <div style={{ display: 'flex', alignItems: 'center', overflow: 'scroll',paddingBottom:'1em' }}>
+            <div style={{ display: 'flex', alignItems: 'center', overflow: 'scroll', paddingBottom: '1em' }}>
                 {['Tümü', 'Telefon', 'Akıllı Saat', 'Kulaklık', "Tv", "Kamera"].map((placement, index) => (
                     <TabButton key={index} active={index == 0}>
                         <p>{placement}</p>
@@ -110,18 +110,9 @@ const Tabs = ({ t }) => {
         </TabContainer>
     )
 }
-/*
 
-                <CardContainer>
-                    {[...Array(10)].map((item, index) => (
-                        index == 2 ? <LargeCard className="grid-2" /> : <Card />
-                    ))}
-                </CardContainer>
-
-*/
 const All = ({ t, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(true);
-
     return (
         <>
             <Head>
@@ -133,10 +124,16 @@ const All = ({ t, isLight, toggleTheme }) => {
                     <Form.Control placeholder={randomDevice} />
                 </Form.Group>
             </ContactHeader>
+
+            <Container style={{ marginTop: '5em' }}>
+                <p style={{ textAlign: 'center' }}>Coming soon...</p>
+            </Container>
+            {/*}
             <Container style={{ marginTop: '5em' }}>
                 <SectionTitle><Twemoji emoji="💻" /> {t('devices')}</SectionTitle>
                 <Tabs t={t} />
             </Container>
+            {*/}
         </>
     )
 }
