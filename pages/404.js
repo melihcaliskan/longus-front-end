@@ -30,6 +30,9 @@ const CustomContainer = styled.div`
     .no-desktop{
       display:none;
     }
+    .back{
+      filter:${props => props.isLight ? 'invert(0)' : 'invert(1)'};
+    }
     @media only screen and (max-width: 960px) {
       margin-top:2em;
       .no-desktop{
@@ -47,7 +50,7 @@ const CustomContainer = styled.div`
 
 const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language }) => (
   <>
-    <CustomContainer as={Container}>
+    <CustomContainer as={Container} isLight={isLight} >
       <img className="no-desktop" src="/assets/404.svg" width={200} />
       <div>
         <FourZeroFour>{statusCode ? statusCode : "404"}</FourZeroFour>
@@ -55,12 +58,12 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
         <h3>{t('detail')}</h3>
         <ActiveLink href="/">
           <FindButton>
-            <img src="/assets/back.svg" style={{ width: '20px', height: '20px' }} />
+            <img className="back" src="/assets/back.svg" style={{ width: '20px', height: '20px' }} />
             <p>{t('gohome')}</p>
           </FindButton>
         </ActiveLink>
       </div>
-      <img className="no-mobile" width={400} src="/assets/404.svg" />
+      <img className="back no-mobile" width={400} src="/assets/404.svg" />
     </CustomContainer>
   </>
 )
