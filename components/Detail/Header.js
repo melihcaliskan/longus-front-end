@@ -8,7 +8,6 @@ import useWindowSize from "../../helpers/windowSize";
 import { withTranslation } from '../../i18n';
 
 const Header = styled.div`
-  transition: all .2s;
   display:flex;
   justify-content:space-between;
   background: ${props => `linear-gradient(${props.deg}, ${props.lower} 5%, ${props.higher} 80%)`};
@@ -27,7 +26,6 @@ const Header = styled.div`
 `
 
 const InfoContainer = styled.div`
-  transition:all .2s;
   width:100%;
   display:flex;
   flex:1;
@@ -67,7 +65,6 @@ const InfoContainer = styled.div`
 `
 
 const MobileImage = styled.img`
-  transition: all .2s;
   display:none;
   max-height:180px;
 
@@ -81,7 +78,6 @@ const MobileImage = styled.img`
   }
 `
 const ProductImage = styled.img`
-  transition: all .2s;
   max-width:400px;
   object-fit:contain;
   mix-blend-mode: multiply;
@@ -97,7 +93,6 @@ const ProductImage = styled.img`
 `
 
 const ProductName = styled.h2`
-  transition: font-size .2s;
   font-size:45px;
   font-weight:800;
   color:${({ theme }) => theme.dark_text};

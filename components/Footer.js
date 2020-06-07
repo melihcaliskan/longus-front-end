@@ -43,11 +43,10 @@ div{
 }
 
 @media only screen and (max-width: 960px) {
+  justify-content:space-between;
+  width:100%;
   div{
     margin:0;
-  }
-  .no-mobile{
-    display:none;
   }
   p{
     font-size:14px;
@@ -72,10 +71,7 @@ const Right = styled.div`
     }
   }
   @media only screen and (max-width: 960px) {
-    p{
-        font-size:14px;
-        line-height:2.4em;
-    }
+    display:none;
   }
 `
 
@@ -152,7 +148,7 @@ const Footer = ({ t }) => {
             )}
           </select>
         </div>
-        <div className="no-mobile">
+        <div>
           <Title>{t('title')}</Title>
           <ActiveLink href={links.home}>
             <p>{t('home')}</p>

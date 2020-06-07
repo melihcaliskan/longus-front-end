@@ -7,7 +7,6 @@ import Plus from '../svg/Plus'
 import Search from '../svg/Search'
 import SearchModal from './Search'
 import Twemoji from '../Twemoji'
-import { getUserData } from '../../helpers/auth'
 import styled from 'styled-components';
 import { useScrollPosition } from '../../helpers/useScroll'
 import useWindowSize from "../../helpers/windowSize";
@@ -63,13 +62,11 @@ const Right = styled.div`
 `
 
 const Container = styled.div`
-  transition:.2s padding;
   z-index:99;
+  transition:.2s padding;
   display:flex;
   justify-content:space-between;
-  
-  width:100%;
-    
+      
   svg{
     path{
       fill:${({ theme }) => theme.always_dark};
@@ -104,7 +101,7 @@ const Container = styled.div`
   box-shadow:${props => props.isCollapsed ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
 `
 
-const Header = ({ style, t, toggleTheme, isLight, reverse, noNav = false }) => {
+const Header = ({ isAuth,   style, t, toggleTheme, isLight, reverse, noNav = false }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -127,7 +124,7 @@ const Header = ({ style, t, toggleTheme, isLight, reverse, noNav = false }) => {
         onHide={() => setModalShow(false)}
       />
       <Left>
-        <ActiveLink href={getUserData() ? "/dashboard" : "/"}><Title>{t('brand')}</Title></ActiveLink>
+        <ActiveLink href={isAuth ? "/dashboard" : "/"}><Title>{t('brand')}</Title></ActiveLink>
         {!noNav &&
           <>
             <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
@@ -142,7 +139,7 @@ const Header = ({ style, t, toggleTheme, isLight, reverse, noNav = false }) => {
             <Search />
           </span>
         </div>
-        <Dropdown isMobile={isMobile} toggleTheme={toggleTheme} isLight={isLight} />
+        <Dropdown isAuth={isAuth} isMobile={isMobile} toggleTheme={toggleTheme} isLight={isLight} />
       </Right>
     </Container>
   )
