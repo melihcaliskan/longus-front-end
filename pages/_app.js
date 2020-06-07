@@ -52,7 +52,6 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} toggleTheme={toggleTheme} />
       }
 
-      {JSON.stringify(getUserData())}
       <Component
         loading={!componentMounted}
         isMobile={isMobile}
