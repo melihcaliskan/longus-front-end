@@ -11,13 +11,13 @@ const Header = styled.div`
   transition: all .2s;
   display:flex;
   justify-content:space-between;
-  background: ${props => `linear-gradient(${props.deg}, ${props.lower} 5%, ${props.higher} 100%)`};
+  background: ${props => `linear-gradient(${props.deg}, ${props.lower} 5%, ${props.higher} 80%)`};
   background-repeat: no-repeat;
   background-size: cover;
   
   margin-top:-9em;
   padding:9em 3em 3em 3em;
-  
+    
   @media only screen and (max-width: 960px) {
       margin-top:-7.2em;
       padding:7em 1em 1em 1em;
