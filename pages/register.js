@@ -25,6 +25,8 @@ const RegisterContainer = styled.div`
 const Right = styled.div`
     position:relative;
     width:100%;
+    max-height:100vh;
+    overflow:auto;    
 `
 const Content = styled.div`
     padding:6vh 10vw;
