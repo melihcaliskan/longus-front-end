@@ -4,19 +4,22 @@ import Button from '../Button'
 import Card from "../Home/Card"
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import IssueCard from '../Issue/IssueCard'
 import React from 'react';
 import Row from 'react-bootstrap/Row'
 import styled from 'styled-components';
 
 export const CardContainer = styled.div`
-  display:flex;
   overflow-x:scroll;
   -webkit-overflow-scrolling: touch;
-  text-align:center;
+  
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+
+  gap: 0 30px;
   padding-bottom:1em;
 
   @media only screen and (max-width: 1440px) {
-    max-width:95vw;
   }
 `
 export const TabTitle = styled.div`
@@ -39,26 +42,24 @@ export const CustomContainer = styled.div`
   margin:0;
 `
 
-const List = ({ data, language = i18n.language }) => {
+const List = ({ data, language = i18n.language, isLight }) => {
   return (
     <CardContainer>
-      {data.map(item => (
-        <Card key={item.id} href={`issue/${item.slug}`} svg={item.icon} img={item.img}>
-          {item.name[0][language] ? item.name[0][language] : item.name[0]["en"]}
-        </Card>
+      {data.map((item, id) => (
+        <IssueCard key={id} data={item} isLight={isLight} lang={language} />
       ))}
     </CardContainer>
   )
 }
 
-const CustomTab = ({ t, theme, data }) => {
+const CustomTab = ({ t, theme, data, isLight }) => {
 
   return (
     <CustomContainer as={Container} style={{ marginBottom: '5em' }}>
       <TabTitle>{t('issues')}</TabTitle>
-        <Col>
-          <List data={data} />
-        </Col>
+      <Col>
+        <List data={data} isLight={isLight} />
+      </Col>
       <Button shadow href="/issues" style={{ marginTop: '2em', alignSelf: 'center', width: '180px' }}>
         {t('seeall')}
       </Button>

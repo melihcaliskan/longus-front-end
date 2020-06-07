@@ -34,7 +34,7 @@ const Home = ({ style, isMobile, isAuth, t, tReady, isLight, theme, toggleTheme,
         : null}
 
       <Container>
-        <RecentTab theme={theme} data={tabData} />
+        <RecentTab isLight={isLight} data={tabData} />
       </Container>
 
       <Stats isLight={isLight} theme={theme} />

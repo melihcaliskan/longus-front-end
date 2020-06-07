@@ -63,8 +63,8 @@ const Right = styled.div`
 `
 
 const Container = styled.div`
+  transition:.2s padding;
   z-index:99;
-  transition:.5s padding;
   display:flex;
   justify-content:space-between;
   

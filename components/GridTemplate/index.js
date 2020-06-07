@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 
 import { API_URL } from '../../helpers/urls';
-import ActiveLink from '../ActiveLink';
 import Button from '../Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import IssueCard from '../Issue/IssueCard'
 import Loader from '../../helpers/Loader';
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
@@ -40,7 +40,7 @@ const List = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     gap: 30px;
-
+    justify-items: center;
     margin-bottom:3em;
     @media only screen and (max-width: 1260px) {
         gap: 30px;
@@ -53,69 +53,6 @@ const List = styled.div`
         grid-template-columns: 1fr 1fr;
     }
 `
-
-const ItemContainer = styled.div`
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:space-between;
-    position: relative;
-
-    border-radius:8px;
-    
-    height:160px;
-    padding:2em 1em 1em 1em;
-
-    background:${({ theme }) => theme.button_bg};
-    box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.1);
-
-    p{
-        color:${({ theme }) => theme.text};
-        font-size:20px;
-        text-align:center;
-        line-height:1.2em;
-        margin-top:1em;
-    }
-
-    @media only screen and (max-width: 1024px) {
-        padding:1.2em 0.8em 1em 0.8em;
-        height:143px;
-        p{
-            font-size:18px;
-        }
-    }
-
-    @media only screen and (max-width: 960px) {
-        height:140px;
-    }
-`
-
-
-const Image = styled.img`
-    width:54px;
-    height:54px;
-    filter:${props => props.isLight ? 'invert(0.2)' : 'invert(0.8)'};
-
-    @media only screen and (max-width: 1024px) {
-        width:48px;
-        height:48px;
-    }
-
-    @media only screen and (max-width: 960px) {
-    }
-`
-
-const Item = ({ data, lang, isLight }) => {
-    return (
-        <ActiveLink href={`/category/${data.slug}`}>
-            <ItemContainer>
-                <Image src={`data:image/svg+xml;utf8;base64, ${data.icon}`} isLight={isLight} />
-                <p>{data.name[0][lang] ? data.name[0][lang] : data.name[0]["en"]}</p>
-            </ItemContainer>
-        </ActiveLink>
-    )
-}
-
 
 const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language, isLight, toggleTheme }) => {
     const [loading, setLoading] = useState(false);
@@ -183,13 +120,13 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
                 {searchData ?
                     <List>
                         {searchData.map((item, id) => (
-                            <Item key={id} url={url} data={item} isLight={isLight} lang={language} />
+                            <IssueCard key={id} data={item} isLight={isLight} lang={language} />
                         ))}
                     </List>
                     : null}
                 <List>
                     {items.map((item, id) => (
-                        <Item key={id} url={url} data={item} isLight={isLight} lang={language} />
+                        <IssueCard key={id} data={item} isLight={isLight} lang={language} />
                     ))}
                 </List>
                 {seeMore ?
