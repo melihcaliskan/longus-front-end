@@ -46,6 +46,34 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.scrollbar_hover};
   }
 
+  /* DROPDOWN FOR LOGGED USERS */
+  /* TODO: Add more class name to revoke conflicts */
+  .dropdown-toggle{
+    color: ${({ theme }) => theme.text};
+    background-color: ${({ theme }) => theme.body_100};
+    padding: 0.6em 1em;
+
+    border:0;
+    border-radius:60px;
+    box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
+
+  }
+  @media only screen and (max-width: 960px) {
+    .dropdown-toggle{
+      transform:scale(0.8);
+    }
+  }
+  @media only screen and (max-width: 320px) {
+    .dropdown-toggle{
+      transform:scale(0.7);
+    } 
+  }
+
+  .dropdown-toggle:hover{
+    color:${({ theme }) => theme.text};
+    background:${({ theme }) => theme.body_200};
+  }
+
   .emoji {
     width: auto;
     height: 1em;

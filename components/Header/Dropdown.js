@@ -55,35 +55,13 @@ const DropdownText = styled.span`
 `
 
 const CustomDropdown = styled.div`
-    button{
-        color:${({ theme }) => theme.text} !important;
-        background:${({ theme }) => theme.body_100} !important;
-
-        padding: 0.6em 1em;
-
-        border:0;
-        border-radius:60px;
-        box-shadow: 0px 4px 3px 0px rgba(0,0,0,0.15);
-        
-        @media only screen and (max-width: 960px) {
-            transform:scale(0.8);
-        }
-        @media only screen and (max-width: 320px) {
-            transform:scale(0.7);
-        }
-    }
-    
-    button:hover{
-        color:${({ theme }) => theme.text};
-        background:${({ theme }) => theme.scrollbar_light};
-    }
 `
 
-const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
+const HeaderDropdown = ({ isAuth, t, isMobile, isLight, toggleTheme }) => {
     const router = useRouter()
     const [modalShow, setModalShow] = useState(false);
     const [searchModalShow, setSearchModalShow] = useState(false);
-    
+
     const [userData, setUserData] = useState(getUserData());
 
     const handleLogout = () => {
@@ -96,7 +74,7 @@ const HeaderDropdown = ({ t, isMobile, isLight, toggleTheme }) => {
                 show={searchModalShow}
                 onHide={() => setSearchModalShow(false)}
             />
-            {!userData ?
+            {!isAuth ?
                 <>
                     <LoginModal show={modalShow} onHide={() => setModalShow(false)} />
                     <HomeDropdown onClick={() => setModalShow(true)}>
