@@ -49,7 +49,7 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
 
       {/* TODO: Detay sayfasında renkler siyah yapılacak */}
       {!noHeader.includes(currentRoute) &&
-        <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} toggleTheme={toggleTheme} />
+        <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} isAuth={isAuth()} toggleTheme={toggleTheme} />
       }
 
       <Component
