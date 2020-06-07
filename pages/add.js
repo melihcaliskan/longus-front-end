@@ -238,7 +238,7 @@ const CustomTab = ({ t, theme, isLight, toggleTheme, count }) => {
                             {isStatement == "yes" ?
                                 <Fade duration={700}>
                                     <div className="grid-2">
-                                        <Label>{t('howResolved')}</Label>
+                                        <Label>{t('whatIsStatement')}</Label>
                                         <Form.Control as="textarea" rows="3" />
                                     </div>
                                 </Fade>
