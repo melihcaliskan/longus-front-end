@@ -1,4 +1,5 @@
 import Container from 'react-bootstrap/Container'
+import Pulse from 'react-reveal/Pulse';
 import React from 'react';
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
@@ -232,18 +233,24 @@ const Stats = ({ t, theme, isLight }) => {
                         {t('growing')}
                     </Title>
                     <CircleContainer>
-                        <Low>
-                            <strong>100+</strong>
-                            <p>{t('low')}</p>
-                        </Low>
-                        <Medium>
-                            <strong>50+</strong>
-                            <p>{t('medium')}</p>
-                        </Medium>
-                        <High>
-                            <strong>10+</strong>
-                            <p>{t('high')}</p>
-                        </High>
+                        <Pulse duration={7000} forever>
+                            <Low>
+                                <strong>100+</strong>
+                                <p>{t('low')}</p>
+                            </Low>
+                        </Pulse>
+                        <Pulse duration={5000} forever>
+                            <Medium>
+                                <strong>50+</strong>
+                                <p>{t('medium')}</p>
+                            </Medium>
+                        </Pulse>
+                        <Pulse duration={4000} forever>
+                            <High>
+                                <strong>10+</strong>
+                                <p>{t('high')}</p>
+                            </High>
+                        </Pulse>
                     </CircleContainer>
                 </MeatballContainer>
 
