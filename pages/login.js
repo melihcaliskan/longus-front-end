@@ -117,17 +117,22 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identifier: name, password: password })
         }).then(response => response.json()).then(async data => {
-            console.log(data)
+            console.log(route,data)
             if (data.jwt) {
                 const { jwt, user } = data
+
+                // Workaround for device_issues array. I will remove it from server.
+                delete data.user["device_issues"]
+
                 // JWT - User Data
                 setLogin(jwt, user)
-                // Workaround for modal.
+
                 if (route == "/") {
                     Router.push("/dashboard")
                 } else {
                     Router.reload()
                 }
+                
             } else {
                 if (data.message[0].messages[0].id == "Auth.form.error.invalid") {
                     setError(t('passworderror'))
