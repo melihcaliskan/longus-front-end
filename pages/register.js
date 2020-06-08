@@ -7,12 +7,13 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
 import Loader from '../helpers/Loader'
+import Router from 'next/router'
 import Toast from 'react-bootstrap/Toast'
 import axios from 'axios';
 import { light_colors } from '../helpers/colors'
+import { setLogin } from '../helpers/auth'
 import styled from 'styled-components'
 import { useForm } from "react-hook-form";
-import { useRouter } from 'next/router'
 
 const RegisterContainer = styled.div`
     display:flex;
@@ -101,9 +102,8 @@ const CustomToast = (message) => {
 }
 
 const Register = ({ t, isAuth }) => {
-    const router = useRouter()
     if (isAuth) {
-        router.push("/dashboard")
+        Router.push("/dashboard")
         return <Loader />
     }
     const { register, handleSubmit, watch, errors } = useForm();
@@ -113,35 +113,57 @@ const Register = ({ t, isAuth }) => {
     const [responseError, setResponseError] = useState();
 
     const onSubmit = data => {
-        console.log(data)
-        const { name, username, email, password } = data
-        axios.post(`${API_URL}auth/local/register`, {
-            name,
-            username,
-            email,
-            password,
-        }).then(res => {
-            console.log(res)
-            const { data } = res
-            if (res.status == 400) {
-                setResponseError(res.message)
-            } else {
-                // CALL AUTH FUNC - REDIRECT TO DASHBOARD
-                console.log('User profile', data.user);
-                console.log('User token', data.jwt);
-            }
-        }).catch((error) => {
-            setResponseError(error)
-        })
+        const { route } = Router.router
+        if (usernameIsAvailable) {
+            const { name, username, email, password } = data
+            axios.post(`${API_URL}auth/local/register`, {
+                name,
+                username,
+                email,
+                password,
+            }).then(res => {
+                console.log(res)
+                const { data } = res
+                if (res.status == 400) {
+                    setResponseError(res.message)
+                } else {
+                    if (data.jwt) {
+                        const { jwt, user } = data
+
+                        // JWT - User Data
+                        setLogin(jwt, user)
+
+                        if (route == "/") {
+                            Router.push("/dashboard")
+                        } else {
+                            Router.reload()
+                        }
+
+                    } else {
+                        if (data.message[0].messages[0].id == "Auth.form.error.invalid") {
+                            setError(t('passworderror'))
+                        } else {
+                            setError(t('somethingwrong'))
+                        }
+                        console.log(data.message[0].messages[0].id)
+                    }
+                }
+            }).catch((error) => {
+                setResponseError(error)
+            })
+        } else {
+            alert("Username is not available.")
+        }
     }
 
     const handleUserName = (username) => {
-        setUserName(username)
+        console.log(username)
         const delay = setTimeout(async () => {
             setLoading(true)
             if (username.length > 3) {
                 const res = await fetch(`${API_URL}users/username=${username}`)
                 const json = await res.json()
+                console.log(json)
                 setUsernameIsAvailable(json.isAvailable)
             }
             setLoading(false)
@@ -180,22 +202,12 @@ const Register = ({ t, isAuth }) => {
                             <Form.Label>{t('username')}</Form.Label>
                             <Form.Control
                                 isValid={usernameIsAvailable}
-                                isInvalid={errors.name}
-                                ref={register} name="username" placeholder={t('username')} />
-                            {usernameIsAvailable && usernameIsAvailable.length ?
-                                usernameIsAvailable ?
-                                    <Form.Text className="text-muted">
-                                        kullanılabilir
-                                    </Form.Text>
-                                    :
-                                    <Form.Text className="text-muted">
-                                        kullanılamaz
-                                    </Form.Text>
-                                :
-                                <Form.Text className="text-muted">
-                                    kontrol edilmedi
-                                </Form.Text>
-                            }
+                                isInvalid={errors.username}
+                                onChange={(e) => handleUserName(e.target.value)}
+                                ref={register({ required: t('usernamerequired'), maxLength: 20 })}
+                                name="username" placeholder={t('username')} />
+                            {errors.username && <Form.Control.Feedback type="invalid">{t('usernamerequired')}</Form.Control.Feedback>}
+
                         </Form.Group>
                         <Form.Group className="form-item" >
                             <Form.Label>{t('email')}</Form.Label>
