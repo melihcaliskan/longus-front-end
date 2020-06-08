@@ -47,7 +47,6 @@ const List = styled.div`
 const ListText = styled.h3`
     font-weight:800;
     font-size:34px;
-    margin-bottom:1em;
     @media only screen and (max-width: 960px) {
         font-size:28px;
     }
@@ -92,7 +91,9 @@ const CustomToast = ({ isShow }) => {
     <CustomToast isShow={showToast} />
 }
 */
-const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
+const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) => {
+    const { name, device_issues } = device
+
     const [showToast, setShowToast] = useState(false)
 
     const handleToast = () => {
@@ -104,18 +105,18 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
     return (
         <Fade duration={600}>
             <Head>
-                <title>{device.name}</title>
+                <title>{name}</title>
                 <meta name="og:type" content="website" />
-                <meta name="description" content={device.name} />
-                <meta name="og:title" content={device.name} />
-                <meta name="description" content={device.name} />
-                <meta name="keywords" content={device.name} />
-                <meta name="og:url" content={device.name} />
-                <meta name="og:description" content={device.name} />
+                <meta name="description" content={name} />
+                <meta name="og:title" content={name} />
+                <meta name="description" content={name} />
+                <meta name="keywords" content={name} />
+                <meta name="og:url" content={name} />
+                <meta name="og:description" content={name} />
             </Head>
             <DetailContainer>
                 <ItemHeader
-                    name={device.name}
+                    name={name}
                     photo={API_URL_W +
                         (device.photo.formats.large ?
                             device.photo.formats.large.url :
@@ -123,8 +124,8 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
                                 device.photo.formats.small.url :
                                 device.photo.formats.thumbnail.url
                         )}
-                    count={{ issue: device.issues.length, comment: 0 }}
-                    fit={3}
+                    count={{ issue: device_issues.length, comment: 0 }}
+                    fit={device_issues ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
                 />
                 <Container>
@@ -144,11 +145,11 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme }) => {
                     </Row>
                     <List>
                         <ListText>
-                            {`${device.issues.length} ${t('issues')}`}
+                            {`${device_issues.length} ${t('issues')}`}
                         </ListText>
-                        <Issue theme={theme} />
-                        <Issue theme={theme} resolved />
-                        <Issue theme={theme} />
+                        {device_issues.map((item, index) => (
+                            <Issue data={item} key={index} theme={theme} lang={language} />
+                        ))}
                     </List>
                 </Container>
             </DetailContainer>
