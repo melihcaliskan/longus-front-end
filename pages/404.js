@@ -48,7 +48,7 @@ const CustomContainer = styled.div`
     }
 `
 
-const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language }) => (
+const Error = ({ statusCode, t, isLight }) => (
   <>
     <CustomContainer as={Container} isLight={isLight} >
       <img className="no-desktop" src="/assets/404.svg" width={200} />
