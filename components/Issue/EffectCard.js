@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { withTranslation } from '../../i18n';
 
 const EffectCardContainer = styled.div`
-    margin-bottom:2em;
+    margin:2em 0;
     display:flex;
     align-items:center;
     @media only screen and (max-width: 960px) {
@@ -26,7 +26,7 @@ const TabItem = styled.div`
     height:64px;
     border-radius:50%;
     cursor:pointer;
-    background:${props => props.active ? props.theme.darken_body : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
+    background:${props => props.active ? props.theme.darken_body : props.value < 10 ? props.value < 5 ? props.theme.effect_low : props.theme.effect_medium : props.theme.effect_high};
     box-shadow: ${props => props.active ? '0px 4px 3px 0px rgba(0, 0, 0, 0.15)' : 'initial'};
     justify-content: center;
     align-items: center;
@@ -123,14 +123,15 @@ const Slider = styled.div`
     `
 
 const EffectCard = ({ t, theme, usageEffect, repeatFreq }) => {
+    console.log(usageEffect, repeatFreq)
     const [index, setIndex] = useState(1);
     return (
         <EffectCardContainer>
             <Tabs>
-                <TabItem value={2} active={index == 1} onClick={() => setIndex(1)}>
+                <TabItem value={usageEffect} active={index == 1} onClick={() => setIndex(1)}>
                     <UsageSvg />
                 </TabItem>
-                <TabItem value={1} active={index == 2} onClick={() => setIndex(2)}>
+                <TabItem value={repeatFreq} active={index == 2} onClick={() => setIndex(2)}>
                     <FreqSvg />
                 </TabItem>
             </Tabs>
@@ -142,7 +143,7 @@ const EffectCard = ({ t, theme, usageEffect, repeatFreq }) => {
                 }
                 <ChartContainer>
                     <Chart />
-                    <Slider value={index == 1 ? 40 : 20} />
+                    <Slider value={index == 1 ? usageEffect * 10 : repeatFreq * 10} />
                     <div>
                         <p>{t('low')}</p>
                         <p>{t('high')}</p>
