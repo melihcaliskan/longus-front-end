@@ -10,6 +10,9 @@ import { EffectCard as Loader } from '../Loaders/EffectCard'
 import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
+const ReactMarkdown = require('react-markdown')
+
+
 const IssueContainer = styled.div`
   display:flex;
   flex-direction:column;
@@ -24,11 +27,12 @@ const Title = styled.h2`
   margin:0;
   font-weight:700;
   font-size:21px;
+  margin-top:2em;
 `
 
 const Text = styled.p`
   color:${({ theme }) => theme.detail_text};
-  margin:0.4em 0 2em 0;
+  margin:0.4em 0 0.5em 0;
   font-size:18px;
   line-height:1.4em;
 `
@@ -36,6 +40,7 @@ const Text = styled.p`
 const Info = styled.div`
   display:flex;
   flex-direction:column;
+  margin-top:2em;
   .added-by{
     color:${({ theme }) => theme.detail_text};
     font-size:20px;
@@ -138,7 +143,13 @@ const Resolved = styled.div`
   }
 `
 
-const data = [{
+const Warning = styled.span`
+  color:${({ theme }) => theme.body_400};
+  font-style: italic;
+  margin-bottom:2em;
+`
+
+const test = [{
   id: 1,
   user: {
     name: "Melih Çalışkan",
@@ -167,10 +178,15 @@ const IconButton = ({ text, icon, count, color }) => {
   )
 }
 
-const Issue = ({ t, resolved, theme }) => {
+const Issue = ({ data, t, theme, lang }) => {
   const [loading, setLoading] = useState(false);
 
-  const item = data[0];
+  const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
+
+  const item = test[0]
+
+  console.log(repeat_frequency, effect_on_usability)
+
   if (loading) {
     return <Loader />
   }
@@ -178,20 +194,27 @@ const Issue = ({ t, resolved, theme }) => {
     <IssueContainer>
       <Content>
         <Title>{t('explanation')}</Title>
-        <Text>{item.explanation}</Text>
 
-        <EffectCard usageEffect={3} repeatFreq={3} />
+        <Text as={ReactMarkdown} source={explanation[0][lang] || explanation[0]["en"]} />
+
+        <EffectCard usageEffect={effect_on_usability} repeatFreq={repeat_frequency} />
 
         <Title>{t('companyresponse')}</Title>
-        <Text>{item.company_response}</Text>
+        <Text as={ReactMarkdown} source={company_response[0][lang] || company_response[0]["en"]} />
+        {!company_response[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
+        <br />
+        {!company_solution[0][lang] && <Warning>Buraya kullanılabilen dilin içeriği gelecek</Warning>}
 
         <Title>{t('companysolution')}</Title>
-        <Text>{item.company_solution}</Text>
+        <Text>{company_solution[0][lang] || company_solution[0]["en"]}</Text>
+        {!company_solution[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
+        <br />
+        {!company_solution[0][lang] && <Warning>Buraya kullanılabilen dilin içeriği gelecek</Warning>}
 
         <Info>
           <p className="added-by">{t('addedby')}</p>
           <div className="user-info">
-            <img width={64} src={item.user.img} />
+            <img width={64} src={"https://api.melihcaliskan.com/uploads/thumbnail_melih_8cbd4cea9d.jpeg"} />
             <p>Melih Çalışkan</p>
           </div>
         </Info>
