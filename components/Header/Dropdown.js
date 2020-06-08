@@ -63,17 +63,17 @@ const HeaderDropdown = ({ userData, isAuth, t, isMobile, isLight, toggleTheme })
     const [modalShow, setModalShow] = useState(false);
     const [searchModalShow, setSearchModalShow] = useState(false);
 
-    let pp;
-    if (userData) {
-        console.log(userData)
-        pp = userData.photo && userData.photo.url && userData.photo.formats.thumbnail ? API_URL_W + userData.photo.formats.thumbnail.url : API_URL_W + "/uploads/user_1132094317.png"
-    }
+    const pp = userData &&
+        userData.photo &&
+        userData.photo.url &&
+        userData.photo.formats.thumbnail ?
+        API_URL_W + userData.photo.formats.thumbnail.url
+        :
+        API_URL_W + "/uploads/user_1132094317.png"
+
     const handleLogout = () => {
         logOut()
         router.push("/")
-    }
-    if (!userData) {
-        return <div />
     }
     return (
         <Container>
