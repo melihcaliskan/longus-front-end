@@ -29,7 +29,6 @@ const CustomContainer = styled.div`
 `
 
 const Dashboard = ({ isAuth, jwt, userData, t, tReady, isLight, toggleTheme, theme, language }) => {
-  console.log(userData)
   if (!isAuth) {
     useEffect(() => {
       Router.push("/")
