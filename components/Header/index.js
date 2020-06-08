@@ -63,7 +63,7 @@ const Right = styled.div`
 
 const Container = styled.div`
   z-index:99;
-  transition:.2s padding;
+  transition:${props => props.isCollapsed ? '.2s padding' : 'initial'} ;;
   display:flex;
   justify-content:space-between;
       
