@@ -1,14 +1,12 @@
-//import { Router } from '../i18n'
-import { useRouter } from 'next/router'
+import { Router } from '../i18n'
 
 function ActiveLink({ children, href, query, style, white }) {
-  const router = useRouter()
   const customStyle = { textDecoration: 'none', color: white ? 'white' : 'initial' }
 
   const handleClick = e => {
     if (href) {
       e.preventDefault()
-      router.push({
+      Router.push({
         pathname: href,
         query: query
       }, href)

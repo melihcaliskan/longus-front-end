@@ -1,6 +1,6 @@
+import { Router } from '../i18n'
 import { light_colors } from '../helpers/colors'
 import styled from 'styled-components';
-import { useRouter } from 'next/router'
 
 const CustomButton = styled.a`
   cursor:pointer;
@@ -19,7 +19,6 @@ const CustomButton = styled.a`
 `
 
 const Button = ({ children, href, query, onClick, type, shadow, style }) => {
-  const router = useRouter()
   const customStyle = {
     ...style
   }
@@ -31,7 +30,7 @@ const Button = ({ children, href, query, onClick, type, shadow, style }) => {
     if (href) {
       console.log(window)
       e.preventDefault()
-      router.push({
+      Router.push({
         pathname: href,
         query: query
       }, href)
