@@ -21,8 +21,8 @@
   "low": "Az",
   "high": "Çok",
 
-  "response": "Firma açıklaması:",
-  "solution": "Firma cevabı:",
+  "companyresponse": "Firma açıklaması:",
+  "companysolution": "Firma cevabı:",
 
   "samehere": "Ben de yaşıyorum!",
   "discuss": "Bu sorunu tartış",
