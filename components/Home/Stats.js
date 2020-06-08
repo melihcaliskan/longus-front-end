@@ -1,6 +1,7 @@
 import Container from 'react-bootstrap/Container'
 import Pulse from 'react-reveal/Pulse';
 import React from 'react';
+import Tada from 'react-reveal/Tada';
 import Twemoji from '../Twemoji';
 import styled from 'styled-components';
 import { withTranslation } from '../../i18n'
@@ -138,14 +139,14 @@ const Emoji = styled.div`
     border-radius:50%;
     background:${({ theme }) => theme.body_200};
     span{
-        font-size:96px;
+        font-size:88px;
     }
     @media only screen and (max-width: 960px) {
         width:90px;
         height:90px;
         border-radius:50%;
         span{
-            font-size:48px;
+            font-size:40px;
         } 
     }
     @media only screen and (max-width: 480px) {
@@ -256,7 +257,9 @@ const Stats = ({ t, theme, isLight }) => {
 
                 <CountContainer>
                     <Emoji>
-                        <Twemoji emoji="🙋‍♀️" />
+                        <Tada duration={4000} forever>
+                            <Twemoji emoji="🙋‍♀️" />
+                        </Tada>
                     </Emoji>
                     <div>
                         <CountItem>
