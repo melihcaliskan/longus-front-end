@@ -31,6 +31,9 @@ const CustomContainer = styled.div`
     .no-desktop{
       display:none;
     }
+    .back{
+      filter:${props => props.isLight ? 'invert(0)' : 'invert(1)'};
+    }
     @media only screen and (max-width: 960px) {
       margin-top:2em;
       .no-desktop{
@@ -46,13 +49,15 @@ const CustomContainer = styled.div`
     }
 `
 
-const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language }) => (
+const Soon = ({ t, tReady, isLight }) => (
   <>
-    <CustomContainer as={Container}>
+    <CustomContainer as={Container} isLight={isLight}>
       <img className="no-desktop" src="/assets/404.svg" width={200} />
       <div>
         <Title>This page is not developed yet.</Title>
         <h3>We are hardly working for make this page...</h3>
+        <br />
+        <h3><strong>Feel free to contact us if you have any question!</strong></h3>
         <ActiveLink href="/">
           <FindButton>
             <img src="/assets/back.svg" style={{ width: '20px', height: '20px' }} />
@@ -64,4 +69,4 @@ const Error = ({ statusCode, t, tReady, isLight, toggleTheme, theme, language })
     </CustomContainer>
   </>
 )
-export default withTranslation('common')(Error)
+export default withTranslation('common')(Soon)
