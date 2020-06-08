@@ -128,7 +128,7 @@ const Footer = ({ t }) => {
   const handleChange = (e) => {
     i18n.changeLanguage(e.target.value)
     setLanguage(e.target.value)
-    Router.reload()
+    //Router.reload()
   }
   return (
     <Container>
