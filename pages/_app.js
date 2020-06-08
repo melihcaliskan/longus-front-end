@@ -5,7 +5,7 @@ import '../helpers/styles.css'
 import React, { useEffect, useState } from 'react'
 import { appWithTranslation, i18n } from '../i18n'
 import { darkTheme, lightTheme } from '../helpers/theme';
-import { getUserData, isAuth } from '../helpers/auth'
+import { getJwt, getUserData, isAuth } from '../helpers/auth'
 
 import Footer from '../components/Footer'
 import { GlobalStyles } from '../helpers/global';
@@ -25,6 +25,11 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
   const noHeader = ['/', '/home', '/login', '/register']
   const noFooter = ['/login', '/register']
   const currentRoute = router.route
+
+  // Workaround for language load
+  if (!i18n.language) {
+    i18n.changeLanguage('en')
+  }
 
   return (
     <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
@@ -49,14 +54,21 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
 
       {/* TODO: Detay sayfasında renkler siyah yapılacak */}
       {!noHeader.includes(currentRoute) &&
-        <Header style={{ opacity: componentMounted ? 1 : 0 }} isLight={theme === 'light'} isAuth={isAuth()} toggleTheme={toggleTheme} />
+        <Header
+          style={{ opacity: componentMounted ? 1 : 0 }}
+          isLight={theme === 'light'}
+          userData={getUserData()}
+          isAuth={isAuth()}
+          toggleTheme={toggleTheme}
+        />
       }
 
       <Component
         loading={!componentMounted}
         isMobile={isMobile}
-        //jwt={getJwt()}
+        jwt={getJwt()}
         isAuth={isAuth()}
+        userData={getUserData()}
         language={i18n.language}
         isLight={theme === 'light'}
         theme={theme === 'light' ? lightTheme : darkTheme}

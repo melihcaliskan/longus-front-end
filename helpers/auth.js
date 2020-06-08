@@ -5,7 +5,7 @@ export const setLogin = (JWT, USER_DATA) => {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
     })
-    setCookie(null, 'USER_DATA', USER_DATA, {
+    setCookie(null, 'USER_DATA', JSON.stringify(USER_DATA), {
         maxAge: 30 * 24 * 60 * 60,
         path: '/',
     })
@@ -20,7 +20,7 @@ export const getJwt = () => {
 export const getUserData = () => {
     const cookies = parseCookies()
     const { USER_DATA } = cookies
-    return USER_DATA
+    return USER_DATA ? JSON.parse(USER_DATA) : false
 }
 
 export const isAuth = () => {

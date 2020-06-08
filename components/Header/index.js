@@ -101,7 +101,7 @@ const Container = styled.div`
   box-shadow:${props => props.isCollapsed ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
 `
 
-const Header = ({ isAuth,   style, t, toggleTheme, isLight, reverse, noNav = false }) => {
+const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, noNav = false }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -139,7 +139,7 @@ const Header = ({ isAuth,   style, t, toggleTheme, isLight, reverse, noNav = fal
             <Search />
           </span>
         </div>
-        <Dropdown isAuth={isAuth} isMobile={isMobile} toggleTheme={toggleTheme} isLight={isLight} />
+        <Dropdown userData={userData} isAuth={isAuth} isMobile={isMobile} toggleTheme={toggleTheme} isLight={isLight} />
       </Right>
     </Container>
   )

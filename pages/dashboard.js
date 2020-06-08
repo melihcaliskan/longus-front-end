@@ -28,7 +28,8 @@ const CustomContainer = styled.div`
     }
 `
 
-const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, language }) => {
+const Dashboard = ({ isAuth, jwt, userData, t, tReady, isLight, toggleTheme, theme, language }) => {
+  console.log(userData)
   if (!isAuth) {
     useEffect(() => {
       Router.push("/")
@@ -46,6 +47,10 @@ const Dashboard = ({ isAuth, jwt, t, tReady, isLight, toggleTheme, theme, langua
           <h1>Akış</h1>
           <img className="no-desktop" src="/assets/404.svg" width={200} />
           <p> welcome to dashboard {jwt}</p>
+          <br />
+          <p style={{ maxWidth: '200px' }}>{userData.name}</p>
+          <p style={{ maxWidth: '200px' }}>{JSON.stringify(userData)}</p>
+
         </Col>
         <Col>
           right menu

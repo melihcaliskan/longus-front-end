@@ -103,25 +103,31 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const handleSubmit = (evt) => {
-        const {route} = Router.router
+        const { route } = Router.router
         evt.preventDefault();
 
-        setLogin("testuser", "testuser")
-
-        // Workaround for modal.
-        if (route == "/") {
-            Router.push("/dashboard")
-        } else {
-            Router.reload()
+        if (!name) {
+            return false
         }
-        /*
+        if (!password) {
+            return false
+        }
         fetch(`${API_URL}auth/local`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identifier: name, password: password })
-        }).then(response => response.json()).then(data => {
+        }).then(response => response.json()).then(async data => {
+            console.log(data)
             if (data.jwt) {
-                alert("Giriş başarılı")
+                const { jwt, user } = data
+                // JWT - User Data
+                setLogin(jwt, user)
+                // Workaround for modal.
+                if (route == "/") {
+                    Router.push("/dashboard")
+                } else {
+                    Router.reload()
+                }
             } else {
                 if (data.message[0].messages[0].id == "Auth.form.error.invalid") {
                     setError(t('passworderror'))
@@ -131,7 +137,6 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
                 console.log(data.message[0].messages[0].id)
             }
         });
-        */
     }
 
     return (
