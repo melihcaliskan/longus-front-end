@@ -133,6 +133,8 @@ const Resolved = styled.div`
   border-radius:8px;
 
   margin-bottom:3em;
+
+  padding:0 1.5em;
   
   ${"h2"}{
     color:${props => light_colors.TEXT_COLOR};
