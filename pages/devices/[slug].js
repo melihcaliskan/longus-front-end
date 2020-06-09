@@ -181,7 +181,6 @@ Detail.getInitialProps = async ({ res, query, err }) => {
 
     const response = await fetch(`${API_URL}devices?slug=${query.slug}`)
     const device = await response.json()
-    console.log(response)
     return { namespacesRequired, device: device[0] }
 }
 
