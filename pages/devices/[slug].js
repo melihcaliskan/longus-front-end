@@ -140,7 +140,7 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
                 <ItemHeader
                     name={name}
                     photo={photoURL}
-                    count={{ issue: device_issues && device_issues.length > 0 || 0, comment: 0 }}
+                    count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: 0 }}
                     fit={device_issues && device_issues.length > 0 ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
                 />
