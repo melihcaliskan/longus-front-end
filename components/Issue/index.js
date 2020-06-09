@@ -8,6 +8,7 @@ import EffectCard from './EffectCard'
 import Fade from 'react-reveal/Fade';
 import { EffectCard as Loader } from '../Loaders/EffectCard'
 import PropTypes from 'prop-types'
+import { objectMap } from '../../helpers/functions'
 import styled from 'styled-components';
 
 const ReactMarkdown = require('react-markdown')
@@ -169,6 +170,7 @@ const test = [{
   createdAt: new Date(),
   updatedAt: new Date(),
 }]
+
 const IconButton = ({ text, icon, count, color }) => {
   return (
     <IconB color={color}>
@@ -185,31 +187,52 @@ const Issue = ({ data, t, theme, lang }) => {
 
   const item = test[0]
 
-  console.log(repeat_frequency, effect_on_usability)
-
   if (loading) {
     return <Loader />
   }
+
+  const availableLangKey = (data) => {
+    let found_key;
+
+    // Objecti gezip null olmayan değer arıyoruz.
+    Object.keys(data).forEach(key => {
+      const value = data[key];
+      if (value && key != "id") {
+        found_key = key
+      }
+    })
+    return found_key
+  }
+
   return (
     <IssueContainer>
       <Content>
         <Title>{t('explanation')}</Title>
-
-        <Text as={ReactMarkdown} source={explanation[0][lang] || explanation[0]["en"]} />
+        <Text as={ReactMarkdown} source={explanation[0][lang] || explanation[0]["en"] || explanation[0][availableLangKey(explanation[0])]} />
+        {!explanation[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
 
         <EffectCard usageEffect={effect_on_usability} repeatFreq={repeat_frequency} />
 
         <Title>{t('companyresponse')}</Title>
-        <Text as={ReactMarkdown} source={company_response[0][lang] || company_response[0]["en"]} />
-        {!company_response[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
-        <br />
-        {!company_solution[0][lang] && <Warning>Buraya kullanılabilen dilin içeriği gelecek</Warning>}
+        {(company_response && company_response.length) ?
+          <>
+            <Text as={ReactMarkdown} source={company_response[0][lang] || company_response[0]["en"] || company_response[0][availableLangKey(company_response[0])]} />
+            {!company_response[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
+          </>
+          :
+          <Warning>There is no company response yet.</Warning>
+        }
 
         <Title>{t('companysolution')}</Title>
-        <Text>{company_solution[0][lang] || company_solution[0]["en"]}</Text>
-        {!company_solution[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
-        <br />
-        {!company_solution[0][lang] && <Warning>Buraya kullanılabilen dilin içeriği gelecek</Warning>}
+        {(company_solution && company_solution.length) ?
+          <>
+            <Text as={ReactMarkdown} source={company_solution[0][lang] || company_solution[0]["en"] || company_solution[0][availableLangKey(company_solution[0])]} />
+            {!company_solution[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
+          </>
+          :
+          <Warning>There is no solution yet.</Warning>
+        }
+
 
         <Info>
           <p className="added-by">{t('addedby')}</p>
