@@ -91,7 +91,7 @@ const CustomToast = ({ isShow }) => {
     <CustomToast isShow={showToast} />
 }
 */
-const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) => {
+const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, language }) => {
     const { name, device_issues, photo } = device
 
     const [showToast, setShowToast] = useState(false)
@@ -167,7 +167,7 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
                             }
                         </ListText>
                         {device_issues && device_issues.length > 0 && device_issues.map((item, index) => (
-                            <Issue data={item} key={index} theme={theme} lang={language} />
+                            <Issue data={item} userData={userData} key={index} theme={theme} lang={language} />
                         ))}
                     </List>
                 </Container>
@@ -181,7 +181,13 @@ Detail.getInitialProps = async ({ res, query, err }) => {
 
     const response = await fetch(`${API_URL}devices?slug=${query.slug}`)
     const device = await response.json()
-    return { namespacesRequired, device: device[0] }
+
+    const user_id = device[0] && device[0].device_issues && device[0].device_issues[0].user
+    const response_two = await fetch(`${API_URL}users/${user_id}`)
+    const userData = await response_two.json()
+    delete userData.device_issues
+
+    return { namespacesRequired, device: device[0], userData: userData }
 }
 
 export default withTranslation('detail')(Detail)

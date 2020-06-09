@@ -71,7 +71,6 @@ const HeaderDropdown = ({ userData, isAuth, t, isMobile, isLight, toggleTheme })
         API_URL_W + "/uploads/user_1132094317.png"
 
     const handleLogout = () => {
-        console.log("sa")
         logOut()
         Router.push("/")
     }

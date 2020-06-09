@@ -122,7 +122,6 @@ const Register = ({ t, isAuth }) => {
                 email,
                 password,
             }).then(res => {
-                console.log(res)
                 const { data } = res
                 if (res.status == 400) {
                     setResponseError(res.message)
@@ -145,7 +144,6 @@ const Register = ({ t, isAuth }) => {
                         } else {
                             setError(t('somethingwrong'))
                         }
-                        console.log(data.message[0].messages[0].id)
                     }
                 }
             }).catch((error) => {
@@ -157,13 +155,11 @@ const Register = ({ t, isAuth }) => {
     }
 
     const handleUserName = (username) => {
-        console.log(username)
         const delay = setTimeout(async () => {
             setLoading(true)
             if (username.length > 3) {
                 const res = await fetch(`${API_URL}users/username=${username}`)
                 const json = await res.json()
-                console.log(json)
                 setUsernameIsAvailable(json.isAvailable)
             }
             setLoading(false)

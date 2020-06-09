@@ -117,7 +117,6 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ identifier: name, password: password })
         }).then(response => response.json()).then(async data => {
-            console.log(route,data)
             if (data.jwt) {
                 const { jwt, user } = data
 
@@ -139,7 +138,6 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
                 } else {
                     setError(t('somethingwrong'))
                 }
-                console.log(data.message[0].messages[0].id)
             }
         });
     }

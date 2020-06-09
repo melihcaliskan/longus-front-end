@@ -4,8 +4,8 @@ import { Question, Sad, Share, Tick } from '../svg/IssueCardSvg'
 import React, { useEffect, useRef, useState } from 'react';
 import { dark_colors, light_colors } from "../../helpers/colors"
 
+import { API_URL_W } from '../../helpers/urls'
 import EffectCard from './EffectCard'
-import Fade from 'react-reveal/Fade';
 import { EffectCard as Loader } from '../Loaders/EffectCard'
 import styled from 'styled-components';
 
@@ -180,7 +180,7 @@ const IconButton = ({ text, icon, count, color }) => {
   )
 }
 
-const Issue = ({ data, t, theme, lang }) => {
+const Issue = ({ data, userData, t, theme, lang }) => {
   const [loading, setLoading] = useState(false);
 
   const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
@@ -203,6 +203,25 @@ const Issue = ({ data, t, theme, lang }) => {
     })
     return found_key
   }
+
+  // Burası değişecek, fonksiyona alınacak.
+  const photoURL = userData.photo ?
+    (API_URL_W +
+      (
+        userData.photo.formats.large ?
+          userData.photo.formats.large.url
+          :
+          userData.photo.formats.medium ?
+            userData.photo.formats.medium.url
+            :
+            userData.photo.formats.small ?
+              userData.photo.formats.small.url
+              :
+              userData.photo.formats.thumbnail.url
+      )
+    )
+    :
+    "/assets/no-photo.svg"
 
   return (
     <IssueContainer>
@@ -237,8 +256,8 @@ const Issue = ({ data, t, theme, lang }) => {
         <Info>
           <p className="added-by">{t('addedby')}</p>
           <div className="user-info">
-            <img width={64} src={"https://api.melihcaliskan.com/uploads/thumbnail_melih_8cbd4cea9d.jpeg"} />
-            <p>Melih Çalışkan</p>
+            <img width={64} src={photoURL} />
+            <p>{userData.name}</p>
           </div>
         </Info>
 
