@@ -41,8 +41,8 @@ const App = ({ Component, pageProps, router, router: { asPath } }) => {
         <meta property="og:title" content="longus.io" />
         <meta property="og:url" content="https://longus.io" />
         <meta name="keywords" content="chronic issue, device issues, smartphone issues" />
-        <meta property="description" content="PROJE AÇIKLAMASI" />
-        <meta property="og:description" content="PROJE AÇIKLAMASI" />
+        <meta property="description" content="Find the chronic issues of your next device." />
+        <meta property="og:description" content="Find the chronic issues of your next device." />
 
         <link rel="icon" href="/assets/favicon.ico" />
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
