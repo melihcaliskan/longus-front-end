@@ -41,7 +41,7 @@ const TabItem = styled.div`
         top:25px;
         width:16px;
         height:16px;
-        background:${props => props.active ? props.theme.darken_body : props.value == 1 ? props.theme.effect_low : props.value == 2 ? props.theme.effect_medium : props.theme.effect_high};
+        background:${props => props.active ? props.theme.darken_body : props.value < 10 ? props.value < 5 ? props.theme.effect_low : props.theme.effect_medium : props.theme.effect_high};
         border-left:none;
         border-bottom:none;
         transform:rotate(45deg);
