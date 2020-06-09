@@ -121,7 +121,7 @@ const All = ({ t, isLight, toggleTheme }) => {
             <ContactHeader>
                 <h3><Twemoji emoji="🔍" /> {t('startsearching')}</h3>
                 <Form.Group style={{ width: '80%', marginTop: '1.5em' }} controlId="formBasicEmail">
-                    <Form.Control placeholder={randomDevice} />
+                <Form.Control size="lg" placeholder={randomDevice}/>
                 </Form.Group>
             </ContactHeader>
 
