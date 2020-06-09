@@ -7,8 +7,6 @@ import { dark_colors, light_colors } from "../../helpers/colors"
 import EffectCard from './EffectCard'
 import Fade from 'react-reveal/Fade';
 import { EffectCard as Loader } from '../Loaders/EffectCard'
-import PropTypes from 'prop-types'
-import { objectMap } from '../../helpers/functions'
 import styled from 'styled-components';
 
 const ReactMarkdown = require('react-markdown')
