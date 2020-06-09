@@ -11,7 +11,7 @@ function getScrollPosition({ element, useWindow }) {
 
   return useWindow
     ? { x: window.scrollX, y: window.scrollY }
-    : { x: position.left, y: position.top }
+    : { x: -position.left, y: -position.top }
 }
 
 export function useScrollPosition(effect, deps, element, useWindow, wait) {

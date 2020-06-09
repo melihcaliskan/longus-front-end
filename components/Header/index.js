@@ -107,7 +107,8 @@ const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, noN
 
   useScrollPosition(
     ({ prevPos, currPos }) => {
-      const isVisible = currPos.y < -220
+      console.log(currPos)
+      const isVisible = prevPos.y > 150 && currPos.y > 150
       setCollapsed(isVisible)
     },
     [isCollapsed]
