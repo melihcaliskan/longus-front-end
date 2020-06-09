@@ -28,7 +28,6 @@ const Button = ({ children, href, query, onClick, type, shadow, style }) => {
       onClick()
     }
     if (href) {
-      console.log(window)
       e.preventDefault()
       Router.push({
         pathname: href,

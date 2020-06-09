@@ -76,7 +76,6 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
             if (search.length > 3) {
                 const res = await fetch(`${API_URL}${searchUrl}/${language}/${search}`)
                 const data = await res.json()
-                console.log(data)
                 data.length > 0 ? setSearchData(data) : null
             } else {
                 setSearchData('')
@@ -96,7 +95,6 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
         setItems([...items, ...result])
 
         if (result.length < limit) {
-            console.log(result.length, limit)
             setSeeMore(false)
         }
         setLoading(false)

@@ -151,7 +151,6 @@ const AnimatedHeader = ({ t, name, photo, count, fit, isMobile, }) => {
         .then((palette) => {
           const dark_vibrant = palette.Vibrant.rgb
           const dark_muted = palette.LightVibrant.rgb
-          console.log(dark_vibrant, palette)
           setLower(`rgb(${dark_vibrant[0] + 110}, ${dark_vibrant[1] + 110}, ${dark_vibrant[2] + 110})`)
           setHigher(`rgb(${dark_muted[0] + 90}, ${dark_muted[1] + 90}, ${dark_muted[2] + 90})`)
         })

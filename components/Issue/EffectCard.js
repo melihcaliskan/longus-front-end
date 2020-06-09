@@ -123,7 +123,6 @@ const Slider = styled.div`
     `
 
 const EffectCard = ({ t, theme, usageEffect, repeatFreq }) => {
-    console.log(usageEffect, repeatFreq)
     const [index, setIndex] = useState(1);
     return (
         <EffectCardContainer>
