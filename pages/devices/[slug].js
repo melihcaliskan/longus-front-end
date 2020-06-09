@@ -92,7 +92,7 @@ const CustomToast = ({ isShow }) => {
 }
 */
 const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) => {
-    const { name, device_issues } = device
+    const { name, device_issues, photo } = device
 
     const [showToast, setShowToast] = useState(false)
 
@@ -102,6 +102,28 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
             setShowToast(false)
         }, 3000);
     }
+    if (device.statusCode == 404) {
+        // Build aldıktan sonra Next.js bizim yerimize 404 sayfasına yönlendiriyor.
+    }
+
+    const photoURL = photo ?
+        (API_URL_W +
+            (
+                photo.formats.large ?
+                    photo.formats.large.url
+                    :
+                    photo.formats.medium ?
+                        photo.formats.medium.url
+                        :
+                        photo.formats.small ?
+                            photo.formats.small.url
+                            :
+                            photo.formats.thumbnail.url
+            )
+        )
+        :
+        "/assets/no-photo.svg"
+
     return (
         <Fade duration={600}>
             <Head>
@@ -117,15 +139,9 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
             <DetailContainer>
                 <ItemHeader
                     name={name}
-                    photo={API_URL_W +
-                        (device.photo.formats.large ?
-                            device.photo.formats.large.url :
-                            device.photo.formats.small ?
-                                device.photo.formats.small.url :
-                                device.photo.formats.thumbnail.url
-                        )}
-                    count={{ issue: device_issues.length, comment: 0 }}
-                    fit={device_issues ? device_issues[0].effect_on_usability : 10}
+                    photo={photoURL}
+                    count={{ issue: device_issues && device_issues.length > 0 || 0, comment: 0 }}
+                    fit={device_issues && device_issues.length > 0 ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
                 />
                 <Container>
@@ -145,9 +161,12 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
                     </Row>
                     <List>
                         <ListText>
-                            {`${device_issues.length} ${t('issues')}`}
+                            {device_issues && device_issues.length > 0 ?
+                                `${device_issues.length} ${t('issues')}`
+                                : t('noissue')
+                            }
                         </ListText>
-                        {device_issues.map((item, index) => (
+                        {device_issues && device_issues.length > 0 && device_issues.map((item, index) => (
                             <Issue data={item} key={index} theme={theme} lang={language} />
                         ))}
                     </List>
@@ -160,11 +179,10 @@ const Detail = ({ device, t, isMobile, isLight, toggleTheme, theme, language }) 
 Detail.getInitialProps = async ({ res, query, err }) => {
     const namespacesRequired = ["detail"];
 
-    console.log(query)
-
-    const response = await fetch(`${API_URL}devices/${query.slug}`)
+    const response = await fetch(`${API_URL}devices?slug=${query.slug}`)
     const device = await response.json()
-    return { namespacesRequired, device: device }
+    console.log(response)
+    return { namespacesRequired, device: device[0] }
 }
 
 export default withTranslation('detail')(Detail)
