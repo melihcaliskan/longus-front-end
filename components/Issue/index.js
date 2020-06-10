@@ -1,10 +1,10 @@
 import { Question, Sad, Share, Tick } from '../svg/IssueCardSvg'
 import React, { useState } from 'react';
 import { Router, withTranslation } from '../../i18n'
+import { availableLangKey, handlePhoto } from '../../helpers/functions'
 
 import { API_URL_W } from '../../helpers/urls'
 import EffectCard from './EffectCard'
-import { handlePhoto } from '../../helpers/functions'
 import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
 
@@ -187,18 +187,7 @@ const Issue = ({ data, slug, userData, t, theme, lang }) => {
 
   const item = test[0]
 
-  const availableLangKey = (data) => {
-    let found_key;
 
-    // Objecti gezip null olmayan değer arıyoruz.
-    Object.keys(data).forEach(key => {
-      const value = data[key];
-      if (value && key != "id") {
-        found_key = key
-      }
-    })
-    return found_key
-  }
   return (
     <IssueContainer>
       <Content>

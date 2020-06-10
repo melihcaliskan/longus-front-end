@@ -16,3 +16,16 @@ export const handlePhoto = (photo) => {
         )
     ) : "/assets/no-photo.svg"
 }
+
+export const availableLangKey = (data) => {
+    let found_key;
+
+    // Objecti gezip null olmayan değer arıyoruz.
+    Object.keys(data).forEach(key => {
+      const value = data[key];
+      if (value && key != "id") {
+        found_key = key
+      }
+    })
+    return found_key
+  }

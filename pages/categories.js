@@ -20,7 +20,7 @@ const Categories = ({ t, language, isLight, toggleTheme, data }) => {
 
 Categories.getInitialProps = async ctx => {
     const namespacesRequired = ["common"];
-    const res = await fetch(`${API_URL}categories/start=0&limit=12`)
+    const res = await fetch(`${API_URL}categories/custom/start=0&limit=12`)
     const categories = await res.json()
     return { namespacesRequired, data: categories }
 }

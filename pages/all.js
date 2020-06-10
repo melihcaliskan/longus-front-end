@@ -1,8 +1,10 @@
+import { API_URL, API_URL_W } from '../helpers/urls'
 import { Link, i18n, withTranslation } from '../i18n'
 import React, { useEffect, useRef, useState } from 'react';
 
 import Button from 'react-bootstrap/Button'
 import Card from '../components/All/Card'
+import CategoryList from '../components/All/CategoryList'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
 import Fade from 'react-reveal/Fade';
@@ -12,6 +14,7 @@ import Header from '../components/Header'
 import LargeCard from '../components/All/LargeCard'
 import Overlay from 'react-bootstrap/Overlay'
 import Popover from 'react-bootstrap/Popover'
+import Row from 'react-bootstrap/Row'
 import Twemoji from '../components/Twemoji'
 import { randomDevice } from '../helpers/placeholderGenerator'
 import styled from 'styled-components';
@@ -111,7 +114,7 @@ const Tabs = ({ t }) => {
     )
 }
 
-const All = ({ t, isLight, toggleTheme }) => {
+const All = ({ t, query, language, categories, devices }) => {
     const [loading, setLoading] = useState(true);
     return (
         <>
@@ -121,25 +124,39 @@ const All = ({ t, isLight, toggleTheme }) => {
             <ContactHeader>
                 <h3><Twemoji emoji="🔍" /> {t('startsearching')}</h3>
                 <Form.Group style={{ width: '80%', marginTop: '1.5em' }} controlId="formBasicEmail">
-                <Form.Control size="lg" placeholder={randomDevice}/>
+                    <Form.Control size="lg" placeholder={randomDevice} />
                 </Form.Group>
             </ContactHeader>
 
-            <Container style={{ marginTop: '5em' }}>
-                <p style={{ textAlign: 'center' }}>Coming soon...</p>
+            <Container style={{ marginTop: '2em' }}>
+                <Row>
+                    <Col>
+                        <CategoryList categories={categories} lang={language} query={query} />
+                    </Col>
+                    <Col xs={8}>
+                        {JSON.stringify(devices)}
+                    </Col>
+                </Row>
             </Container>
-            {/*}
-            <Container style={{ marginTop: '5em' }}>
-                <SectionTitle><Twemoji emoji="💻" /> {t('devices')}</SectionTitle>
-                <Tabs t={t} />
-            </Container>
-            {*/}
         </>
     )
 }
 
-All.getInitialProps = async () => ({
-    namespacesRequired: ['all'],
-})
+All.getInitialProps = async ({ res, query, err }) => {
+    const { category } = query
+
+    const namespacesRequired = ["all"];
+
+    const response = await fetch(`${API_URL}categories`)
+    const categoryData = await response.json()
+    categoryData.map(item => delete item.devices)
+
+    const devices_url = category ? `${API_URL}devices?category.slug=${category}` : `${API_URL}devices`
+    const response_two = await fetch(devices_url)
+    const deviceData = await response_two.json()
+
+
+    return { namespacesRequired, categories: categoryData, devices: deviceData, query }
+}
 
 export default withTranslation('all')(All)

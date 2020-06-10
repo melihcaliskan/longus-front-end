@@ -1,3 +1,8 @@
 {
-    "startsearching": "Hemen aramaya başla"
+    "all": "Tümü",
+    "startsearching": "Hemen aramaya başla",
+    "devices":"Cihazlar",
+    "issues":"Sorunlar",
+
+    "categories":"Kategoriler"
 }
