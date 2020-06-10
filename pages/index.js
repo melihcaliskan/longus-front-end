@@ -42,7 +42,7 @@ const Home = ({ style, isMobile, isAuth, t, tReady, isLight, theme, toggleTheme,
   )
 }
 Home.getInitialProps = async ctx => {
-  const res = await fetch(`${API_URL}issues/start=0&limit=10`)
+  const res = await fetch(`${API_URL}issues/custom/start=0&limit=10`)
   const issues = await res.json()
   return { tabData: issues }
 }

@@ -20,7 +20,7 @@ const Issues = ({ t, language, isLight, toggleTheme, data }) => {
 
 Issues.getInitialProps = async ctx => {
     const namespacesRequired = ["common"];
-    const res = await fetch(`${API_URL}issues/start=0&limit=12`)
+    const res = await fetch(`${API_URL}issues/custom/start=0&limit=12`)
     const issues = await res.json()
     return { namespacesRequired, data: issues }
 }
