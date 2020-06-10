@@ -4,6 +4,7 @@ import { Router, withTranslation } from '../../i18n'
 
 import { API_URL_W } from '../../helpers/urls'
 import EffectCard from './EffectCard'
+import { handlePhoto } from '../../helpers/functions'
 import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
 
@@ -44,6 +45,7 @@ const Info = styled.div`
     font-weight:700;
   }
   .user-info {
+    cursor:pointer;
     display:flex;
     margin-top:0.4em;
     font-size:24px;
@@ -197,26 +199,6 @@ const Issue = ({ data, slug, userData, t, theme, lang }) => {
     })
     return found_key
   }
-
-  // Burası değişecek, fonksiyona alınacak.
-  const photoURL = userData.photo ?
-    (API_URL_W +
-      (
-        userData.photo.formats.large ?
-          userData.photo.formats.large.url
-          :
-          userData.photo.formats.medium ?
-            userData.photo.formats.medium.url
-            :
-            userData.photo.formats.small ?
-              userData.photo.formats.small.url
-              :
-              userData.photo.formats.thumbnail.url
-      )
-    )
-    :
-    "/assets/no-photo.svg"
-
   return (
     <IssueContainer>
       <Content>
@@ -224,6 +206,7 @@ const Issue = ({ data, slug, userData, t, theme, lang }) => {
         <Title>{t('explanation')}</Title>
         <Text as={ReactMarkdown} source={explanation[0][lang] || explanation[0]["en"] || explanation[0][availableLangKey(explanation[0])]} />
         {!explanation[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
+        {!explanation[0][lang] && <Warning>Add translation</Warning>}
 
         <EffectCard usageEffect={effect_on_usability} repeatFreq={repeat_frequency} />
 
@@ -250,8 +233,8 @@ const Issue = ({ data, slug, userData, t, theme, lang }) => {
 
         <Info>
           <p className="added-by">{t('addedby')}</p>
-          <div className="user-info">
-            <img width={64} src={photoURL} />
+          <div onClick={() => Router.push(`/profile/${userData.username}`)} className="user-info">
+            <img width={64} src={handlePhoto(userData.photo)} />
             <p>{userData.name}</p>
           </div>
         </Info>
