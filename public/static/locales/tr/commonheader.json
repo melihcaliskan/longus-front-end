@@ -14,5 +14,7 @@
     "profile": "Profil",
     "settings": "Ayarlar",
     "login": "Giriş Yap",
-    "logout": "Çıkış Yap"
+    "logout": "Çıkış Yap",
+
+    "noresult":"Sonuç bulunamadı"
 }

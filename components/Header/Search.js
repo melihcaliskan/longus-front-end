@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { i18n, withTranslation } from '../../i18n'
+import { Router, withTranslation } from '../../i18n'
 
 import ActiveLink from '../ActiveLink'
 import Fade from 'react-reveal/Fade';
 import Form from 'react-bootstrap/Form'
+import { GET } from '../../helpers/network'
 import Modal from 'react-bootstrap/Modal'
+import { handlePhoto } from '../../helpers/functions'
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -24,6 +26,45 @@ const Container = styled.div`
         }
     }
 `
+
+const Title = styled.h2`
+    margin:0;
+    font-size:30px;
+    font-weight:bold;
+    padding:1em 0.5em 0em 0.5em;
+
+    text-align:${props => props.center ? "center" : "initial"};
+`
+
+const SearchItem = styled.div`
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    transition: .6s background-color;
+    background:${({ theme }) => theme.body_100};
+
+    cursor:pointer;
+    margin-top:1em;
+    padding:0.5em 2em;
+    border-radius:6px;
+
+    &:hover{
+        background:${({ theme }) => theme.body_200};
+    }
+
+    img{
+        padding-right:1em;
+        mix-blend-mode: multiply;
+    }
+`
+
+const DeviceName = styled.h2`
+    margin:0;
+    font-size:24px;
+    font-weight:bold;
+`
+
 
 const Suggestions = () => {
     return (
@@ -51,21 +92,60 @@ const Suggestions = () => {
     )
 }
 
-const Results = () => {
-    return (
-        <div>
-            <br />
-            Arama sonuçları...
-        </div>
-    )
+
+const Results = ({ t, loading, results }) => {
+    if (loading) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3em 0 1em 0' }}>
+                <img height={150} src="/assets/loading.svg" />
+            </div>
+        )
+    }
+    if (results?.length) {
+        return (
+            <>
+                <Title>Results:</Title>
+                {results.map(item => (
+                    <SearchItem onClick={() => Router.push('/devices/' + item.slug)}>
+                        <DeviceName>{item.name}</DeviceName>
+                        <img height={50} src={handlePhoto(item.photo)} />
+                    </SearchItem>
+                ))}
+            </>
+        )
+    } else {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '3em 0 1em 0' }}>
+                <img height={150} src="/assets/no-data.svg" />
+                <Title center>{t('noresult')}</Title>
+            </div>
+        )
+    }
 }
 
 
 const SearchModal = ({ t, show, onHide }) => {
+    const [loading, setLoading] = useState(false);
     const [value, setValue] = useState('');
+    const [searchData, setSearchData] = useState(null);
+
     const handleHide = () => {
         onHide()
         setValue('')
+        setSearchData(null)
+    }
+
+    const handleSearch = async (value) => {
+        setValue(value)
+        const delay = setTimeout(async () => {
+            setLoading(true)
+            if (value.length > 2) {
+                const data = await GET(`devices?name_contains=${value}`)
+                setSearchData(data)
+            }
+            setLoading(false)
+        }, 400)
+        return () => clearTimeout(delay)
     }
     return (
         <Modal
@@ -81,7 +161,7 @@ const SearchModal = ({ t, show, onHide }) => {
                         <Form.Group>
                             <Form.Control
                                 value={value}
-                                onChange={(e) => setValue(e.target.value)}
+                                onChange={(e) => handleSearch(e.target.value)}
                                 size="lg"
                                 type="text"
                                 placeholder="📱 Search for a device"
@@ -91,7 +171,7 @@ const SearchModal = ({ t, show, onHide }) => {
                         {!value ?
                             <Suggestions />
                             :
-                            <Results data={"data"} />
+                            <Results t={t} loading={loading} results={searchData} />
                         }
                     </Container>
                 </Fade>

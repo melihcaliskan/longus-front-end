@@ -14,5 +14,7 @@
     "profile": "Profile",
     "settings": "Settings",
     "login": "Login",
-    "logout": "Log Out"
+    "logout": "Log Out",
+
+    "noresult":"No results found"
 }
