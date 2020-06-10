@@ -1,12 +1,10 @@
-import { Link, i18n, withTranslation } from '../../i18n'
-import Marquee, { Motion, randomIntFromInterval } from "react-marquee-slider";
 import { Question, Sad, Share, Tick } from '../svg/IssueCardSvg'
-import React, { useEffect, useRef, useState } from 'react';
-import { dark_colors, light_colors } from "../../helpers/colors"
+import React, { useState } from 'react';
+import { Router, withTranslation } from '../../i18n'
 
 import { API_URL_W } from '../../helpers/urls'
 import EffectCard from './EffectCard'
-import { EffectCard as Loader } from '../Loaders/EffectCard'
+import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
 
 const ReactMarkdown = require('react-markdown')
@@ -180,16 +178,12 @@ const IconButton = ({ text, icon, count, color }) => {
   )
 }
 
-const Issue = ({ data, userData, t, theme, lang }) => {
+const Issue = ({ data, slug, userData, t, theme, lang }) => {
   const [loading, setLoading] = useState(false);
 
   const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
 
   const item = test[0]
-
-  if (loading) {
-    return <Loader />
-  }
 
   const availableLangKey = (data) => {
     let found_key;
@@ -226,6 +220,7 @@ const Issue = ({ data, userData, t, theme, lang }) => {
   return (
     <IssueContainer>
       <Content>
+        <Warning>Bu sorunun ID'si: {data.id} 'dir. Debug amaçlı yazılmıştır.</Warning>
         <Title>{t('explanation')}</Title>
         <Text as={ReactMarkdown} source={explanation[0][lang] || explanation[0]["en"] || explanation[0][availableLangKey(explanation[0])]} />
         {!explanation[0][lang] && <Warning>This paragraph not available in your language.</Warning>}
@@ -261,7 +256,7 @@ const Issue = ({ data, userData, t, theme, lang }) => {
           </div>
         </Info>
 
-        <Buttons>
+        <Buttons onClick={() => Router.push(`/devices/${slug}/comments`)}>
           <Left>
             <IconButton text={t('samehere')} count={item.count.sameHere} icon={Sad} color={light_colors.SAME_HERE_RED} />
             <IconButton text={t('discuss')} icon={Question} color={theme.text} />

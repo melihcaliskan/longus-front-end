@@ -71,8 +71,13 @@ const HeaderDropdown = ({ userData, isAuth, t, isMobile, isLight, toggleTheme })
         API_URL_W + "/uploads/user_1132094317.png"
 
     const handleLogout = () => {
+        const { route } = Router.router
         logOut()
-        Router.push("/")
+        if (route == "/") {
+            Router.push("/dashboard")
+        } else {
+            Router.reload()
+        }
     }
     return (
         <Container>

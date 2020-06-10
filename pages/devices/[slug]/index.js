@@ -1,19 +1,18 @@
-import { API_URL, API_URL_W } from '../../helpers/urls'
+import { API_URL, API_URL_W } from '../../../helpers/urls'
 import React, { useEffect, useState } from 'react';
 
-import Button from '../../components/Button'
+import Button from '../../../components/Button'
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 import Fade from 'react-reveal/Fade';
 import Head from 'next/head'
-import Header from '../../components/Header'
-import Issue from "../../components/Issue"
-import ItemHeader from "../../components/Detail/Header"
+import Issue from "../../../components/Issue"
+import ItemHeader from "../../../components/Detail/Header"
 import Row from 'react-bootstrap/Row';
 import Toast from 'react-bootstrap/Toast'
+import { handlePhoto } from '../../../helpers/functions'
 import styled from 'styled-components';
-import useWindowSize from "../../helpers/windowSize"
-import { withTranslation } from '../../i18n'
+import { withTranslation } from '../../../i18n'
 
 const DetailContainer = styled.div`
     display:flex;
@@ -65,34 +64,9 @@ const ToastContainer = styled.div`
         right:10px;
     }
 `
-/*
-const CustomToast = ({ isShow }) => {
-    const [show, setShow] = useState(true);
-    const size = useWindowSize();
-    useEffect(() => {
-        setShow(isShow)
-    })
-    return (
-        <ToastContainer as={Toast} show={show} autohide height={size.height} delay={1500} onClose={() => setShow(false)}>
-            <Toast.Header>
-                <img
-                    onClick={() => setShow(false)}
-                    src="assets/favicon.ico"
-                    className="rounded mr-2"
-                    width={15}
-                />
-                <strong className="mr-auto">Başarılı!</strong>
-                <small>Şimdi</small>
-            </Toast.Header>
-            <Toast.Body style={{ marginLeft: '0.8em', color: '#464646' }}>Başarıyla oy verildi.</Toast.Body>
-        </ToastContainer>
-    )
-    
-    <CustomToast isShow={showToast} />
-}
-*/
+
 const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, language }) => {
-    const { name, device_issues, photo } = device
+    const { name, slug, device_issues, photo } = device
 
     const [showToast, setShowToast] = useState(false)
 
@@ -102,27 +76,13 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
             setShowToast(false)
         }, 3000);
     }
+
+    const goComments = () => {
+
+    }
     if (device.statusCode == 404) {
         // Build aldıktan sonra Next.js bizim yerimize 404 sayfasına yönlendiriyor.
     }
-
-    const photoURL = photo ?
-        (API_URL_W +
-            (
-                photo.formats.large ?
-                    photo.formats.large.url
-                    :
-                    photo.formats.medium ?
-                        photo.formats.medium.url
-                        :
-                        photo.formats.small ?
-                            photo.formats.small.url
-                            :
-                            photo.formats.thumbnail.url
-            )
-        )
-        :
-        "/assets/no-photo.svg"
 
     return (
         <Fade duration={600}>
@@ -139,7 +99,7 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
             <DetailContainer>
                 <ItemHeader
                     name={name}
-                    photo={photoURL}
+                    photo={handlePhoto(photo)}
                     count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: 0 }}
                     fit={device_issues && device_issues.length > 0 ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
@@ -167,7 +127,7 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
                             }
                         </ListText>
                         {device_issues && device_issues.length > 0 && device_issues.map((item, index) => (
-                            <Issue data={item} userData={userData} key={index} theme={theme} lang={language} />
+                            <Issue slug={slug} data={item} userData={userData} key={index} theme={theme} lang={language} />
                         ))}
                     </List>
                 </Container>
@@ -187,7 +147,7 @@ Detail.getInitialProps = async ({ res, query, err }) => {
     const userData = await response_two.json()
     delete userData.device_issues
 
-    return { namespacesRequired, device: device[0], userData: userData }
+    return { namespacesRequired, device: device[0], userData: userData, query }
 }
 
 export default withTranslation('detail')(Detail)
