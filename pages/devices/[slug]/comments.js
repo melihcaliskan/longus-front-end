@@ -29,7 +29,7 @@ const Comments = ({ t, isMobile, isAuth, device, comments }) => {
     const onSubmit = (data) => {
         POST('comments', { device_id: id, ...data }).then(async response => {
             console.log(response)
-            if(response.status === 200){
+            if (response.status === 200) {
                 reset()
                 // Yorum başarılı ise toast gösterilecek.
                 const fetchComments = await GET(`comments?device_id=${id}`);
@@ -60,7 +60,7 @@ const Comments = ({ t, isMobile, isAuth, device, comments }) => {
                 <ItemHeader
                     name={name}
                     photo={handlePhoto(photo)}
-                    count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: 0 }}
+                    count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: commentData?.length }}
                     fit={device_issues && device_issues.length > 0 ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
                 />

@@ -100,7 +100,7 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
                 <ItemHeader
                     name={name}
                     photo={handlePhoto(photo)}
-                    count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: 0 }}
+                    count={{ issue: device_issues && device_issues.length ? device_issues.length : 0, comment: device.comments?.length }}
                     fit={device_issues && device_issues.length > 0 ? device_issues[0].effect_on_usability : 10}
                     isMobile={isMobile}
                 />
