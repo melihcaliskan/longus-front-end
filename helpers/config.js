@@ -1,0 +1,1 @@
+export const POPULAR_CATEGORIES = ['smartphone', 'computer', 'smartwatch', 'tv', 'headphones', 'monitor']
