@@ -1,7 +1,10 @@
-import { Camera, Case, Delivery, FlashCard, MemoryCard, Monitor, Watch, İPhone } from '../svg/find/index'
-import React, { useState } from 'react';
+import { Calculator, Camera, Case, Delivery, FlashCard, MemoryCard, Monitor, Watch, İPhone } from '../svg/find/index'
+import React, { useEffect, useState } from 'react';
 
+import { API_URL } from '../../helpers/urls'
 import ActiveLink from '../ActiveLink'
+import { GET } from '../../helpers/network'
+import { POPULAR_CATEGORIES } from '../../helpers/config'
 import styled from 'styled-components';
 import { withTranslation } from '../../i18n'
 
@@ -100,6 +103,8 @@ const Join = styled.div`
     color: ${({ theme }) => theme.text};
     background: ${({ theme }) => theme.button_bg};
     border-radius:5px;
+
+    max-height:100px;
 `
 
 const Action = styled.div`
@@ -108,6 +113,7 @@ const Action = styled.div`
     text-align:center;
     text-transform:uppercase;
     font-weight:800;
+
     @media only screen and (max-width: 960px) {
         font-size:14px;
         padding:0.2em 0.5em;
@@ -174,44 +180,6 @@ const SvgItem = styled.div`
     }
 `
 
-const device_data = [
-    {
-        id: 22,
-        brand: "Samsung",
-        name: "Note 10",
-        url: "isinma-sorunu",
-        img: "https://i.picsum.photos/id/223/400/600.jpg",
-    },
-    {
-        id: 2222,
-        brand: "Apple",
-        name: "iPhone 11",
-        url: "gps-sorunu",
-        img: "https://i.picsum.photos/id/223/400/600.jpg",
-    },
-    {
-        id: 225,
-        brand: "Meizu",
-        name: "Note 6T",
-        url: "isinma-sorunu",
-        img: "https://i.picsum.photos/id/223/400/600.jpg",
-    },
-    {
-        id: 226,
-        brand: "Redmi",
-        name: "Note 9",
-        url: "gps-sorunu",
-        img: "https://i.picsum.photos/id/223/400/600.jpg",
-    },
-    {
-        id: 722,
-        brand: "Huawei",
-        name: "Mate 20",
-        url: "kamera-sorunu",
-        img: "https://i.picsum.photos/id/223/400/600.jpg",
-    }
-]
-
 const SvgButton = ({ children, active, onClick }) => {
     return (
         <SvgItem onClick={onClick} active={active}>
@@ -222,72 +190,100 @@ const SvgButton = ({ children, active, onClick }) => {
 
 
 const List = ({ t, data, count }) => {
+    console.log(data)
+    if (!data) {
+        return ("loading")
+    }
+    //data.slice(0, count)
     return (
         <div>
-            {data.map((a) => ({ sort: Math.random(), value: a }))
-                .sort((a, b) => a.sort - b.sort)
-                .map((a) => a.value)
-                .slice(0, count).map((item, index) => (
-                    <ActiveLink key={item.id} href={"/devices/1"} query={{ brand: item.brand, name: item.name }}>
-                        <Item white={index % 2 == 0} last={data.slice(0, count).length == index + 1}>
-                            <Body>
-                                <Top>
-                                    <Brand>{item.brand}</Brand>
+            {data.map((item, index) => (
+                <ActiveLink key={item.id} href={"/devices/1"} query={{ brand: item.brand, name: item.name }}>
+                    <Item white={index % 2 == 0} last={data.slice(0, count).length == index + 1}>
+                        <Body>
+                            <Top>
+                                <Brand>{item.brand[0].name}</Brand>
+                                {/*}
                                     <UserContainer>
                                         {Array(10).fill(1).map((el, i) =>
                                             <User key={i} />
                                         )}
                                     </UserContainer>
-                                </Top>
-                                <ProductName>{item.name}</ProductName>
-                            </Body>
-                            <Join>
-                                <Action>
-                                    {t('join')}
-                                </Action>
-                                <Count>
-                                    {Math.floor(Math.random() * 100)}
-                                </Count>
-                            </Join>
-                        </Item>
-                    </ActiveLink>
-                ))
+                                    {*/}
+                            </Top>
+                            <ProductName>{item.name}</ProductName>
+                        </Body>
+                        <Join>
+                            <Action>
+                                {t('join')}
+                            </Action>
+                            <Count>
+                                {item.same_here_count}
+                            </Count>
+                        </Join>
+                    </Item>
+                </ActiveLink>
+            ))
             }
         </div >
     )
 }
 
-const CustomTab = ({ t, theme, count }) => {
-    const [loading, setLoading] = useState(true);
-    const [activeKey, setKey] = useState(1);
 
+const CustomTab = ({ t, theme, count }) => {
+    const [loading, setLoading] = useState(false);
+    const [activeKey, setKey] = useState(0);
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        let ignore = false;
+        async function fetchData() {
+            setLoading(true)
+            const result = await GET(`categories?slug=${POPULAR_CATEGORIES[activeKey]}`)
+            if (!ignore) {
+                setData(result[0])
+            }
+            setLoading(false)
+        }
+        fetchData();
+        console.log(data)
+        return () => { ignore = true; }
+    }, [activeKey]);
     return (
         <Container>
             <h3>{t('populartoday')}</h3>
             <SvgContainer>
-                <SvgButton onClick={() => setKey(1)} active={activeKey == 1}>
-                    <İPhone />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(2)} active={activeKey == 2}>
-                    <Watch />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(3)} active={activeKey == 3}>
-                    <Camera />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(5)} active={activeKey == 5}>
-                    <Delivery />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(7)} active={activeKey == 7}>
-                    <MemoryCard />
-                </SvgButton>
-                <SvgButton onClick={() => setKey(9)} active={activeKey == 9}>
-                    <Monitor />
-                </SvgButton>
+                {POPULAR_CATEGORIES.map((item, i) => {
+                    let icon;
+                    switch (item) {
+                        case "smartphone": icon = <İPhone />; break;
+                        case "computer": icon = <Calculator />; break;
+                        case "smartwatch": icon = <Watch />; break;
+                        case "tv": icon = <Monitor />; break;
+                        case "headphones": icon = <Delivery />; break;
+                        case "monitor": icon = <Monitor />; break;
+                    }
+                    return (
+                        <SvgButton onClick={() => setKey(i)} active={activeKey == i}>
+                            {icon}
+                        </SvgButton>
+                    )
+                })}
             </SvgContainer>
 
-            <ItemContainer>
-                <List t={t} count={count} data={device_data} />
-            </ItemContainer>
+            {loading || !data ?
+                <div style={{ height: 150, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img height={30} src="/assets/inline-loader.svg" />
+                </div>
+                :
+                <ItemContainer>
+                    {data.devices && data.devices.length == 0 ?
+                        <h4 style={{ textAlign: 'center' }}>Cihaz bulunamadı</h4>
+                        :
+                        <List t={t} count={count} data={data.devices} />
+                    }
+                </ItemContainer>
+            }
         </Container>
     )
 }
