@@ -142,7 +142,7 @@ Detail.getInitialProps = async ({ res, query, err }) => {
     const response = await fetch(`${API_URL}devices?slug=${query.slug}`)
     const device = await response.json()
 
-    const user_id = device[0] && device[0].device_issues && device[0].device_issues[0].user
+    const user_id = device[0] && device[0].device_issues && device[0].device_issues.length && device[0].device_issues[0].user
     const response_two = await fetch(`${API_URL}users/${user_id}`)
     const userData = await response_two.json()
     delete userData.device_issues
