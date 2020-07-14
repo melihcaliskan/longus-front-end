@@ -119,11 +119,13 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
                         </Col>
                         <Col xs lg="2" />
                     </Row>
+                    <br />
+                    <hr />
                     <List>
                         <ListText>
                             {device_issues && device_issues.length > 0 ?
                                 `${device_issues.length} ${t('issues')}`
-                                : t('noissue')
+                                : <center>{t('noissue')}</center>
                             }
                         </ListText>
                         {device_issues && device_issues.length > 0 && device_issues.map((item, index) => (
