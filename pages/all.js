@@ -2,6 +2,7 @@ import { API_URL, API_URL_W } from '../helpers/urls'
 import { Link, i18n, withTranslation } from '../i18n'
 import React, { useEffect, useRef, useState } from 'react';
 
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Button from 'react-bootstrap/Button'
 import Card from '../components/All/Card'
 import CategoryList from '../components/All/CategoryList'
@@ -114,7 +115,8 @@ const Tabs = ({ t }) => {
     )
 }
 
-const All = ({ t, query, language, categories, devices }) => {
+const All = ({ t, query, language, categories, devices, isMobile }) => {
+    const { category } = query
     const [loading, setLoading] = useState(true);
     return (
         <>
@@ -128,13 +130,17 @@ const All = ({ t, query, language, categories, devices }) => {
                 </Form.Group>
             </ContactHeader>
 
-            <Container style={{ marginTop: '2em' }}>
-                <Row>
-                    <Col>
-                        <CategoryList categories={categories} lang={language} query={query} />
+            <Container fluid style={{ marginTop: '2em' }}>
+                <Row className="justify-content-md-center">
+                    <Col xs={12} md={2}>
+                        <CategoryList categories={categories} lang={language} query={query} isMobile={isMobile} />
                     </Col>
-                    <Col xs={8}>
-                        {JSON.stringify(devices)}
+                    <Col xs={12} md={7}>
+                        <Breadcrumb>
+                            <Breadcrumb.Item href="#">All Devices</Breadcrumb.Item>
+                            <Breadcrumb.Item active>{category}</Breadcrumb.Item>
+                        </Breadcrumb>
+                        {devices.map(item => item.name)}
                     </Col>
                 </Row>
             </Container>
