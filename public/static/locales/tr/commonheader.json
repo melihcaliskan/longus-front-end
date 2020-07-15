@@ -2,6 +2,7 @@
     "brand": "longus.io",
     "welcome": "Hoşgeldin",
 
+    "devices": "Cihazlar",
     "issues": "Sorunlar",
     "categories": "Kategoriler",
 
@@ -16,5 +17,5 @@
     "login": "Giriş Yap",
     "logout": "Çıkış Yap",
 
-    "noresult":"Sonuç bulunamadı"
+    "noresult": "Sonuç bulunamadı"
 }
