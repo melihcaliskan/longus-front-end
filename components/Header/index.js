@@ -126,6 +126,7 @@ const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, noN
         <ActiveLink href={isAuth ? "/dashboard" : "/"}><Title>{t('brand')}</Title></ActiveLink>
         {!noNav &&
           <>
+            <ActiveLink href="/all"><p className="nav-item no-mobile">{t('devices')}</p></ActiveLink>
             <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
             <ActiveLink href="/categories"><p className="nav-item no-mobile">{t('categories')}</p></ActiveLink>
           </>
