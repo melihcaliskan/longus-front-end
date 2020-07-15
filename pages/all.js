@@ -138,9 +138,13 @@ const All = ({ t, query, language, categories, devices, isMobile }) => {
                     <Col xs={12} md={7}>
                         <Breadcrumb>
                             <Breadcrumb.Item href="#">All Devices</Breadcrumb.Item>
-                            <Breadcrumb.Item active>{category}</Breadcrumb.Item>
+                            {category &&
+                                <Breadcrumb.Item active>{category}</Breadcrumb.Item>
+                            }
                         </Breadcrumb>
                         {devices.map(item => item.name)}
+                        <br /><br />
+                        no device
                     </Col>
                 </Row>
             </Container>
