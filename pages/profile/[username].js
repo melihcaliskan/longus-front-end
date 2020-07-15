@@ -9,12 +9,7 @@ import { withTranslation } from '../../i18n'
 
 const Profile = ({ t, isAuth, username, userResponse }) => {
     const { name, photo, role, comments, device_issues, same_heres } = userResponse
-    if (!isAuth) {
-        useEffect(() => {
-            Router.push("/")
-        })
-        return <Loader />
-    }
+    
     return (
         <div>
             <Head>
