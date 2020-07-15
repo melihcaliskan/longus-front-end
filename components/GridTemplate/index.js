@@ -12,16 +12,20 @@ import { withTranslation } from '../../i18n';
 
 const GridHeader = styled.div`
     background-image:url('/assets/issue-bg.png');
-    background-repeat:repat;
     background-size: 60px;
+
     height:350px;
     margin-top:-9em;
     padding:10em 10vw 0 10vw;
-
+    
     display:flex;
     flex-direction:column;
     align-items:center;
-        
+
+    animation-name: bgAnimation;
+    animation-duration: .7s;
+    background-position-y: 60px;
+    
     h3{
         font-size:40px;
         font-weight:800;
@@ -33,6 +37,11 @@ const GridHeader = styled.div`
         h3{
             font-size:30px;
         }
+    }
+
+    @keyframes bgAnimation {
+        from { background-position-y: 20px }
+        to { background-position-y: 60px }
     }
 `
 
@@ -71,6 +80,7 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
 
     useEffect(() => {
         // diğer tablodan slug çek
+
         const delay = setTimeout(async () => {
             setLoading(true)
             if (search.length > 3) {
