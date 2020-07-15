@@ -10,11 +10,11 @@ import { withTranslation } from '../../i18n';
 const Header = styled.div`
   display:flex;
   justify-content:space-between;
-  background: ${props => `linear-gradient(${props.deg}, ${props.lower} 5%, ${props.higher} 80%)`};
+  background: ${props => `linear-gradient(${props.deg}, ${props.lower} 0%, ${props.higher} 65%, ${props.theme.body} 100%)`};
   background-repeat: no-repeat;
   background-size: cover;
   
-  margin-top:-9em;
+  margin-top:-9.2em;
   padding:9em 3em 3em 3em;
     
   @media only screen and (max-width: 960px) {
