@@ -23,6 +23,8 @@ const FourZeroFour = styled.h1`
 `
 
 const CustomContainer = styled.div`
+    display:flex;
+    justify-content:center;
     margin-top:5em;
     @media only screen and (max-width: 960px) {
     }
@@ -40,8 +42,17 @@ const Dashboard = ({ isAuth, jwt, userData, t, tReady, isLight, toggleTheme, the
     <CustomContainer as={Container}>
       <Row>
         <Col>
-          left menu
-          </Col>
+          <h1>Dashboard</h1>
+          <img className="no-desktop" src="/assets/404.svg" width={200} />
+          <br /><br /><br />
+          <p> Welcome to dashboard</p>
+        </Col>
+      </Row>
+    </CustomContainer>
+  )
+}
+export default withTranslation('common')(Dashboard)
+/*
         <Col xs={6}>
           <h1>Akış</h1>
           <img className="no-desktop" src="/assets/404.svg" width={200} />
@@ -51,11 +62,4 @@ const Dashboard = ({ isAuth, jwt, userData, t, tReady, isLight, toggleTheme, the
           <p style={{ maxWidth: '200px' }}>{JSON.stringify(userData)}</p>
 
         </Col>
-        <Col>
-          right menu
-          </Col>
-      </Row>
-    </CustomContainer>
-  )
-}
-export default withTranslation('common')(Dashboard)
+*/
