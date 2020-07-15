@@ -5,11 +5,11 @@ import { availableLangKey, handlePhoto } from '../../helpers/functions'
 
 import { API_URL_W } from '../../helpers/urls'
 import EffectCard from './EffectCard'
+import { POST } from '../../helpers/network'
 import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
 
 const ReactMarkdown = require('react-markdown')
-
 
 const IssueContainer = styled.div`
   display:flex;
@@ -60,7 +60,7 @@ const Info = styled.div`
   }
 `
 
-const IconB = styled.div`
+const IconB = styled.button`
   display:inline-flex;
   justify-content:space-between;
   align-items:center;
@@ -73,8 +73,11 @@ const IconB = styled.div`
   margin-right:1em;
   border-radius:6px;
   
-  background:${({ theme }) => theme.dark_button};
+  background:${props => props.active ? "red" : props.theme.dark_button};
   color:${props => props.color};
+  border:0;
+
+  transition: color .4s, background-color .4s;
 
   ${"svg"}{
     width:34px;
@@ -97,9 +100,7 @@ const Buttons = styled.div`
   margin:2em 0;
   padding-bottom:1.5em;
   
-  overflow-x:scroll;  
-  @media only screen and (max-width: 960px) {
-  }
+  overflow-x:auto;  
 `
 const Left = styled.div`
   display:flex;
@@ -149,45 +150,26 @@ const Warning = styled.span`
   font-style: italic;
   margin-bottom:2em;
 `
-
-const test = [{
-  id: 1,
-  user: {
-    name: "Melih Çalışkan",
-    username: "melihcaliskan",
-    img: "https://pbs.twimg.com/profile_images/977536334377168896/FSIxjgf7_400x400.jpg"
-  },
-  explanation: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus lacinia neque in eleifend. In sodales consectetur elit, eget dapibus magna scelerisque ut. Aliquam sit amet sodales metus.",
-  usage_effect: 7,
-  repeat_freq: 5,
-  company_response: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus lacinia neque in eleifend. In sodales consectetur elit, eget dapibus magna scelerisque ut. Aliquam sit amet sodales metus.",
-  company_solution: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec maximus lacinia neque in eleifend. In sodales consectetur elit, eget dapibus magna scelerisque ut. Aliquam sit amet sodales metus.",
-  count: {
-    sameHere: 5,
-    discuss: 10,
-  },
-  resolved: true,
-  createdAt: new Date(),
-  updatedAt: new Date(),
-}]
-
-const IconButton = ({ text, icon, count, color }) => {
+const IconButton = ({ active, text, icon, count, color, onClick }) => {
   return (
-    <IconB color={color}>
+    <IconB active={active} color={color} onClick={onClick}>
       {icon()}
       <p>{text} {count ? `(${count})` : null}</p>
     </IconB>
   )
 }
 
-const Issue = ({ data, slug, userData, t, theme, lang }) => {
+const Issue = ({ data, deviceId, slug, userData, t, theme, lang }) => {
   const [loading, setLoading] = useState(false);
+  const [isVoted, setIsVoted] = useState(false);
 
   const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
 
-  const item = test[0]
-
-
+  const handleVote = async () => {
+    let test = await POST(`same-heres`, { device: deviceId })
+    console.log(test)
+    setIsVoted(!isVoted)
+  }
   return (
     <IssueContainer>
       <Content>
@@ -228,9 +210,9 @@ const Issue = ({ data, slug, userData, t, theme, lang }) => {
           </div>
         </Info>
 
-        <Buttons onClick={() => Router.push(`/devices/${slug}/comments`)}>
+        <Buttons>
           <Left>
-            <IconButton text={t('samehere')} count={item.count.sameHere} icon={Sad} color={light_colors.SAME_HERE_RED} />
+            <IconButton onClick={() => handleVote()} active={isVoted} text={t('samehere')} count={0} icon={Sad} color={isVoted ? 'orange' : light_colors.SAME_HERE_RED} />
             <IconButton text={t('discuss')} icon={Question} color={theme.text} />
             {!resolved ?
               <IconButton text={t('markasresolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
