@@ -8,6 +8,7 @@ import Search from '../svg/Search'
 import SearchModal from './Search'
 import Twemoji from '../Twemoji'
 import styled from 'styled-components';
+import { useRouter } from "next/router";
 import { useScrollPosition } from '../../helpers/useScroll'
 import useWindowSize from "../../helpers/windowSize";
 
@@ -93,6 +94,10 @@ const Container = styled.div`
     }
   }
 
+  .active{
+    font-weight: 800;
+  }
+
   @media only screen and (max-width: 960px) {
     padding:${props => props.isCollapsed ? "1.5em 0.5em 1em 1.5em" : "2em 1em 2em 2em"};
     backdrop-filter:${props => props.isCollapsed ? 'blur(3px)' : 'initial'} 
@@ -101,7 +106,7 @@ const Container = styled.div`
   box-shadow:${props => props.isCollapsed ? "0px 3px 8px 0px rgba(0,0,0,0.05)" : "none"};
 `
 
-const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, noNav = false }) => {
+const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, query = useRouter(), noNav = false }) => {
   const [modalShow, setModalShow] = useState(false);
   const [isCollapsed, setCollapsed] = useState(false);
 
@@ -126,9 +131,9 @@ const Header = ({ isAuth, userData, style, t, toggleTheme, isLight, reverse, noN
         <ActiveLink href={isAuth ? "/dashboard" : "/"}><Title>{t('brand')}</Title></ActiveLink>
         {!noNav &&
           <>
-            <ActiveLink href="/all"><p className="nav-item no-mobile">{t('devices')}</p></ActiveLink>
-            <ActiveLink href="/issues"><p className="nav-item no-mobile">{t('issues')}</p></ActiveLink>
-            <ActiveLink href="/categories"><p className="nav-item no-mobile">{t('categories')}</p></ActiveLink>
+            <ActiveLink href="/all"><p className={`${query.pathname == "/all" && "active"} nav-item no-mobile`}>{t('devices')}</p></ActiveLink>
+            <ActiveLink href="/issues"><p className={`${query.pathname == "/issues" && "active"} nav-item no-mobile`}>{t('issues')}</p></ActiveLink>
+            <ActiveLink href="/categories"><p className={`${query.pathname == "/categories" && "active"} nav-item no-mobile`}>{t('categories')}</p></ActiveLink>
           </>
         }
       </Left>
