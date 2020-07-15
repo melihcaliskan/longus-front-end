@@ -15,6 +15,7 @@ export const GET = async (url) => {
 export const POST = async (url, data) => {
     return axios.post(`${API_URL}${url}`, {
         user_id: getUserData().id,
+        user: getUserData().id,
         ...data
     })
 }
