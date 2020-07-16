@@ -8,6 +8,7 @@ import EffectCard from './EffectCard'
 import { POST } from '../../helpers/network'
 import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
+import { useRouter } from 'next/router'
 
 const ReactMarkdown = require('react-markdown')
 
@@ -159,15 +160,20 @@ const IconButton = ({ active, text, icon, count, color, onClick }) => {
   )
 }
 
-const Issue = ({ data, deviceId, slug, userData, t, theme, lang }) => {
+const Issue = ({ isAuth, data, deviceId, slug, userData, t, theme, lang }) => {
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
 
   const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
 
   const handleVote = async () => {
-    let test = await POST(`same-heres`, { device: deviceId })
-    console.log(test)
+    if (!isAuth) {
+      router.push('/login?msg=no_auth')
+      return 0;
+    }
+    let response = await POST(`same-heres`, { device: deviceId })
+    console.log(response)
     setIsVoted(!isVoted)
   }
   return (
