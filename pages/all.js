@@ -22,11 +22,14 @@ import styled from 'styled-components';
 
 const ContactHeader = styled.div`
     background-image:url('/assets/issue-bg.png');
-    background-repeat:repat;
     background-size: 60px;
     height:350px;
     margin-top:-9em;
     padding:10em 10vw 0 10vw;
+
+    animation-name: bgAnimation;
+    animation-duration: .7s;
+    background-position-y: 60px;
 
     display:flex;
     flex-direction:column;
@@ -44,6 +47,11 @@ const ContactHeader = styled.div`
     }
         padding:11em 3vw 0 3vw;
     }
+
+    @keyframes bgAnimation {
+        from { background-position-y: 20px }
+        to { background-position-y: 60px }
+    }
 `
 const SectionTitle = styled.h3`
     text-transform:uppercase;
@@ -51,11 +59,9 @@ const SectionTitle = styled.h3`
     font-size:30px;
 `
 
-
 const TabContainer = styled.div`
     margin-top:1em;
 `
-
 
 const TabTitle = styled.p`
     text-transform:uppercase;
@@ -98,7 +104,6 @@ const CardContainer = styled.div`
         grid-template-columns: 1fr 1fr;
     }
 `
-
 
 const Tabs = ({ t }) => {
     return (
