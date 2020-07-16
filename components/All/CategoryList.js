@@ -68,7 +68,7 @@ const CategoryList = ({ t, lang, query, categories, isMobile }) => {
     }
     return (
         <Container>
-            <Title onClick={() => setCollapsed(isMobile ? !collapsed : false)}>{t('categories')} {collapsed ? ">" : "<"}</Title>
+            <Title onClick={() => setCollapsed(!collapsed)}>{t('categories')} {collapsed ? ">" : "<"}</Title>
             {collapsed &&
                 <CategoryItem onClick={() => handleChange()} active={!category}>
                     <img height={20} width={20} src={`data:image/svg+xml;utf8;base64,${all_icon}`} />
