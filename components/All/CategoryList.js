@@ -7,8 +7,11 @@ import styled from 'styled-components';
 const Container = styled.div`
     background: ${({ theme }) => theme.body_100};
     padding:1.5em;
-    
     border-radius:6px;
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 140px;
 `
 const Title = styled.h3`
     font-weight:600;
