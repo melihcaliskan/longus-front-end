@@ -12,6 +12,8 @@ const Container = styled.div`
     position: -webkit-sticky;
     position: sticky;
     top: 140px;
+
+    margin-bottom:2em;
 `
 const Title = styled.h3`
     cursor:pointer;

@@ -252,10 +252,10 @@ const All = ({ t, query, language, categories, devices, isMobile }) => {
             </ContactHeader>
             <Container fluid style={{ marginTop: '2em' }}>
                 <Row className="justify-content-md-center">
-                    <Col className="test" xs={12} md={2}>
+                    <Col xs={12} md={2}>
                         <CategoryList categories={categories} lang={language} query={query} isMobile={isMobile} />
                     </Col>
-                    <Col xs={12} md={7} style={{ marginTop: isMobile ? '2em' : 0 }}>
+                    <Col xs={12} md={7}>
                         <Breadcrumb>
                             <Breadcrumb.Item href="#">Listing: All Devices</Breadcrumb.Item>
                             {category &&
