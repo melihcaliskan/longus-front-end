@@ -199,7 +199,7 @@ const List = ({ t, data, count }) => {
         <div>
             {data.map((item, index) => (
                 <ActiveLink key={item.id} href={`/devices/${item.slug}`} query={{ brand: item.brand, name: item.name }}>
-                    <Item white={index % 2 == 0} last={data.slice(0, count).length == index + 1}>
+                    <Item last={data.slice(0, count).length == index + 1}>
                         <Body>
                             <Top>
                                 <Brand>{item.brand[0].name}</Brand>
