@@ -4,7 +4,6 @@ import { i18n, withTranslation } from '../i18n'
 import ActiveLink from './ActiveLink'
 import Facebook from './svg/Facebook'
 import Instagram from './svg/Instagram'
-import Router from "next/router"
 import Twitter from './svg/Twitter'
 import links from '../helpers/footerLinks'
 import styled from 'styled-components';
@@ -128,7 +127,6 @@ const Footer = ({ t }) => {
   const handleChange = (e) => {
     i18n.changeLanguage(e.target.value)
     setLanguage(e.target.value)
-    //Router.reload()
   }
   return (
     <Container>
