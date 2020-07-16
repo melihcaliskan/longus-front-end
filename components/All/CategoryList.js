@@ -63,7 +63,9 @@ const CategoryList = ({ t, lang, query, categories, isMobile }) => {
         setCursor(cursor + limit)
     }
     const handleChange = (slug = "/all") => {
-        setCollapsed(false)
+        if (isMobile) {
+            setCollapsed(false)
+        }
         Router.push(slug)
     }
     return (
