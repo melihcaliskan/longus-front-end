@@ -8,10 +8,10 @@ import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Left from '../components/Login/Left'
 import Loader from '../helpers/Loader'
-import Router from 'next/router'
 import { light_colors } from '../helpers/colors'
 import { setLogin } from '../helpers/auth'
 import styled from 'styled-components'
+import { useRouter } from 'next/router'
 
 const LoginContainer = styled.div`
     display:flex;
@@ -95,15 +95,16 @@ const Header = styled.div`
     }
 `
 const Login = ({ t, isAuth, noSidebar = false, background }) => {
+    const router = useRouter()
+    const { msg } = router.query
     if (isAuth) {
-        Router.push("/dashboard")
+        router.push("/dashboard")
         return <Loader />
     }
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const handleSubmit = (evt) => {
-        const { route } = Router.router
         evt.preventDefault();
 
         if (!name) {
@@ -126,12 +127,12 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
                 // JWT - User Data
                 setLogin(jwt, user)
 
-                if (route == "/") {
-                    Router.push("/dashboard")
+                if (router.route == "/") {
+                    router.push("/dashboard")
                 } else {
-                    Router.reload()
+                    router.reload()
                 }
-                
+
             } else {
                 if (data.message[0].messages[0].id == "Auth.form.error.invalid") {
                     setError(t('passworderror'))
@@ -159,11 +160,16 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
                             </svg>
                         </ActiveLink>
                     </Header>
-                    {error ?
+                    {msg && msg == "no_auth" &&
+                        <Alert style={{ marginBottom: '3em' }} variant={"warning"}>
+                            {t('needauth')}
+                        </Alert>
+                    }
+                    {error &&
                         <Alert style={{ marginBottom: '3em' }} variant={"danger"}>
                             {error}
                         </Alert>
-                        : null}
+                    }
                     <Form>
                         <Form.Group className="form-item" controlId="username">
                             <Form.Label>{t('usernameoremail')}</Form.Label>
