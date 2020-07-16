@@ -64,7 +64,7 @@ const Image = styled.img`
 
 const Item = ({ data, lang, isLight }) => {
     return (
-        <ActiveLink href={`/issues/${data.slug}`}>
+        <ActiveLink href={`/soon`}>
             <ItemContainer>
                 <Image src={`data:image/svg+xml;utf8;base64, ${data.icon}`} isLight={isLight} />
                 <p>{data.name[0][lang] ? data.name[0][lang] : data.name[0]["en"]}</p>
