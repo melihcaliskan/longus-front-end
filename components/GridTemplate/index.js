@@ -99,7 +99,7 @@ const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language,
         setLoading(true)
         setStart(start + limit)
 
-        const res = await fetch(`${API_URL}${url}/start=${start}&limit=${limit}`)
+        const res = await fetch(`${API_URL}${url}?_start=${start}&_limit=${limit}`)
         const result = await res.json()
 
         setItems([...items, ...result])
