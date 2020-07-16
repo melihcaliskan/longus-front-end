@@ -96,7 +96,7 @@ const Header = styled.div`
 `
 const Login = ({ t, isAuth, noSidebar = false, background }) => {
     const router = useRouter()
-    const { msg } = router.query
+    const { msg, returnUrl } = router.query
     if (isAuth) {
         router.push("/dashboard")
         return <Loader />
@@ -129,6 +129,8 @@ const Login = ({ t, isAuth, noSidebar = false, background }) => {
 
                 if (router.route == "/") {
                     router.push("/dashboard")
+                } else if (returnUrl) {
+                    router.push(returnUrl)
                 } else {
                     router.reload()
                 }

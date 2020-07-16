@@ -169,11 +169,10 @@ const Issue = ({ isAuth, data, deviceId, slug, userData, t, theme, lang }) => {
 
   const handleVote = async () => {
     if (!isAuth) {
-      router.push('/login?msg=no_auth')
+      router.push(`/login?msg=no_auth&returnUrl=/devices/${slug}`)
       return 0;
     }
     let response = await POST(`same-heres`, { device: deviceId })
-    console.log(response)
     setIsVoted(!isVoted)
   }
   return (
