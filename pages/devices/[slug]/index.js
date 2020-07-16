@@ -65,7 +65,7 @@ const ToastContainer = styled.div`
     }
 `
 
-const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, language }) => {
+const Detail = ({ device, userData, t, isAuth, isMobile, theme, language }) => {
     const { id, name, slug, device_issues, photo } = device
 
     const [showToast, setShowToast] = useState(false)
@@ -129,7 +129,7 @@ const Detail = ({ device, userData, t, isMobile, isLight, toggleTheme, theme, la
                             }
                         </ListText>
                         {device_issues && device_issues.length > 0 && device_issues.map((item, index) => (
-                            <Issue deviceId={id} slug={slug} data={item} userData={userData} key={index} theme={theme} lang={language} />
+                            <Issue isAuth={isAuth} deviceId={id} slug={slug} data={item} userData={userData} key={index} theme={theme} lang={language} />
                         ))}
                     </List>
                 </Container>
