@@ -35,5 +35,7 @@
     "passwordlength": "Your password cannot be less than 8 characters",
     "anerroroccured": "An error has occurred",
 
-    "backtohome": "Go back to homepage"
+    "backtohome": "Go back to homepage",
+
+    "needauth":"You must be logged in to perform this action"
 }

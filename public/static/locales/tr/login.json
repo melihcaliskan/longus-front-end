@@ -35,5 +35,7 @@
     "passwordlength": "Şifreniz 8 karakterden kısa olamaz",
     "anerroroccured": "Bir hata meydana geldi",
 
-    "backtohome": "Anasayfaya geri dön"
+    "backtohome": "Anasayfaya geri dön",
+
+    "needauth":"Bu işlemi yapabilmek için giriş yapmanız gerekli"
 }
