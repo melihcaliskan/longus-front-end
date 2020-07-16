@@ -14,11 +14,17 @@ const Container = styled.div`
     top: 140px;
 
     margin-bottom:2em;
+    @media only screen and (max-width: 960px) {
+        padding:1em;
+    }
 `
 const Title = styled.h3`
     cursor:pointer;
     font-weight:600;
     margin:0;
+    @media only screen and (max-width: 960px) {
+        font-size:20px;
+    }
 `
 const CategoryItem = styled.p`
     &:nth-child(2) {
