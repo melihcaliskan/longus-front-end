@@ -9,7 +9,7 @@ import { withTranslation } from '../../i18n'
 
 const Profile = ({ t, isAuth, username, userResponse }) => {
     const { name, photo, role, comments, device_issues, same_heres } = userResponse
-    
+
     return (
         <div>
             <Head>
@@ -19,17 +19,18 @@ const Profile = ({ t, isAuth, username, userResponse }) => {
                 <meta name="author" content="John Doe" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '10em' }}>
-                <div style={{ textAlign: 'center', background: 'rgba(0,0,0,0.05)', padding:'2em', borderRadius:'1em' }}>
-                    <img width={50} height={50} style={{ borderRadius: '50%' }} src={API_URL_W + photo.url} />
-                    <br /><br />
+            <Container>
+                <p style={{ textAlign: 'center', fontWeight: 'bold' }}>work in progress</p>
+                <div style={{ marginTop: 100, textAlign: 'center', background: 'rgba(0,0,0,0.05)', padding: '2em', borderRadius: '1em' }}>
+                    <img width={160} height={160} style={{ marginTop: '-120px', marginBottom: '-60px', borderRadius: '50%' }} src={API_URL_W + photo.url} />
+                    <br /><br /><br /><br />
                     <h2>{name}</h2>
                     <p>{role.type}</p>
                     <p>Sorun sayısı: {device_issues.length}</p>
                     <p>Yorum sayısı: {comments.length}</p>
                     <p>Oy sayısı: {same_heres.length}</p>
                 </div>
-            </div>
+            </Container>
         </div>
     )
 }
