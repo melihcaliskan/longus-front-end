@@ -64,14 +64,12 @@ const List = styled.div`
 `
 
 const GridTemplate = ({ title, emoji, url, searchUrl, data, t, tReady, language, isLight, toggleTheme }) => {
+    const limit = 12;
     const [loading, setLoading] = useState(false);
 
     const [items, setItems] = useState(data);
-    const [start, setStart] = useState(10);
-    const limit = 12;
-
+    const [start, setStart] = useState(limit);
     const [seeMore, setSeeMore] = useState(true);
-
     const [search, setSearch] = useState('');
     const [searchData, setSearchData] = useState('');
 
