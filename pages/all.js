@@ -2,10 +2,8 @@ import { API_URL, API_URL_W } from '../helpers/urls'
 import { Link, i18n, withTranslation } from '../i18n'
 import React, { useEffect, useRef, useState } from 'react';
 
-import ArrowLeft from 'components/svg/ArrowLeft';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import Button from 'react-bootstrap/Button'
-import Card from '../components/All/Card'
 import CategoryList from '../components/All/CategoryList'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
@@ -13,9 +11,6 @@ import Fade from 'react-reveal/Fade';
 import Form from 'react-bootstrap/Form'
 import Head from 'next/head'
 import Header from '../components/Header'
-import LargeCard from '../components/All/LargeCard'
-import Overlay from 'react-bootstrap/Overlay'
-import Popover from 'react-bootstrap/Popover'
 import Row from 'react-bootstrap/Row'
 import Twemoji from '../components/Twemoji'
 import { randomDevice } from '../helpers/placeholderGenerator'
@@ -106,21 +101,6 @@ const CardContainer = styled.div`
     }
 `
 
-const Tabs = ({ t }) => {
-    return (
-        <TabContainer>
-            <TabTitle>{t('categories')}</TabTitle>
-            <div style={{ display: 'flex', alignItems: 'center', overflow: 'scroll', paddingBottom: '1em' }}>
-                {['Tümü', 'Telefon', 'Akıllı Saat', 'Kulaklık', "Tv", "Kamera"].map((placement, index) => (
-                    <TabButton key={index} active={index == 0}>
-                        <p>{placement}</p>
-                    </TabButton>
-                ))}
-            </div>
-        </TabContainer>
-    )
-}
-
 const DeviceCardContainer = styled.a`
     &:link, &:hover {
         text-decoration:none;
@@ -142,7 +122,8 @@ const DeviceCardContainer = styled.a`
         background:${({ theme }) => theme.body_200};
     }
     @media only screen and (max-width: 960px) {
-        padding:2em 1.5em;
+        margin-top:1.2em;
+        padding:1em;
         justify-content:flex-end;
         flex-direction:row-reverse;
     }
@@ -176,6 +157,8 @@ const DeviceImage = styled.img`
     mix-blend-mode: multiply;
     @media only screen and (max-width: 960px) {
         margin-right:2em;
+        width:80px;
+        height:80px;
     }
 `
 const Left = styled.div`
@@ -225,28 +208,28 @@ const DeviceCard = ({ t, isMobile, item }) => {
             <Left>
                 <DeviceBrand>Samsung</DeviceBrand>
                 <DeviceName>{name}</DeviceName>
-
-                <Info>
-                    <div>
-                        <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M2.22222 0H22.2222C23.4495 0 24.4444 0.994923 24.4444 2.22222V17.7778C24.4444 19.0051 23.4495 20 22.2222 20H2.22222C0.994923 20 0 19.0051 0 17.7778V2.22222C0 0.994923 0.994923 0 2.22222 0ZM2.22222 2.22222V17.7778H22.2222V2.22222H2.22222ZM6.66667 15.5556H8.88889V8.88896H6.66667V15.5556ZM13.3335 15.5555H11.1112V4.44438H13.3335V15.5555ZM15.5554 15.5557H17.7776V7.77791H15.5554V15.5557Z" fill="#464646" />
-                        </svg>
-                        <p>{1} {!isMobile ? t('issues') : t('mobileIssues')}</p>
-                    </div>
-                    <div>
-                        <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M6 21.8042L12.0868 18H20C21.1046 18 22 17.1046 22 16V4C22 2.89543 21.1046 2 20 2H4C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H6V21.8042ZM11.5132 16L7.99999 18.1958V16H3.99999V4.00001H20V16H11.5132Z" fill="#464646" />
-                        </svg>
-                        <p>{1} {!isMobile ? t('comment') : t('mobileComment')}</p>
-                    </div>
-                    <div>
-                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="10" cy="10" r="10" fill="#17C671" />
-                        </svg>
-                        <p>{!isMobile ? t('fit') : t('mobileFit')}</p>
-                    </div>
-                </Info>
-                
+                {!isMobile &&
+                    <Info>
+                        <div>
+                            <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M2.22222 0H22.2222C23.4495 0 24.4444 0.994923 24.4444 2.22222V17.7778C24.4444 19.0051 23.4495 20 22.2222 20H2.22222C0.994923 20 0 19.0051 0 17.7778V2.22222C0 0.994923 0.994923 0 2.22222 0ZM2.22222 2.22222V17.7778H22.2222V2.22222H2.22222ZM6.66667 15.5556H8.88889V8.88896H6.66667V15.5556ZM13.3335 15.5555H11.1112V4.44438H13.3335V15.5555ZM15.5554 15.5557H17.7776V7.77791H15.5554V15.5557Z" fill="#464646" />
+                            </svg>
+                            <p>{1} {!isMobile ? t('issues') : t('mobileIssues')}</p>
+                        </div>
+                        <div>
+                            <svg width="25" height="20" viewBox="0 0 25 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fillRule="evenodd" clipRule="evenodd" d="M6 21.8042L12.0868 18H20C21.1046 18 22 17.1046 22 16V4C22 2.89543 21.1046 2 20 2H4C2.89543 2 2 2.89543 2 4V16C2 17.1046 2.89543 18 4 18H6V21.8042ZM11.5132 16L7.99999 18.1958V16H3.99999V4.00001H20V16H11.5132Z" fill="#464646" />
+                            </svg>
+                            <p>{1} {!isMobile ? t('comment') : t('mobileComment')}</p>
+                        </div>
+                        <div>
+                            <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="10" cy="10" r="10" fill="#17C671" />
+                            </svg>
+                            <p>{!isMobile ? t('fit') : t('mobileFit')}</p>
+                        </div>
+                    </Info>
+                }
             </Left>
             <DeviceImage height={100} src={API_URL_W + photo.url} />
         </DeviceCardContainer>
@@ -267,10 +250,9 @@ const All = ({ t, query, language, categories, devices, isMobile }) => {
                     <Form.Control size="lg" placeholder={randomDevice} />
                 </Form.Group>
             </ContactHeader>
-
             <Container fluid style={{ marginTop: '2em' }}>
                 <Row className="justify-content-md-center">
-                    <Col xs={12} md={2}>
+                    <Col className="test" xs={12} md={2}>
                         <CategoryList categories={categories} lang={language} query={query} isMobile={isMobile} />
                     </Col>
                     <Col xs={12} md={7} style={{ marginTop: isMobile ? '2em' : 0 }}>
