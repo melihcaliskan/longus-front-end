@@ -127,6 +127,7 @@ const DeviceCardContainer = styled.a`
         color:${({ theme }) => theme.text};
     }
     display:flex;
+
     align-items:center;
     justify-content:space-between;    
 
@@ -140,6 +141,11 @@ const DeviceCardContainer = styled.a`
     &:hover{
         background:${({ theme }) => theme.body_200};
     }
+    @media only screen and (max-width: 960px) {
+        padding:2em 1.5em;
+        justify-content:flex-end;
+        flex-direction:row-reverse;
+    }
 `
 
 const DeviceBrand = styled.h4`
@@ -149,7 +155,7 @@ const DeviceBrand = styled.h4`
     font-size:16px;
     @media only screen and (max-width: 960px) {
         font-size:14px;
-}
+    }
 `
 
 const DeviceName = styled.h2`
@@ -164,6 +170,13 @@ const DeviceName = styled.h2`
 
 
 const DeviceImage = styled.img`
+    width:100px;
+    height:100px;
+    object-fit:contain;
+    mix-blend-mode: multiply;
+    @media only screen and (max-width: 960px) {
+        margin-right:2em;
+    }
 `
 const Left = styled.div`
 `
@@ -233,6 +246,7 @@ const DeviceCard = ({ t, isMobile, item }) => {
                         <p>{!isMobile ? t('fit') : t('mobileFit')}</p>
                     </div>
                 </Info>
+                
             </Left>
             <DeviceImage height={100} src={API_URL_W + photo.url} />
         </DeviceCardContainer>
@@ -259,7 +273,7 @@ const All = ({ t, query, language, categories, devices, isMobile }) => {
                     <Col xs={12} md={2}>
                         <CategoryList categories={categories} lang={language} query={query} isMobile={isMobile} />
                     </Col>
-                    <Col xs={12} md={7}>
+                    <Col xs={12} md={7} style={{ marginTop: isMobile ? '2em' : 0 }}>
                         <Breadcrumb>
                             <Breadcrumb.Item href="#">Listing: All Devices</Breadcrumb.Item>
                             {category &&
