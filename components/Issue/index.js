@@ -4,8 +4,12 @@ import { Router, withTranslation } from '../../i18n'
 import { availableLangKey, handlePhoto } from '../../helpers/functions'
 
 import { API_URL_W } from '../../helpers/urls'
+import Button from 'react-bootstrap/Button'
+import Col from 'react-bootstrap/Col'
 import EffectCard from './EffectCard'
 import { POST } from '../../helpers/network'
+import Row from 'react-bootstrap/Row'
+import Toast from 'react-bootstrap/Toast'
 import { light_colors } from "../../helpers/colors"
 import styled from 'styled-components';
 import { useRouter } from 'next/router'
@@ -160,10 +164,29 @@ const IconButton = ({ active, text, icon, count, color, onClick }) => {
   )
 }
 
+const SoonToast = ({ show, setShow }) => {
+  return (
+    <Row>
+      <Col xs={6}>
+        <Toast onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Header>
+            🚀
+            <strong className="mr-auto"> Coming soon!</strong>
+            <small>now</small>
+          </Toast.Header>
+          <Toast.Body>This feature is coming very soon.</Toast.Body>
+        </Toast>
+      </Col>
+    </Row>
+  );
+}
+
 const Issue = ({ isAuth, data, deviceId, slug, userData, t, theme, lang }) => {
   const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
+
+  const [show, setShow] = useState(false);
 
   const { explanation, repeat_frequency, effect_on_usability, company_response, company_solution, resolved } = data
 
@@ -218,13 +241,13 @@ const Issue = ({ isAuth, data, deviceId, slug, userData, t, theme, lang }) => {
         <Buttons>
           <Left>
             <IconButton onClick={() => handleVote()} active={isVoted} text={t('samehere')} count={0} icon={Sad} color={isVoted ? 'orange' : light_colors.SAME_HERE_RED} />
-            <IconButton text={t('discuss')} icon={Question} color={theme.text} />
+            <IconButton onClick={() => setShow(true)} text={t('discuss')} icon={Question} color={theme.text} />
             {!resolved ?
-              <IconButton text={t('markasresolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
+              <IconButton onClick={() => setShow(true)} text={t('markasresolved')} icon={Tick} color={light_colors.RESOLVED_GREEN} />
               : null}
           </Left>
           <ShareButton>
-            <Share />
+            <Share onClick={() => setShow(true)}/>
           </ShareButton>
         </Buttons>
         {resolved ?
@@ -232,6 +255,8 @@ const Issue = ({ isAuth, data, deviceId, slug, userData, t, theme, lang }) => {
             <h2>{t('resolved')}</h2>
           </Resolved>
           : null}
+
+        <SoonToast show={show} setShow={setShow} />
       </Content>
     </IssueContainer>
   )
