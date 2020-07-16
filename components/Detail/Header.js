@@ -122,7 +122,7 @@ const Info = styled.div`
       font-weight:600;
     }
     
-    margin-right:1em;
+    margin-right:2em;
     
     @media only screen and (max-width: 960px) {
       p {
