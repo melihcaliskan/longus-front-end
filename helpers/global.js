@@ -75,7 +75,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   .emoji {
-    width: auto;
+    width: 1em;
     height: 1em;
     vertical-align: -0.125em;
   }
