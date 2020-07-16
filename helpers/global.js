@@ -18,12 +18,14 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
   }
 
+  /*
   ::selection {
     background: rgba(0,0,0,0);
   }
   ::-moz-selection {
     background: rgba(0,0,0,0);
   }
+  */
 
   ::-webkit-scrollbar {
     border-radius: 10px;
